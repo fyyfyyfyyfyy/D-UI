@@ -1,36 +1,31 @@
-from collections.abc import MutableMapping
-from decimal import Decimal
+from dui.types.decimalList import DecimalList
 
 
-class Desire(MutableMapping):
+class Desire(DecimalList):
+    DESIRE_COUNT: int = 29
+
     def __init__(self) -> None:
-        self._value: list[Decimal] = [Decimal(0) for _ in range(30)]
+        super().__init__(item_count=Desire.DESIRE_COUNT)
 
-    def __getitem__(self, key: int) -> Decimal:
-        return self._value[key]
 
-    def __setitem__(self, key: int, value: Decimal | int):
-        assert key >= 0 and key < len(self._value)
-        dec_value = Decimal(value)
-        self._value[key] = dec_value
+class Emotion(DecimalList):
+    def __init__(self) -> None:
+        super().__init__(item_count=5)
 
-    def __delitem__(self, key: int):
-        del self._value[key]
 
-    def __iter__(self):
-        return iter(range(len(self._value)))
-
-    def __len__(self) -> int:
-        return len(self._value)
-
-    def __repr__(self):
-        return repr(dict(enumerate(self._value)))
+class Feeling(DecimalList):
+    def __init__(self) -> None:
+        super().__init__(item_count=5)
 
 
 class Person:
-    def __init__(self, desire: Desire) -> None:
+    def __init__(self,
+                 desire: Desire,
+                 emotion: Emotion = Emotion(),
+                 feeling: Feeling = Feeling()) -> None:
         self._desire: Desire = desire
-        pass
+        self._emotion: Emotion = emotion
+        self._feeling: Feeling = feeling
 
     def __repr__(self) -> str:
         return repr({
