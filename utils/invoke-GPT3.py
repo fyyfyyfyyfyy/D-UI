@@ -4,7 +4,7 @@ import openai  # type: ignore
 
 
 def has_proxy():
-    proxy_addr = os.getenv('HTTPS_PROXY')
+    proxy_addr = os.getenv('https_proxy')
     if proxy_addr is None or len(proxy_addr) <= 0:
         return False
     return True
