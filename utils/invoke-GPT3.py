@@ -2,7 +2,18 @@ import os
 
 import openai  # type: ignore
 
+
+def has_proxy():
+    proxy_addr = os.getenv('HTTPS_PROXY')
+    if proxy_addr is None or len(proxy_addr) <= 0:
+        return False
+    return True
+
+
 openai.api_key = os.getenv('OPENAI_API_KEY')
+
+if not has_proxy():
+    openai.api_base = "https://openkey.cloud/v1"  # 换成代理，一定要加v1
 
 
 def GPT3(user, question):
