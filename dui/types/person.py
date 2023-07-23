@@ -58,12 +58,7 @@ class Person:
         })
 
     def __str__(self) -> str:
-        re_format = dict()  # 对dict中的数据去除decimal创建字典存储
-        for k, v in self.__dict__.items():
-            v = dict(v)
-            re_format[k] = {key: eval(value.__str__())
-                            for key, value in v.items()}
-        item_lines = [f'  {k}: {dict(v)}' for k, v in re_format.items()]
+        item_lines = [f'  {k}: {v}' for k, v in self.__dict__.items()]
         return '\n'.join(["Person:"] + item_lines)
 
 
