@@ -1,6 +1,7 @@
 from decimal import Decimal
 
 from dui.types.decimalList import DecimalList
+from dui.utils.math import clamp
 
 
 class Desire(DecimalList):
@@ -17,34 +18,19 @@ class Desire(DecimalList):
 
     @property
     def second_layer(self):
-        second_layer = [Decimal(0) for _ in range(13 + 1)]
-        for i in range(1, 14):
-            if (i in [1, 2, 3, 4]):
-                second_layer[i] = max(
-                    self._value[2 * i - 1], self._value[2 * i])
-            elif (i in [5, 6, 7]):
-                second_layer[5] = max(self._value[9],
-                                      self._value[10], self._value[11])
-                second_layer[6] = max(self._value[12],
-                                      self._value[13], self._value[14])
-                second_layer[7] = max(self._value[15],
-                                      self._value[16], self._value[17])
-            else:
-                second_layer[i] = max(self._value[2 * i + 2],
-                                      self._value[2 * i + 3])
-        return second_layer
+        ml = lambda x: 3 if x in range(5, 8) else 2  # mapping lenghth
+        mp = lambda x: -1 + 2 * x + clamp(x - 5, 0, 3)  # mapping start position
+        me = lambda x: mp(x) + ml(x)  # mapping end
+
+        return [0] + [max(self._value[mp(i):me(i)]) for i in range(1, 13 + 1)]
 
     @property
     def first_layer(self):
-        first_layer = [Decimal(0) for _ in range(3 + 1)]
-        first_layer[1] = max(self.second_layer[1], self.second_layer[2],
-                             self.second_layer[3], self.second_layer[4])
-        first_layer[2] = max(self.second_layer[5], self.second_layer[6],
-                             self.second_layer[7], self.second_layer[8],
-                             self.second_layer[9])
-        first_layer[3] = max(self.second_layer[10], self.second_layer[11],
-                             self.second_layer[12], self.second_layer[13])
-        return first_layer
+        ml = lambda x: 5 if x in range(2, 3) else 4  # mapping lenghth
+        mp = lambda x: -3 + 4 * x + clamp(x - 1, 0, 1)  # mapping start position
+        me = lambda x: mp(x) + ml(x)  # mapping end
+
+        return [0] + [max(self.second_layer[mp(i):me(i)]) for i in range(1, 3 + 1)]
 
 
 class Emotion(DecimalList):
@@ -79,3 +65,28 @@ class Person:
                             for key, value in v.items()}
         item_lines = [f'  {k}: {dict(v)}' for k, v in re_format.items()]
         return '\n'.join(["Person:"] + item_lines)
+
+
+if __name__ == '__main__':
+    desire = Desire()
+    desire[1] = 1
+    desire[2] = 1.5
+    desire[29] = 2
+    print("第二层 [1] is ", desire.second_layer[1])
+    print("第一层 [1] is ", desire.first_layer[1])
+    print("第一层 [3] is ", desire.first_layer[3])
+
+    # 测试加减乘除
+    emotion1 = Emotion()
+    print(type(emotion1._value))
+    for i in range(1, 6):
+        emotion1[i] = i + 1
+
+    emotion2 = Emotion()
+    for i in range(1, 6):
+        emotion2[i] = i + 2
+    print(emotion1._value)
+    print(emotion2._value)
+    print(emotion1 + emotion2)
+    print(emotion2 - emotion1)
+    print(emotion1 * 2.2)

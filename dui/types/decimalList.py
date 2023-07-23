@@ -45,3 +45,8 @@ class DecimalList(MutableMapping):
     def __div__(self, ep: int | Decimal | float):
         ep = Decimal(ep)
         return [item / ep for item in self._value]
+
+    def __str__(self) -> str:
+        items = dict([(i, str(v)) for (i, v) in enumerate(self._value)])
+        items_str = ', '.join([f'{i}: {v}' for i, v in items.items()])
+        return '{' + items_str + '}'
