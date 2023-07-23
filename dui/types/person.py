@@ -14,7 +14,6 @@ class Desire(DecimalList):
         assert key >= 0 and key < len(self._value)
         dec_value = Decimal(value)
         self._value[key] = dec_value
-        print(f"set _value[{key}] = {self._value[key]}")
 
     @property
     def second_layer(self):
