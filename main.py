@@ -6,7 +6,6 @@ from dui.types import Desire, Event, Person, Religion
 
 if __name__ == '__main__':
     desire = Desire()
-    desire[0] = 1
     person = Person(desire)
 <<<<<<< HEAD
     religion = Religion("吃甜舒适")
