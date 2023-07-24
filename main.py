@@ -1,5 +1,4 @@
 from datetime import datetime
-
 from dui.types import Desire, Event, Person, Religion
 
 if __name__ == '__main__':

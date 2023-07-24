@@ -1,8 +1,6 @@
 import json
 from datetime import datetime
-
 from dui.types.religion import Religion
-
 
 class Event:
     def __init__(self,
