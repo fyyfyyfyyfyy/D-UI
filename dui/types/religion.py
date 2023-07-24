@@ -19,6 +19,3 @@ class Religion:
 
     def __str__(self) -> str:
         return self._description
-
-    def to_dict(self):
-        return {"desc": self._description}
