@@ -26,7 +26,7 @@ class Desire(DecimalList):
     @property
     def first_layer(self):
         ml = lambda x: 5 if x in range(2, 3) else 4  # mapping lenghth
-        mp = lambda x: -3 + 4 * x + clamp(x - 1, 0, 1)  # mapping start position
+        mp = lambda x: -3 + 4 * x + clamp(x - 2, 0, 1)  # mapping start position
         me = lambda x: mp(x) + ml(x)  # mapping end
 
         return [0] + [max(self.second_layer[mp(i):me(i)]) for i in range(1, 3 + 1)]
