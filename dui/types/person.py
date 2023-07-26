@@ -7,8 +7,8 @@ from dui.utils.math import clamp
 class Desire(DecimalList):
     DESIRE_COUNT: int = 29
 
-    def __init__(self) -> None:
-        super().__init__(item_count=Desire.DESIRE_COUNT)
+    def __init__(self, **kwargs) -> None:
+        super().__init__(item_count=Desire.DESIRE_COUNT, **kwargs)
 
     def __setitem__(self, key: int, value: Decimal | int | float):
         assert key >= 0 and key < len(self._value)
@@ -32,14 +32,18 @@ class Desire(DecimalList):
         return [0] + [max(self.second_layer[mp(i):me(i)]) for i in range(1, 3 + 1)]
 
 
+EMOTION_NAMES_CN = ['开心', '难过', '讨厌', '惊讶', '生气']
+EMOTION_NAMES = ['happy', 'sad', 'hate', 'amazed', 'angry']
+
+
 class Emotion(DecimalList):
-    def __init__(self) -> None:
-        super().__init__(item_count=5)
+    def __init__(self, **kwargs) -> None:
+        super().__init__(item_count=5, item_names=EMOTION_NAMES, **kwargs)
 
 
 class Feeling(DecimalList):
-    def __init__(self) -> None:
-        super().__init__(item_count=5)
+    def __init__(self, **kwargs) -> None:
+        super().__init__(item_count=5, item_names=EMOTION_NAMES, **kwargs)
 
 
 class Person:
