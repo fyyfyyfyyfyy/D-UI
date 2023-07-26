@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from dui.llm import GPT_completion, event_to_prompt
+from dui.llm import LLM_inference, event_to_prompt
 from dui.types import Desire, Emotion, Event, Person, Religion
 
 if __name__ == '__main__':
@@ -37,6 +37,6 @@ if __name__ == '__main__':
 
     print('prompt:', prompt)
 
-    answer = GPT_completion(question=prompt)
+    answer = LLM_inference(question=prompt)
 
     print('answer:', answer)

@@ -14,8 +14,10 @@ class TestOperation(unittest.TestCase):
         self.values2 = [Decimal(random.randint(0, 100))
                         for _ in range(self._item_count)]
         # create test objects
-        self.decimal_list1 = DecimalList(self._item_count, item_values=self.values1)
-        self.decimal_list2 = DecimalList(self._item_count, item_values=self.values2)
+        self.decimal_list1 = DecimalList(
+            self._item_count, item_values=self.values1)
+        self.decimal_list2 = DecimalList(
+            self._item_count, item_values=self.values2)
 
         self.ep = random.random()
         return super().setUp()

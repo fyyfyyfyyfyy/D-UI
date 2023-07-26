@@ -8,16 +8,16 @@ import openai  # type: ignore
 from dui.types import Event, Person, Religion
 
 
-def has_proxy():
-    proxy_addr = os.getenv('https_proxy')
-    if proxy_addr is None or len(proxy_addr) <= 0:
+def has_envvar(name: str):
+    env_var = os.getenv(name)
+    if env_var is None or len(env_var) <= 0:
         return False
     return True
 
 
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
-if not has_proxy():
+if not has_envvar('https_proxy'):
     openai.api_base = "https://openkey.cloud/v1"  # 换成代理，一定要加v1
 
 SYSTEM_PROMPT = '''我会格式化输入一些事件、场景以及该事件、场景下我的欲望和情绪\
@@ -72,9 +72,39 @@ json格式返回,内容包括在信念列表中选择的信念、事件发生后
 # ```"""
 #     return json_limit
 
+def fake_LLM_completion() -> str:
+    import sys
+    print('WARNING: fake LLM completion is called.', file=sys.stderr)
+    return '''在这个事件场景中，选择信念"吃辣让人舒适"。因为我们在川菜馆，\
+川菜以辣味著称，对于喜欢辣的人来说，吃辣可以带来舒适的感觉。\
+这个信念会对情绪产生影响，具体的情绪变化如下：
+
+- 开心程度：增加5点，从30增加到35；
+- 生气程度：不变，仍为0；
+- 惊讶程度：不变，仍为0；
+- 讨厌程度：不变，仍为0；
+- 难过程度：不变，仍为0。
+
+最终的情绪为{happy: 35, sad: 0, hate: 0, amazed: 0, angry: 0}，\
+情绪的变化量为{happy: +5, sad: 0, hate: 0, amazed: 0, angry: 0}。\
+输出的完整json如下：
+
+```json
+{
+  "religion": "吃辣让人舒适",
+  "emotion_delta": {
+    "happy": "+5",
+    "sad": "0",
+    "hate": "0",
+    "amazed": "0",
+    "angry": "0"
+  }
+}
+```'''
+
 
 def GPT_completion(question, user='user',
-                   model='gpt-3.5-turbo', system_prompt=SYSTEM_PROMPT):
+                   model='gpt-3.5-turbo', system_prompt=SYSTEM_PROMPT) -> str:
     completion = openai.ChatCompletion.create(
         model=model,  # gpt-3.5-turbo, gpt-4 ...
         messages=[
@@ -83,6 +113,15 @@ def GPT_completion(question, user='user',
         ]
     )
     return completion.choices[0].message.content
+
+
+def LLM_inference(question, user='user',
+                  model='gpt-3.5-turbo', system_prompt=SYSTEM_PROMPT):
+    if has_envvar('OPENAI_API_KEY'):
+        return GPT_completion(question=question, user=user,
+                              model=model, system_prompt=system_prompt)
+    else:
+        return fake_LLM_completion()
 
 
 def event_to_prompt(event: Event, person: Person, religions: list[Religion]) -> str:
