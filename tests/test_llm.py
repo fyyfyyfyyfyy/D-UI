@@ -3,7 +3,7 @@ from datetime import datetime
 
 from dui.llm import LLM_inference, event_to_prompt
 from dui.types import Desire, Emotion, Event, Person, Religion
-from dui.types.person import EMOTION_NAMES
+from dui.types.demand import EMOTION_NAMES
 
 
 class TestLLMInference(unittest.TestCase):
