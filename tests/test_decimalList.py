@@ -5,6 +5,57 @@ from decimal import Decimal
 from dui.types.decimalList import DecimalList
 
 
+class TestInitDecimalList(unittest.TestCase):
+    def test_get_item_value(self):
+        decimallist = DecimalList(item_count=29)
+        for i in range(1, decimallist._item_count + 1):
+            self.assertEqual(decimallist[i], 0)
+
+    def test_get_item_value2(self):
+        values = []
+        for i in range(1, 30):
+            values.append(i)
+        decimallist = DecimalList(item_count=29, item_values=values)
+        for i in range(1, decimallist._item_count + 1):
+            self.assertEqual(decimallist[i], values[i - 1])
+
+    def test_get_item_value3(self):
+        values = [0]
+        for i in range(1, 30):
+            values.append(i)
+        decimallist = DecimalList(
+            item_count=29, item_values=values, raw_data_flag=True)
+        for i in range(1, decimallist._item_count + 1):
+            self.assertEqual(decimallist[i], values[i])
+
+    def test_set_item_value(self):
+        decimallist = DecimalList(item_count=29)
+        for i in range(1, decimallist._item_count + 1):
+            decimallist[i] = 10
+            self.assertEqual(decimallist[i], 10)
+
+    def test_get_item_name(self):
+        decimallist = DecimalList(item_count=29)
+        self.assertEqual(decimallist._item_names, {})
+
+    def test_get_item_name2(self):
+        names = {}
+        for i in range(0, 30):
+            names[i] = str(i)
+        decimallist = DecimalList(item_count=29, item_names=names)
+        for i in range(1, decimallist._item_count + 1):
+            self.assertEqual(decimallist._item_names[i], names[i - 1])
+
+    def test_get_item_name3(self):
+        names = {}
+        for i in range(0, 30):
+            names[i] = str(i)
+        decimallist = DecimalList(
+            item_count=29, item_names=names, raw_data_flag=True)
+        for i in range(0, decimallist._item_count + 1):
+            self.assertEqual(decimallist._item_names[i], names[i])
+
+
 class TestOperation(unittest.TestCase):
     def setUp(self) -> None:
         self._item_count = random.randint(1, 10)

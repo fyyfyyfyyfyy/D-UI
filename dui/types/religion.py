@@ -23,7 +23,7 @@ class Religion:
     def __str__(self) -> str:
         return self._description
 
-    def get_related_strength(self, desire: Desire):
+    def get_related_strength(self, desire: Desire) -> Decimal:
         total_desire = Decimal(0)
         for s_desire_weight, s_desire in zip(self._desire_weight, desire._value):
             s_res = s_desire * s_desire_weight

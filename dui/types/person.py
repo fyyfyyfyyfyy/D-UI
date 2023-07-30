@@ -7,7 +7,7 @@ class Person:
                  desire: Desire,
                  emotion: Emotion = Emotion(),
                  feeling: Feeling = Feeling(),
-                 history=None) -> None:
+                 history: list = []) -> None:
         self._desire: Desire = desire
         self._emotion: Emotion = emotion
         self._feeling: Feeling = feeling
@@ -23,19 +23,19 @@ class Person:
         return '\n'.join(["Person:"] + item_lines)
 
     @property
-    def desire(self):
+    def desire(self) -> Desire:
         return self._desire
 
     @property
-    def emotion(self):
+    def emotion(self) -> Emotion:
         return self._emotion
 
     @property
-    def feeling(self):
+    def feeling(self) -> Feeling:
         return self._feeling
 
     @property
-    def history(self):
+    def history(self) -> list:
         return self._history
 
     def history_push(self, event):
