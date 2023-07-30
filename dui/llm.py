@@ -2,10 +2,28 @@ from __future__ import annotations
 
 import json
 import os
+import re
 
 import openai  # type: ignore
 
 from dui.types import Event, Person, Religion
+
+
+class ResponseChange:
+    def __init__(self, answer: str):
+        self.answer = answer
+        self.pattern = r'{[^{}]*}'
+        self.match = re.findall(self.pattern, self.answer)
+
+    def get_parsed_json(self):
+        if self.match:
+            last_match = self.match[-1]
+            try:
+                json_data = json.loads(last_match)
+                print(json.dumps(json_data, ensure_ascii=False, indent=2))
+                return json_data
+            except json.JSONDecodeError as e:
+                raise e
 
 
 def has_envvar(name: str):
@@ -48,7 +66,7 @@ SYSTEM_PROMPT = '''我会格式化输入一些事件、场景以及该事件、�
 60-80时'绝望',80-100时'无助'.因此,举例来说,情绪[40,10,10,10,10]\
 表示快乐、并有轻微的生气、惊讶、讨厌和难过情绪.最终的推理结果请以\
 json格式返回,内容包括在信念列表中选择的信念、事件发生后,\
-与输入的初始值相比,每个情绪的维度的最终值与变化量(如,增加10点记为+10\
+与输入的初始值相比,每个情绪的维度的最终值与变化量(如,增加10点记为10\
 ,减少10点记为-10).输出json格式为：\
 ``` \
 {"religion": "学习让人快乐", "emotion_delta": {\
@@ -86,14 +104,14 @@ def fake_LLM_completion() -> str:
 - 难过程度：不变，仍为0。
 
 最终的情绪为{happy: 35, sad: 0, hate: 0, amazed: 0, angry: 0}，\
-情绪的变化量为{happy: +5, sad: 0, hate: 0, amazed: 0, angry: 0}。\
+情绪的变化量为{happy: 5, sad: 0, hate: 0, amazed: 0, angry: 0}。\
 输出的完整json如下：
 
 ```json
 {
   "religion": "吃辣让人舒适",
   "emotion_delta": {
-    "happy": "+5",
+    "happy": "5",
     "sad": "0",
     "hate": "0",
     "amazed": "0",

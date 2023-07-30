@@ -1,3 +1,3 @@
-from dui.types import Desire, Person
+from dui.types import Desire, Emotion, Event, Person, Religion
 
-__all__ = ['Desire', 'Person']
+__all__ = ['Desire', 'Person', 'Emotion', 'Event', 'Religion']

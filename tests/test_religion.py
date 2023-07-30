@@ -31,10 +31,7 @@ class TestReligion(unittest.TestCase):
     def test_init_custom_values(self):
         feeling = Feeling()
         desire_weight = DesireWeight()
-        religion = Religion(
-            desc="吃酸舒适",
-            feeling=feeling,
-            desire_weight=desire_weight)
+        religion = Religion(desc="吃酸舒适", feeling=feeling, desire_weight=desire_weight)
         self.assertEqual(religion._description, "吃酸舒适")
 
     def test_str_method(self):

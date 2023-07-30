@@ -40,6 +40,7 @@ if __name__ == '__main__':
     answer = LLM_inference(question=prompt)
 
     print('answer:', answer)
+
     # 交互
     while (True):
         iscontinue = input("请输入quit结束运行，输入start继续运行~\n")
