@@ -6,6 +6,14 @@ from dui.utils.math import clamp
 
 class Desire(DecimalList):
     DESIRE_COUNT: int = 29
+    DESIRE_NAMES = ['rest', 'sleep', 'eating', 'drinking', 'living', 'dying',
+                    'achieving self-fulfillment', 'realizing self-meaning', 'awakening',
+                    'curiosity', 'thinking', 'learning', 'giving', 'pleasing oneself',
+                    'gaining honor', 'gaining success', 'possession', 'gaining power',
+                    'buying', 'collecting', 'getting money', 'sensory aesthetics',
+                    'auditory aesthetics', 'visual aesthetics',
+                    'love', 'family affection',
+                    'friendship', 'psychosexual desire', 'physiological sexual desire']
 
     def __init__(self, **kwargs) -> None:
         super().__init__(item_count=Desire.DESIRE_COUNT, **kwargs)
