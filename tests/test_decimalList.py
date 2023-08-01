@@ -56,6 +56,61 @@ class TestInitDecimalList(unittest.TestCase):
             self.assertEqual(decimallist._item_names[i], names[i])
 
 
+class TestPassingPara(unittest.TestCase):
+    def setUp(self) -> None:
+        self.decimal_list1 = DecimalList(item_count=29)
+        self.decimal_list2 = DecimalList(item_count=29)
+        self.decimal_list3 = DecimalList(item_count=29, raw_data_flag=True)
+        self.decimal_list4 = DecimalList(item_count=29, raw_data_flag=True)
+
+        return super().setUp()
+
+    def test_allempty(self):
+        decimallist3 = self.decimal_list1 + self.decimal_list2
+        self.assertFalse(self.decimal_list1._raw_data_flag)
+        self.assertFalse(self.decimal_list1._raw_disp_flag)
+
+        self.assertFalse(self.decimal_list2._raw_data_flag)
+        self.assertFalse(self.decimal_list2._raw_disp_flag)
+
+        self.assertTrue(decimallist3._raw_data_flag)
+        self.assertTrue(decimallist3._raw_disp_flag)
+
+    def test_singleempty(self):
+        decimallist3 = self.decimal_list1 + self.decimal_list3
+        self.assertFalse(self.decimal_list1._raw_data_flag)
+        self.assertFalse(self.decimal_list1._raw_disp_flag)
+
+        self.assertTrue(self.decimal_list3._raw_data_flag)
+        self.assertTrue(self.decimal_list3._raw_disp_flag)
+
+        self.assertTrue(decimallist3._raw_data_flag)
+        self.assertTrue(decimallist3._raw_disp_flag)
+
+    def test_noneempty(self):
+        decimallist3 = self.decimal_list3 + self.decimal_list4
+        self.assertTrue(self.decimal_list3._raw_data_flag)
+        self.assertTrue(self.decimal_list3._raw_disp_flag)
+
+        self.assertTrue(self.decimal_list4._raw_data_flag)
+        self.assertTrue(self.decimal_list4._raw_disp_flag)
+
+        self.assertTrue(decimallist3._raw_data_flag)
+        self.assertTrue(decimallist3._raw_disp_flag)
+
+    def test_debug(self):
+        decimallist0 = DecimalList(item_count=29, raw_disp_flag=True)
+        decimallist3 = decimallist0 + self.decimal_list1
+        self.assertFalse(decimallist0._raw_data_flag)
+        self.assertTrue(decimallist0._raw_disp_flag)
+
+        self.assertFalse(self.decimal_list1._raw_data_flag)
+        self.assertFalse(self.decimal_list1._raw_disp_flag)
+
+        self.assertTrue(decimallist3._raw_data_flag)
+        self.assertTrue(decimallist3._raw_disp_flag)
+
+
 class TestOperation(unittest.TestCase):
     def setUp(self) -> None:
         self._item_count = random.randint(1, 10)

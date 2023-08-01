@@ -48,7 +48,7 @@ class DecimalList(MutableMapping):
         return len(self._value)
 
     def __repr__(self):
-        start_i = 0 if self._raw_disp_flag else 1
+        start_i = 1 if self._raw_disp_flag else 0  # modify the logical relationship
         items = dict([(i, str(v)) for (i, v) in enumerate(self._value) if i >= start_i])
         items_str = ', '.join([f'{self._item_names.get(i, str(i))}: {v}'
                                for i, v in items.items()])

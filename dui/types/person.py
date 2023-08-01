@@ -37,7 +37,7 @@ class Person:
         return self._feeling
 
     @property
-    def history(self) -> list:
+    def history(self) -> list[Event]:
         return self._history
 
     def history_push(self, event):
