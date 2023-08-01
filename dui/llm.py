@@ -150,14 +150,3 @@ def raw_event_to_str(background: str, emotions: str, desire: str, belief_list: s
         '{"belief": "学习", "emotion_change": {"happiness": +5, "anger": 0,' \
         'surprise": 0, "disgust": 0, "sadness": 0}}'
     return event + json_limit
-
-
-if __name__ == "__main__":
-    back = '(我和好朋友,四川北路666号,川菜馆,8:00pm)'
-    emo = '[30,0,0,0,0]'
-    des = '[0,0,85,75,60,0,40,40,0,30,0,0,0,0,0,0,0,0,70,0,0,60,60,60,0,0,80,0,0]'
-    belief = '[吃辣让人舒适、吃辣让人难受、学习让人快乐、学习让人难受]'
-    event = raw_event_to_str(background=back, emotions=emo,
-                             desire=des, belief_list=belief)
-    answer = GPT_completion(question=event)
-    print(answer)
