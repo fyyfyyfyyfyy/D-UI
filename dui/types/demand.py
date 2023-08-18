@@ -47,6 +47,16 @@ EMOTION_NAMES = ['happy', 'sad', 'hate', 'amazed', 'angry']
 class Emotion(DecimalList):
     def __init__(self, **kwargs) -> None:
         super().__init__(item_count=5, item_names=EMOTION_NAMES, **kwargs)
+        self._max_value = 500
+
+    @property
+    def intensity(self):
+        prod = 1
+        for i in range(len(self._value) - 1):
+            prod = prod * self._value[i + 1]
+
+        return sum(self._value[1:]) / \
+            (1 + prod / pow(self._max_value, len(self._value) - 1))
 
 
 class Feeling(DecimalList):
