@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from dui.types.decimalList import DecimalList
 from dui.types.demand import Desire, Emotion, Feeling
 from dui.types.event import Event
 
@@ -12,6 +13,7 @@ class Person:
                  history: list[Event] = []) -> None:
         self._desire: Desire = desire
         self._emotion: Emotion = emotion
+        self._stable_point: Emotion = emotion
         self._feeling: Feeling = feeling
         self._history: list[Event] = history if history is not None else []
 
@@ -39,6 +41,10 @@ class Person:
     @property
     def history(self) -> list[Event]:
         return self._history
+
+    @property
+    def emotion_offset(self) -> DecimalList:
+        return self._emotion - self._stable_point
 
     def history_push(self, event):
         self._history.append(event)
