@@ -13,15 +13,32 @@ class DesireWeight(DecimalList):
 
 class Religion:
     def __init__(self,
-                 desc: str,
+                 desc: str = "放下自我去享受此刻",
+                 primer: str = "我相信/认为",
+                 desire_name: str = "享受此刻",
+                 middle_word: str = "是",
+                 valence: bool = True,
                  feeling: Feeling = Feeling(),
                  desire_weight: DesireWeight = DesireWeight()) -> None:
         self._description: str = desc
         self._feeling: Feeling = feeling
         self._desire_weight: DesireWeight = desire_weight
+        self._primer: str = primer
+        self._desire_name: str = desire_name
+        self._middle_word: str = middle_word
+        self._valence: int = valence
 
     def __str__(self) -> str:
         return self._description
+
+    @property
+    def valence(self) -> str:
+        '''
+        todo: add determining factor
+        '''
+        if (self._valence):
+            return "无我"
+        return "有我"
 
     def get_related_strength(self, desire: Desire) -> Decimal:
         total_desire = Decimal(0)
