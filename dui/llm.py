@@ -100,11 +100,11 @@ def fake_LLM_completion() -> str:
 {
   "religion": "吃辣让人舒适",
   "emotion_delta": {
-    "happy": "5",
-    "sad": "0",
-    "hate": "0",
-    "amazed": "0",
-    "angry": "0"
+    "happy": 5,
+    "sad": 0,
+    "hate": 0,
+    "amazed": 0,
+    "angry": 0
   }
 }
 ```'''

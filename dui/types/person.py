@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dui.types.decimalList import DecimalList
-from dui.types.demand import Desire, Emotion, Feeling
+from dui.types.demand import EMOTION_NAMES, Desire, Emotion, Feeling
 from dui.types.event import Event
 
 
@@ -48,3 +48,13 @@ class Person:
 
     def history_push(self, event):
         self._history.append(event)
+
+    def apply_response_change(self, response_change):
+        parsed_json = response_change.get_parsed_json()
+        if parsed_json:
+            for emotion_name in EMOTION_NAMES:
+                if emotion_name in parsed_json:
+                    new_value = parsed_json[emotion_name]
+                    current_value = self._emotion.get_emotion_value(emotion_name)
+                    self._emotion.set_emotion_value(emotion_name,
+                                                    current_value + new_value)

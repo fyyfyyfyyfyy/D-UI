@@ -58,6 +58,12 @@ class Emotion(DecimalList):
         return sum(self._value[1:]) / \
             (1 + prod / pow(self._max_value, len(self._value) - 1))
 
+    def get_emotion_value(self, emotion_name: str) -> Decimal:
+        return self[EMOTION_NAMES.index(emotion_name)]
+
+    def set_emotion_value(self, emotion_name: str, value: Decimal):
+        self[EMOTION_NAMES.index(emotion_name)] = value
+
 
 class Feeling(DecimalList):
     def __init__(self, **kwargs) -> None:
