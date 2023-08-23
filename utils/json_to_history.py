@@ -55,13 +55,17 @@ def json_to_history_list(json_file) -> list:
 
         # 实例化Religion类
         religion_dict = json_record['事件信念']
-        religion_str = '{}{}{}{},{}'.format(religion_dict['引导语'],
-                                            religion_dict['欲望'],
-                                            religion_dict['中间词'],
-                                            religion_dict['信念核心'],
-                                            religion_dict['信念描述（标准语句）']
-                                            )
-        religion = Religion(religion_str)
+        religion_desc = religion_dict['信念描述（标准语句）']
+        religion_primer = religion_dict['引导语']
+        religion_desire_name = religion_dict['欲望']
+        religion_middle_word = religion_dict['中间词']
+        religion_valence = True if religion_dict['信念核心'] == '有我' else False
+        religion = Religion(desc=religion_desc,
+                            primer=religion_primer,
+                            desire_name=religion_desire_name,
+                            middle_word=religion_middle_word,
+                            valence=religion_valence
+                            )
         impact_emotion_dict = json_record['事件关联感受数值']
         impact_emotion = Emotion(item_values=list(impact_emotion_dict.values()))
 
