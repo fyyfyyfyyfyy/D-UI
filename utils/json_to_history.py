@@ -1,7 +1,7 @@
 import json
 from datetime import datetime
 
-from dui.types.demand import Emotion
+from dui.types.emotion import Emotion
 from dui.types.event import Event
 from dui.types.history import History
 from dui.types.religion import Religion

@@ -1,7 +1,8 @@
 from __future__ import annotations
 
+from dui.types import Desire, Emotion, Feeling
 from dui.types.decimalList import DecimalList
-from dui.types.demand import EMOTION_NAMES, Desire, Emotion, Feeling
+from dui.types.emotion import EMOTION_NAMES
 from dui.types.event import Event
 
 

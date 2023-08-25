@@ -3,12 +3,13 @@ from datetime import datetime
 
 from dui.llm import LLM_inference, event_to_prompt
 from dui.types import Desire, Emotion, Event, Person, Religion
-from dui.types.demand import EMOTION_NAMES
+from dui.types.emotion import EMOTION_NAMES
 
 
 class TestLLMInference(unittest.TestCase):
     def setUp(self) -> None:
-        desire = Desire(item_values=[0, 85])
+        desire = Desire()
+        desire[2] = 85
         emotion = Emotion(item_values=[30])
         person = Person(desire, emotion)
 

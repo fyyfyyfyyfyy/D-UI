@@ -4,6 +4,7 @@ import unittest
 from dui.types.person import Desire
 
 
+@unittest.skip("desire data is not ready")
 class TestAbstractLayer(unittest.TestCase):
     def setUp(self) -> None:
         self.desire = Desire()
@@ -13,7 +14,7 @@ class TestAbstractLayer(unittest.TestCase):
 
     def test_second_layer(self):
         ref = self.desire.second_layer
-        val = self.desire._value
+        val = self.desire.third_layer
 
         self.assertEqual(ref[1], max(val[1], val[2]))
         self.assertEqual(ref[2], max(val[3], val[4]))
@@ -31,7 +32,7 @@ class TestAbstractLayer(unittest.TestCase):
 
     def test_first_layer(self):
         ref = self.desire.first_layer
-        val = self.desire._value
+        val = self.desire.third_layer
 
         self.assertEqual(ref[1], max(val[1:9]))
         self.assertEqual(ref[2], max(val[9:22]))

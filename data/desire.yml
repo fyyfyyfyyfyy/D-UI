@@ -1,0 +1,632 @@
+- id: DN
+  name: 本能
+  code: NL1
+  items:
+  - id: DN1
+    name: 生存
+    code: NL2
+    items:
+    - id: D1
+      name: 活着
+      code: NL3
+      items:
+      - id: D101
+        name: 健全
+        code: NL4
+      - id: D102
+        name: 躲避
+        code: NL4
+      - id: D103
+        name: 攻击
+        code: NL4
+      - id: D104
+        name: 呼吸
+        code: NL4
+      - id: D105
+        name: 安全
+        code: NL4
+    - id: D2
+      name: 死亡
+      code: NL3
+      items:
+      - id: D211
+        name: 疾病
+        code: NL4
+      - id: D212
+        name: 自杀
+        code: NL4
+      - id: D213
+        name: 灾难
+        code: NL4
+      - id: D214
+        name: 危险
+        code: NL4
+      - id: D215
+        name: 衰老
+        code: NL4
+  - id: DN2
+    name: 食物
+    code: NL2
+    items:
+    - id: D3
+      name: 吃
+      code: NL3
+      items:
+      - id: D301
+        name: 吃辣
+        code: NL4
+      - id: D302
+        name: 吃酸
+        code: NL4
+      - id: D303
+        name: 吃甜
+        code: NL4
+      - id: D304
+        name: 吃苦
+        code: NL4
+      - id: D305
+        name: 吃咸
+        code: NL4
+    - id: D4
+      name: 喝
+      code: NL3
+      items:
+      - id: D401
+        name: 热的
+        code: NL4
+      - id: D402
+        name: 冰的
+        code: NL4
+      - id: D403
+        name: 饮品
+        code: NL4
+      - id: D404
+        name: 酒精
+        code: NL4
+      - id: D405
+        name: 药物
+        code: NL4
+  - id: DN3
+    name: 休息
+    code: NL2
+    items:
+    - id: D5
+      name: 休息
+      code: NL3
+      items:
+      - id: D501
+        name: 懒惰
+        code: NL4
+      - id: D502
+        name: 发呆
+        code: NL4
+      - id: D503
+        name: 安静
+        code: NL4
+      - id: D504
+        name: 爱好
+        code: NL4
+      - id: D505
+        name: 娱乐
+        code: NL4
+    - id: D6
+      name: 睡眠
+      code: NL3
+      items:
+      - id: D601
+        name: 睡眠环境
+        code: NL4
+      - id: D602
+        name: 睡眠质量
+        code: NL4
+      - id: D603
+        name: 睡眠有梦
+        code: NL4
+      - id: D604
+        name: 睡眠时间
+        code: NL4
+      - id: D605
+        name: 昏迷
+        code: NL4
+  - id: DN4
+    name: 性爱
+    code: NL2
+    items:
+    - id: D7
+      name: 生理
+      code: NL3
+      items:
+      - id: D701
+        name: 性高潮
+        code: NL4
+      - id: D702
+        name: 性刺激
+        code: NL4
+      - id: D703
+        name: 性场景
+        code: NL4
+      - id: D704
+        name: 性功能
+        code: NL4
+      - id: D705
+        name: 性行为
+        code: NL4
+    - id: D8
+      name: 心理
+      code: NL3
+      items:
+      - id: D801
+        name: 性癖好
+        code: NL4
+      - id: D802
+        name: 性取向
+        code: NL4
+      - id: D803
+        name: 性和谐
+        code: NL4
+      - id: D804
+        name: 性冒险
+        code: NL4
+      - id: D805
+        name: 性变态
+        code: NL4
+- id: DS
+  name: 社会
+  code: SL1
+  items:
+  - id: DS1
+    name: 社交
+    code: SL2
+    items:
+    - id: D9
+      name: 亲情
+      code: SL3
+      items:
+      - id: D901
+        name: 家庭
+        code: SL4
+      - id: D902
+        name: 血缘
+        code: SL4
+      - id: D903
+        name: 孝顺
+        code: SL4
+      - id: D904
+        name: 宗族
+        code: SL4
+      - id: D905
+        name: 教育
+        code: SL4
+    - id: D10
+      name: 友情
+      code: SL3
+      items:
+      - id: D101
+        name: 朋友
+        code: SL4
+      - id: D102
+        name: 合作
+        code: SL4
+      - id: D103
+        name: 帮助
+        code: SL4
+      - id: D104
+        name: 娱乐
+        code: SL4
+      - id: D105
+        name: 八卦
+        code: SL4
+    - id: D11
+      name: 爱情
+      code: SL3
+      items:
+      - id: D1101
+        name: 恋爱
+        code: SL4
+      - id: D1102
+        name: 婚姻
+        code: SL4
+      - id: D1103
+        name: 伴侣
+        code: SL4
+      - id: D1104
+        name: 情感
+        code: SL4
+      - id: D1105
+        name: 利益
+        code: SL4
+  - id: DS2
+    name: 审美
+    code: SL2
+    items:
+    - id: D12
+      name: 视觉
+      code: SL3
+      items:
+      - id: D1201
+        name: 艺术
+        code: SL4
+      - id: D1202
+        name: 风景
+        code: SL4
+      - id: D1203
+        name: 空间
+        code: SL4
+      - id: D1204
+        name: 颜色
+        code: SL4
+      - id: D1205
+        name: 颜值
+        code: SL4
+    - id: D13
+      name: 听觉
+      code: SL3
+      items:
+      - id: D1301
+        name: 音乐
+        code: SL4
+      - id: D1302
+        name: 语言
+        code: SL4
+      - id: D1303
+        name: 称谓
+        code: SL4
+      - id: D1304
+        name: 自然
+        code: SL4
+      - id: D1305
+        name: 频率
+        code: SL4
+    - id: D14
+      name: 嗅觉
+      code: SL3
+    - id: D1401
+      name: 香味
+      code: SL3
+    - id: D1402
+      name: 臭味
+      code: SL3
+    - id: D1403
+      name: 刺激味
+      code: SL3
+    - id: D1404
+      name: 清凉味
+      code: SL3
+    - id: D1405
+      name: 体味
+      code: SL3
+    - id: D15
+      name: 触觉
+      code: SL3
+      items:
+      - id: D1501
+        name: 体感
+        code: SL4
+      - id: D1502
+        name: 礼仪
+        code: SL4
+      - id: D1503
+        name: 运动
+        code: SL4
+      - id: D1504
+        name: 服装
+        code: SL4
+      - id: D1505
+        name: 痛感
+        code: SL4
+  - id: DS3
+    name: 物质
+    code: SL2
+    items:
+    - id: D16
+      name: 金钱
+      code: SL3
+      items:
+      - id: D1601
+        name: 赚钱
+        code: SL4
+      - id: D1602
+        name: 花钱
+        code: SL4
+      - id: D1603
+        name: 骗钱
+        code: SL4
+      - id: D1604
+        name: 抢钱
+        code: SL4
+      - id: D1605
+        name: 印钱
+        code: SL4
+    - id: D17
+      name: 收藏
+      code: SL3
+      items:
+      - id: D1701
+        name: 收集
+        code: SL4
+      - id: D1702
+        name: 囤积
+        code: SL4
+      - id: D1703
+        name: 拍卖
+        code: SL4
+      - id: D1704
+        name: 珍藏
+        code: SL4
+      - id: D1705
+        name: 纪念
+        code: SL4
+    - id: D18
+      name: 交易
+      code: SL3
+      items:
+      - id: D1801
+        name: 购买
+        code: SL4
+      - id: D1802
+        name: 投资
+        code: SL4
+      - id: D1803
+        name: 交换
+        code: SL4
+      - id: D1804
+        name: 出售
+        code: SL4
+      - id: D1805
+        name: 赠予
+        code: SL4
+  - id: DS4
+    name: 掌控
+    code: SL2
+    items:
+    - id: D19
+      name: 占有
+      code: SL3
+      items:
+      - id: D1901
+        name: 索取
+        code: SL4
+      - id: D1902
+        name: 掠夺
+        code: SL4
+      - id: D1903
+        name: 杀戮
+        code: SL4
+      - id: D1904
+        name: 控制
+        code: SL4
+      - id: D1905
+        name: 强迫
+        code: SL4
+    - id: D20
+      name: 权力
+      code: SL3
+      items:
+      - id: D2001
+        name: 决策
+        code: SL4
+      - id: D2002
+        name: 命令
+        code: SL4
+      - id: D2003
+        name: 指挥
+        code: SL4
+      - id: D2004
+        name: 管理
+        code: SL4
+      - id: D2005
+        name: 平等
+        code: SL4
+  - id: DS5
+    name: 成就
+    code: SL2
+    items:
+    - id: D21
+      name: 成功
+      code: SL3
+      items:
+      - id: D2101
+        name: 努力
+        code: SL4
+      - id: D2102
+        name: 目标
+        code: SL4
+      - id: D2103
+        name: 竞争
+        code: SL4
+      - id: D2104
+        name: 赢
+        code: SL4
+      - id: D2105
+        name: 证明
+        code: SL4
+    - id: D22
+      name: 荣誉
+      code: SL3
+      items:
+      - id: D2201
+        name: 成名
+        code: SL4
+      - id: D2202
+        name: 经历
+        code: SL4
+      - id: D2203
+        name: 获奖
+        code: SL4
+      - id: D2204
+        name: 信仰
+        code: SL4
+      - id: D2205
+        name: 认可
+        code: SL4
+- id: DD
+  name: 深层
+  code: DL1
+  items:
+  - id: DD1
+    name: 爱
+    code: DL2
+    items:
+    - id: D23
+      name: 悦己
+      code: DL3
+      items:
+      - id: D2301
+        name: 接纳自己
+        code: DL4
+      - id: D2302
+        name: 欣赏自己
+        code: DL4
+      - id: D2303
+        name: 呵护自己
+        code: DL4
+      - id: D2304
+        name: 讨好自己
+        code: DL4
+      - id: D2305
+        name: 原谅自己
+        code: DL4
+    - id: D24
+      name: 博爱
+      code: DL3
+      items:
+      - id: D2401
+        name: 热爱
+        code: DL4
+      - id: D2402
+        name: 赞美
+        code: DL4
+      - id: D2403
+        name: 理解
+        code: DL4
+      - id: D2404
+        name: 包容
+        code: DL4
+      - id: D2405
+        name: 保护
+        code: DL4
+  - id: DD2
+    name: 求知
+    code: DL2
+    items:
+    - id: D25
+      name: 学习
+      code: DL3
+      items:
+      - id: D2501
+        name: 阅读
+        code: DL4
+      - id: D2502
+        name: 分享
+        code: DL4
+      - id: D2503
+        name: 记忆
+        code: DL4
+      - id: D2504
+        name: 计算
+        code: DL4
+      - id: D2505
+        name: 模仿
+        code: DL4
+    - id: D26
+      name: 思考
+      code: DL3
+      items:
+      - id: D2601
+        name: 回忆
+        code: DL4
+      - id: D2602
+        name: 分析
+        code: DL4
+      - id: D2603
+        name: 反思
+        code: DL4
+      - id: D2604
+        name: 判断
+        code: DL4
+      - id: D2605
+        name: 总结
+        code: DL4
+  - id: DD3
+    name: 探索
+    code: DL2
+    items:
+    - id: D27
+      name: 冒险
+      code: DL3
+      items:
+      - id: D2701
+        name: 选择
+        code: DL4
+      - id: D2702
+        name: 尝试
+        code: DL4
+      - id: D2703
+        name: 博弈
+        code: DL4
+      - id: D2704
+        name: 信任
+        code: DL4
+      - id: D2705
+        name: 挑战
+        code: DL4
+    - id: D28
+      name: 进步
+      code: DL3
+    - id: D2801
+      name: 创新
+      code: DL3
+    - id: D2802
+      name: 假设
+      code: DL3
+    - id: D2803
+      name: 实验
+      code: DL3
+    - id: D2804
+      name: 考察
+      code: DL3
+    - id: D2805
+      name: 用心
+      code: DL3
+  - id: DD4
+    name: 自我实现
+    code: DL2
+    items:
+    - id: D29
+      name: 生命意义
+      code: DL3
+      items:
+      - id: D2901
+        name: 价值
+        code: DL4
+      - id: D2902
+        name: 付出
+        code: DL4
+      - id: D2903
+        name: 感恩
+        code: DL4
+      - id: D2904
+        name: 牺牲
+        code: DL4
+      - id: D2905
+        name: 实现
+        code: DL4
+    - id: D30
+      name: 追求圆满
+      code: DL3
+      items:
+      - id: D3001
+        name: 遵从内心
+        code: DL4
+      - id: D3002
+        name: 天人和一
+        code: DL4
+      - id: D3003
+        name: 此生无悔
+        code: DL4
+      - id: D3004
+        name: 因果循环
+        code: DL4
+      - id: D3005
+        name: 顺其自然
+        code: DL4

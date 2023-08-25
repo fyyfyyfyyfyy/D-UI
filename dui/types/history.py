@@ -1,4 +1,4 @@
-from dui.types.demand import Emotion
+from dui.types.emotion import Emotion
 from dui.types.event import Event
 from dui.types.religion import Religion
 

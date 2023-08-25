@@ -1,7 +1,7 @@
 from decimal import Decimal
 
+from dui.types import Desire, Feeling
 from dui.types.decimalList import DecimalList
-from dui.types.demand import Desire, Feeling
 
 
 class DesireWeight(DecimalList):
@@ -42,7 +42,7 @@ class Religion:
 
     def get_related_strength(self, desire: Desire) -> Decimal:
         total_desire = Decimal(0)
-        for s_desire_weight, s_desire in zip(self._desire_weight, desire._value):
+        for s_desire_weight, s_desire in zip(self._desire_weight, desire.third_layer):
             s_res = s_desire * s_desire_weight
             total_desire = total_desire + s_res
         return total_desire

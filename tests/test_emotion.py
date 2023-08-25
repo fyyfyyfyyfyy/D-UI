@@ -1,7 +1,7 @@
 import random
 import unittest
 
-from dui.types.demand import Emotion
+from dui.types.emotion import Emotion
 
 
 class Testintensity(unittest.TestCase):
