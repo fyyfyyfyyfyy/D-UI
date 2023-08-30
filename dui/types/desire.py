@@ -110,7 +110,7 @@ class Desire:
     @third_layer.setter
     def third_layer(self, value: list):
         for i, v in enumerate(value):
-            self._all_nodes[f"D{i}"]._value = Decimal(v)
+            self._all_nodes[f"D{i+1}"]._value = Decimal(v)
 
     def __setitem__(self, key: int, value: Decimal | int | float):
         assert key > 0 and key <= Desire.DESIRE_COUNT
@@ -118,9 +118,12 @@ class Desire:
         self._all_nodes[f"D{key}"]._value = dec_value
 
     def __repr__(self) -> str:
-        third_layer_node = [self._all_nodes[f"D{i}"] for i in range(1, 30)]
+        third_layer_node = [
+            self._all_nodes.get(f"D{i}", None)
+            for i in range(1, Desire.DESIRE_COUNT + 1)
+        ]
         valid_nodes = dict(
-            [(i.name, int(i.value)) for i in third_layer_node if i.value > 0]
+            [(i.name, int(i.value)) for i in third_layer_node if i and i.value > 0]
         )
         return repr(valid_nodes)
 

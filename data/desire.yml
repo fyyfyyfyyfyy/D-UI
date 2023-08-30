@@ -280,21 +280,22 @@
     - id: D14
       name: 嗅觉
       code: SL3
-    - id: D1401
-      name: 香味
-      code: SL3
-    - id: D1402
-      name: 臭味
-      code: SL3
-    - id: D1403
-      name: 刺激味
-      code: SL3
-    - id: D1404
-      name: 清凉味
-      code: SL3
-    - id: D1405
-      name: 体味
-      code: SL3
+      items:
+      - id: D1401
+        name: 香味
+        code: SL4
+      - id: D1402
+        name: 臭味
+        code: SL4
+      - id: D1403
+        name: 刺激味
+        code: SL4
+      - id: D1404
+        name: 清凉味
+        code: SL4
+      - id: D1405
+        name: 体味
+        code: SL4
     - id: D15
       name: 触觉
       code: SL3
@@ -573,21 +574,22 @@
     - id: D28
       name: 进步
       code: DL3
-    - id: D2801
-      name: 创新
-      code: DL3
-    - id: D2802
-      name: 假设
-      code: DL3
-    - id: D2803
-      name: 实验
-      code: DL3
-    - id: D2804
-      name: 考察
-      code: DL3
-    - id: D2805
-      name: 用心
-      code: DL3
+      items:
+      - id: D2801
+        name: 创新
+        code: DL4
+      - id: D2802
+        name: 假设
+        code: DL3
+      - id: D2803
+        name: 实验
+        code: DL4
+      - id: D2804
+        name: 考察
+        code: DL4
+      - id: D2805
+        name: 用心
+        code: DL4
   - id: DD4
     name: 自我实现
     code: DL2
