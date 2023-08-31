@@ -1,3 +1,4 @@
+import os
 import typing
 
 import yaml
@@ -80,6 +81,36 @@ def generate_yaml(data):
     return yaml_data
 
 
+def generate_zh_yaml(data):
+    yaml_data = {}
+
+    def recursive_parse(item):
+        yaml_data[item['id']] = [{'zh': item['name']}]
+
+        if 'items' in item:
+            for sub_item in item['items']:
+                recursive_parse(sub_item)
+
+    for item in data:
+        recursive_parse(item)
+
+    return yaml_data
+
+
+def merge_yamls(yaml1, yaml2):
+
+    merged = {**yaml1, **yaml2}
+
+    for k, v in merged.items():
+        if isinstance(v, list):
+            v1 = yaml1.get(k)
+            v2 = yaml2.get(k)
+        if v1 and v2:
+            merged[k] = v1 + v2
+
+    return merged
+
+
 if __name__ == "__main__":
     with open("desire.tsv", "r") as f:
         raw_data = f.read()
@@ -96,3 +127,27 @@ if __name__ == "__main__":
             allow_unicode=True,
             sort_keys=False,
         )
+
+    yaml_zh = generate_zh_yaml(desire_root.to_dict()['items'])
+
+    if os.path.exists("desire_name.yml"):
+        with open("desire_name.yml") as f:
+            yaml1 = yaml.load(f, Loader=yaml.FullLoader)
+        res = merge_yamls(yaml1, yaml_zh)
+        with open("desire_name.yml", "w") as f:
+            yaml.dump(
+                res,
+                f,
+                default_flow_style=False,
+                allow_unicode=True,
+                sort_keys=False,
+            )
+    else:
+        with open("desire_name.yml", "w") as f:
+            yaml.dump(
+                yaml_zh,
+                f,
+                default_flow_style=False,
+                allow_unicode=True,
+                sort_keys=False
+            )

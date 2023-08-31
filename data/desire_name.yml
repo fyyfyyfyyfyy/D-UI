@@ -1,60 +1,412 @@
 D1:
-  - en: living
+- en: living
+- zh: 活着
 D2:
-  - en: dying
+- en: dying
+- zh: 死亡
 D3:
-  - en: eating
+- en: eating
+- zh: 吃
 D4:
- - en: drinking
+- en: drinking
+- zh: 喝
 D5:
- - en: resting
+- en: resting
+- zh: 休息
 D6:
- - en: sleeping
+- en: sleeping
+- zh: 睡眠
 D7:
- - en: physiology
+- en: physiology
+- zh: 生理
 D8:
- - en: psychology
+- en: psychology
+- zh: 心理
 D9:
- - en: kinship
+- en: kinship
+- zh: 亲情
 D10:
- - en: friendship
+- en: friendship
+- zh: 友情
 D11:
- - en: love
+- en: love
+- zh: 爱情
 D12:
- - en: vision
+- en: vision
+- zh: 视觉
 D13:
- - en: hearing
+- en: hearing
+- zh: 听觉
 D14:
- - en: smell
+- en: smell
+- zh: 嗅觉
 D15:
- - en: touch
+- en: touch
+- zh: 触觉
 D16:
- - en: money
+- en: money
+- zh: 金钱
 D17:
- - en: collecting
+- en: collecting
+- zh: 收藏
 D18:
- - en: trading
+- en: trading
+- zh: 交易
 D19:
- - en: possession
+- en: possession
+- zh: 占有
 D20:
- - en: authority
+- en: authority
+- zh: 权力
 D21:
- - en: success
+- en: success
+- zh: 成功
 D22:
- - en: honor
+- en: honor
+- zh: 荣誉
 D23:
- - en: self
+- en: self
+- zh: 悦己
 D24:
- - en: caritas
+- en: caritas
+- zh: 博爱
 D25:
- - en: learning
+- en: learning
+- zh: 学习
 D26:
- - en: thinking
+- en: thinking
+- zh: 思考
 D27:
- - en: adventure
+- en: adventure
+- zh: 冒险
 D28:
- - en: progress
+- en: progress
+- zh: 进步
 D29:
- - en: meaning of life
+- en: meaning of life
+- zh: 生命意义
 D30:
- - en: pursue perfection
+- en: pursue perfection
+- zh: 追求圆满
+DN:
+- zh: 本能
+DN1:
+- zh: 生存
+D101:
+- zh: 朋友
+D102:
+- zh: 合作
+D103:
+- zh: 帮助
+D104:
+- zh: 娱乐
+D105:
+- zh: 八卦
+D211:
+- zh: 疾病
+D212:
+- zh: 自杀
+D213:
+- zh: 灾难
+D214:
+- zh: 危险
+D215:
+- zh: 衰老
+DN2:
+- zh: 食物
+D301:
+- zh: 吃辣
+D302:
+- zh: 吃酸
+D303:
+- zh: 吃甜
+D304:
+- zh: 吃苦
+D305:
+- zh: 吃咸
+D401:
+- zh: 热的
+D402:
+- zh: 冰的
+D403:
+- zh: 饮品
+D404:
+- zh: 酒精
+D405:
+- zh: 药物
+DN3:
+- zh: 休息
+D501:
+- zh: 懒惰
+D502:
+- zh: 发呆
+D503:
+- zh: 安静
+D504:
+- zh: 爱好
+D505:
+- zh: 娱乐
+D601:
+- zh: 睡眠环境
+D602:
+- zh: 睡眠质量
+D603:
+- zh: 睡眠有梦
+D604:
+- zh: 睡眠时间
+D605:
+- zh: 昏迷
+DN4:
+- zh: 性爱
+D701:
+- zh: 性高潮
+D702:
+- zh: 性刺激
+D703:
+- zh: 性场景
+D704:
+- zh: 性功能
+D705:
+- zh: 性行为
+D801:
+- zh: 性癖好
+D802:
+- zh: 性取向
+D803:
+- zh: 性和谐
+D804:
+- zh: 性冒险
+D805:
+- zh: 性变态
+DS:
+- zh: 社会
+DS1:
+- zh: 社交
+D901:
+- zh: 家庭
+D902:
+- zh: 血缘
+D903:
+- zh: 孝顺
+D904:
+- zh: 宗族
+D905:
+- zh: 教育
+D1101:
+- zh: 恋爱
+D1102:
+- zh: 婚姻
+D1103:
+- zh: 伴侣
+D1104:
+- zh: 情感
+D1105:
+- zh: 利益
+DS2:
+- zh: 审美
+D1201:
+- zh: 艺术
+D1202:
+- zh: 风景
+D1203:
+- zh: 空间
+D1204:
+- zh: 颜色
+D1205:
+- zh: 颜值
+D1301:
+- zh: 音乐
+D1302:
+- zh: 语言
+D1303:
+- zh: 称谓
+D1304:
+- zh: 自然
+D1305:
+- zh: 频率
+D1401:
+- zh: 香味
+D1402:
+- zh: 臭味
+D1403:
+- zh: 刺激味
+D1404:
+- zh: 清凉味
+D1405:
+- zh: 体味
+D1501:
+- zh: 体感
+D1502:
+- zh: 礼仪
+D1503:
+- zh: 运动
+D1504:
+- zh: 服装
+D1505:
+- zh: 痛感
+DS3:
+- zh: 物质
+D1601:
+- zh: 赚钱
+D1602:
+- zh: 花钱
+D1603:
+- zh: 骗钱
+D1604:
+- zh: 抢钱
+D1605:
+- zh: 印钱
+D1701:
+- zh: 收集
+D1702:
+- zh: 囤积
+D1703:
+- zh: 拍卖
+D1704:
+- zh: 珍藏
+D1705:
+- zh: 纪念
+D1801:
+- zh: 购买
+D1802:
+- zh: 投资
+D1803:
+- zh: 交换
+D1804:
+- zh: 出售
+D1805:
+- zh: 赠予
+DS4:
+- zh: 掌控
+D1901:
+- zh: 索取
+D1902:
+- zh: 掠夺
+D1903:
+- zh: 杀戮
+D1904:
+- zh: 控制
+D1905:
+- zh: 强迫
+D2001:
+- zh: 决策
+D2002:
+- zh: 命令
+D2003:
+- zh: 指挥
+D2004:
+- zh: 管理
+D2005:
+- zh: 平等
+DS5:
+- zh: 成就
+D2101:
+- zh: 努力
+D2102:
+- zh: 目标
+D2103:
+- zh: 竞争
+D2104:
+- zh: 赢
+D2105:
+- zh: 证明
+D2201:
+- zh: 成名
+D2202:
+- zh: 经历
+D2203:
+- zh: 获奖
+D2204:
+- zh: 信仰
+D2205:
+- zh: 认可
+DD:
+- zh: 深层
+DD1:
+- zh: 爱
+D2301:
+- zh: 接纳自己
+D2302:
+- zh: 欣赏自己
+D2303:
+- zh: 呵护自己
+D2304:
+- zh: 讨好自己
+D2305:
+- zh: 原谅自己
+D2401:
+- zh: 热爱
+D2402:
+- zh: 赞美
+D2403:
+- zh: 理解
+D2404:
+- zh: 包容
+D2405:
+- zh: 保护
+DD2:
+- zh: 求知
+D2501:
+- zh: 阅读
+D2502:
+- zh: 分享
+D2503:
+- zh: 记忆
+D2504:
+- zh: 计算
+D2505:
+- zh: 模仿
+D2601:
+- zh: 回忆
+D2602:
+- zh: 分析
+D2603:
+- zh: 反思
+D2604:
+- zh: 判断
+D2605:
+- zh: 总结
+DD3:
+- zh: 探索
+D2701:
+- zh: 选择
+D2702:
+- zh: 尝试
+D2703:
+- zh: 博弈
+D2704:
+- zh: 信任
+D2705:
+- zh: 挑战
+D2801:
+- zh: 创新
+D2802:
+- zh: 假设
+D2803:
+- zh: 实验
+D2804:
+- zh: 考察
+D2805:
+- zh: 用心
+DD4:
+- zh: 自我实现
+D2901:
+- zh: 价值
+D2902:
+- zh: 付出
+D2903:
+- zh: 感恩
+D2904:
+- zh: 牺牲
+D2905:
+- zh: 实现
+D3001:
+- zh: 遵从内心
+D3002:
+- zh: 天人和一
+D3003:
+- zh: 此生无悔
+D3004:
+- zh: 因果循环
+D3005:
+- zh: 顺其自然
