@@ -72,6 +72,11 @@ class Desire:
         self._all_nodes: dict[str, DesireItem] = {}
         self._build_node_dict()
 
+        try:
+            self.validate_all_nodes()
+        except ValueError as e:
+            raise e
+
     def _build_node_layers(self):
         self._node_layers = [{self.root.id: self.root}]
         layer: dict[str, DesireItem] = dict([(i.id, i) for i in self.root.items])
@@ -87,6 +92,16 @@ class Desire:
         for layer in self._node_layers:
             for node in layer.values():
                 self._all_nodes[node.id] = node
+
+    def validate_all_nodes(self) -> None:
+        id_set = set()
+        duplicate_ids = set()
+        for node in self._all_nodes.values():
+            if node.id in id_set:
+                duplicate_ids.add(node.id)
+            id_set.add(node.id)
+        if duplicate_ids:
+            raise ValueError(duplicate_ids)
 
     @property
     def first_layer(self):

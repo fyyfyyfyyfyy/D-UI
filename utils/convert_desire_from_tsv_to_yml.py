@@ -1,5 +1,6 @@
 import os
 import typing
+from typing import Dict
 
 import yaml
 
@@ -33,6 +34,7 @@ def process_data(data) -> DesireItem:
     d_code = ""
     d_id = ""
     d_name = ""
+    id_count: Dict[str, int] = {}  # Dictionary to track ID
 
     for line in lines:
         parts = line.split("\t")
@@ -70,6 +72,13 @@ def process_data(data) -> DesireItem:
         parent = stack[-2]
         child = stack.pop()
         parent.items.append(child)
+
+    # Output duplicate IDs and their counts
+    duplicate_ids = [id for id, count in id_count.items() if count > 1]
+    if duplicate_ids:
+        print("Duplicate IDs:")
+        for id in duplicate_ids:
+            print(f"ID: {id}, Count: {id_count[id]}")
 
     return stack[0]
 
@@ -112,7 +121,7 @@ def merge_yamls(yaml1, yaml2):
 
 
 if __name__ == "__main__":
-    with open("desire.tsv", "r") as f:
+    with open("desire.tsv", "r", encoding='utf-8') as f:
         raw_data = f.read()
 
     desire_root = process_data(raw_data)
