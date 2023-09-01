@@ -11,7 +11,7 @@ class TestEvent(unittest.TestCase):
         location = "上海南路123号"
         environment = "海鲜餐厅"
         time = datetime(2023, 7, 22, 19, 30, 0)
-        religion = Religion("吃辣舒适")
+        religion = Religion("吃辣舒适", desire_name="吃辣")
 
         Event(
             location=location,
@@ -33,7 +33,7 @@ class TestEvent(unittest.TestCase):
         location = "上海南路123号"
         environment = "海鲜餐厅"
         time = datetime(2023, 7, 22, 19, 30, 0)
-        religion = Religion("吃辣舒适")
+        religion = Religion("吃辣舒适", desire_name="吃辣")
 
         Event(
             location=location,

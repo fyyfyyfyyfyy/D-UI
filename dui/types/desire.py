@@ -103,6 +103,17 @@ class Desire:
         if duplicate_ids:
             raise ValueError(duplicate_ids)
 
+    def build_name_id_dict(self):
+        self.name_id_dict = {}  # 创建辅助字典
+        for itemid, item in self._all_nodes.items():
+            self.name_id_dict[item.name] = itemid
+
+    def get_id_by_name(self, name):
+        if not hasattr(self, 'name_id_dict'):
+            self.build_name_id_dict()  # 构建辅助字典
+
+        return self.name_id_dict.get(name, None)
+
     @property
     def first_layer(self):
         ids = ["DN", "DS", "DD"]

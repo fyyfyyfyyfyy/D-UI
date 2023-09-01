@@ -29,7 +29,7 @@ if __name__ == '__main__':
     event = Event(location=location, environment=environment, time=time)
 
     religion_str = ['吃辣让人舒适', '吃辣让人难受', '学习让人快乐', '学习让人难受']
-    religions = [Religion(rs) for rs in religion_str]
+    religions = [Religion(desc=rs, desire_name="食物") for rs in religion_str]
 
     prompt = event_to_prompt(event, person=person, religions=religions)
 

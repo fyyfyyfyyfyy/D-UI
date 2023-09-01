@@ -1,4 +1,5 @@
 from decimal import Decimal
+from typing import Optional
 
 from dui.types import Desire, Feeling
 from dui.types.decimalList import DecimalList
@@ -15,16 +16,21 @@ class Religion:
     def __init__(self,
                  desc: str = "放下自我去享受此刻",
                  primer: str = "我相信/认为",
-                 desire_name: str = "享受此刻",
+                 desire_name: Optional[str] = None,
                  middle_word: str = "是",
                  valence: bool = True,
                  feeling: Feeling = Feeling(),
+                 desire: Desire = Desire(),
                  desire_weight: DesireWeight = DesireWeight()) -> None:
+        id = desire.get_id_by_name(desire_name)
+        if id is None:
+            raise ValueError(f"desire_name {desire_name} does not exist")
+        self._desire_id = id
         self._description: str = desc
         self._feeling: Feeling = feeling
         self._desire_weight: DesireWeight = desire_weight
         self._primer: str = primer
-        self._desire_name: str = desire_name
+        self._desire_name: Optional[str] = desire_name
         self._middle_word: str = middle_word
         self._valence: int = valence
 
