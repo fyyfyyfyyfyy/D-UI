@@ -1,0 +1,19 @@
+religion:
+  - id: DN
+    primer: 我相信/认为
+    middle_word: 是
+    valence:
+      - 不舒服的
+      - 舒服的
+  - id: DS
+    primer: 我相信/认为
+    middle_word: 是
+    valence:
+      - 错误的
+      - 正确的
+  - id: DD
+    primer: 我相信/认为
+    middle_word: 是
+    valence:
+      - 无我的
+      - 有我的

@@ -15,9 +15,10 @@ class TestLLMInference(unittest.TestCase):
 
         event = Event(location="四川北路666号", environment="和好朋友去了川菜馆", time=datetime.now())
 
-        religion_str = ['吃辣让人舒适', '吃辣让人难受', '学习让人快乐', '学习让人难受']
-        religions = [Religion(rs, desire_name="食物") for rs in religion_str]
-
+        religions = [Religion(desire_name="食物", valence=True),
+                     Religion(desire_name="食物", valence=False),
+                     Religion(desire_name="学习", valence=True),
+                     Religion(desire_name="学习", valence=False)]
         prompt = event_to_prompt(event, person=person, religions=religions)
         self.prompt = prompt
         return super().setUp()
