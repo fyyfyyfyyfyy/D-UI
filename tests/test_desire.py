@@ -106,7 +106,7 @@ class TestDesire(unittest.TestCase):
         index = 1
         expected_value = Decimal(42)
         self.desire[index] = expected_value
-        self.assertEqual(self.desire._all_nodes[f"D{index}"]._value, expected_value)
+        self.assertEqual(self.desire._id2nodes[f"D{index}"]._value, expected_value)
 
     def test_repr(self):
         self.desire[1] = 10

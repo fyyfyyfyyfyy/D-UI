@@ -7,6 +7,9 @@ import re
 import openai  # type: ignore
 
 from dui.types import Event, Person, Religion
+from dui.utils.log import get_logger
+
+logger = get_logger(__name__)
 
 
 class ResponseChange:
@@ -80,8 +83,7 @@ The output in JSON format is preceded and followed by the symbol \'''
 #     return json_limit
 
 def fake_LLM_completion() -> str:
-    import sys
-    print('WARNING: fake LLM completion is called.', file=sys.stderr)
+    logger.warning('WARNING: fake LLM completion is called.')
     return '''在这个事件场景中，选择信念"吃辣让人舒适"。因为我们在川菜馆，\
 川菜以辣味著称，对于喜欢辣的人来说，吃辣可以带来舒适的感觉。\
 这个信念会对情绪产生影响，具体的情绪变化如下：

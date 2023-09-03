@@ -1,6 +1,5 @@
 import unittest
 
-from dui.types.desire import DesireItem
 from dui.types.person import Desire, Feeling
 from dui.types.religion import DesireWeight, Religion
 
@@ -54,16 +53,18 @@ class TestReligion(unittest.TestCase):
         self.assertEqual(str(religion), "我相信/认为吃咸是舒服的")
 
     def test_DesireItem_to_religion(self):
-        subitem1 = DesireItem("DN", "本能", "NL1", 1)
-        subitem2 = DesireItem("DS3", "物质", "SL2", 2)
-        subitem3 = DesireItem("D23", "悦己", "DL3", 3)
-        subitem4 = DesireItem("D2303", "呵护自己", "DL4", 4, parent=subitem3)
+        desire = Desire()
+        subitem1 = desire._id2nodes["DN"]
+        subitem2 = desire._id2nodes["DS3"]
+        subitem3 = desire._id2nodes["D23"]
+        subitem4 = desire._id2nodes["D2303"]
         subitem = [subitem1, subitem2, subitem3, subitem4]
-        root = ["DN", "DS", "DD", "DD", "DS"]
+        root = ["DN", "DS", "DD", "DD"]
         for i in range(4):
             religion = Religion(desire_item=subitem[i])
             self.assertEqual(religion._desire_name, subitem[i].name)
-            self.assertEqual(religion._root_id, root[i])
+
+            self.assertEqual(religion._root_id, root[i], f"{religion}")
 
     def test_Desire_to_religion(self):
         desire = Desire()

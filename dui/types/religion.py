@@ -1,5 +1,4 @@
 from decimal import Decimal
-from typing import Optional
 
 from dui.types import Feeling
 from dui.types.decimalList import DecimalList
@@ -7,6 +6,7 @@ from dui.types.desire import Desire, DesireItem
 from dui.utils.data import load_data
 
 RELIGION_CONTENT = load_data("religion")
+RELIGION_DICT = dict([(i["id"], i) for i in RELIGION_CONTENT['religion']])
 
 
 class DesireWeight(DecimalList):
@@ -19,52 +19,42 @@ class DesireWeight(DecimalList):
 class Religion:
     def __init__(self,
                  desc: str = "放下自我去享受此刻",
-                 primer: str = "我相信/认为",
-                 desire_name: Optional[str] = None,
+                 desire_name: str | None = None,
                  desire_item: DesireItem = None,
-                 middle_word: str = "是",
                  valence: bool = True,
                  feeling: Feeling = Feeling(),
                  desire: Desire = Desire(),
-                 root_id: str = "DN",
                  desire_weight: DesireWeight = DesireWeight()) -> None:
         if desire_item is None and desire_name is None:
-            raise ValueError("Neither 'desire_item' nor 'desire_name'")
-        if desire_item is None:
-            id = desire.get_id_by_name(desire_name)
-            if id is None:
-                raise ValueError("the desire_item does not exist")
-            desire_item = desire._all_nodes[id]
-        else:
-            id = desire_item.id
-            try:
-                desire_item = desire._all_nodes[id]
-            except Exception:
-                raise ValueError("The id of DesireItem WRONG!")
+            raise ValueError("Neither 'desire_item' nor 'desire_name' is None")
 
-        self._desire_name: Optional[str] = desire_item.name
-        self._desire_id = id
+        if desire_item is None and desire_name is not None:
+            desire_item = desire.get_item_by_name(desire_name)
+
+        assert desire_item is not None, "desire_item is None"
+
+        self._desire_id = desire_item.id
+        self._desire_name = desire_item.name
+
         self._feeling: Feeling = feeling
         self._desire_weight: DesireWeight = desire_weight
 
         while (desire_item is not None and desire_item.id not in ["DN", "DS", "DD"]):
             desire_item = desire_item.parent
-        root_id = desire_item.id if desire_item is not None else "DN"
-        for description in RELIGION_CONTENT['religion']:
-            if root_id == description['id']:
-                self._root_id = root_id
-                primer = description['primer']
-                middle_word = description['middle_word']
-                if valence:
-                    valence_str = description['valence'][1]
-                else:
-                    valence_str = description['valence'][0]
-                desc = primer + self._desire_name + middle_word + valence_str
-        self._primer: str = primer
-        self._middle_word: str = middle_word
-        self._description: str = desc
-        self._valence: int = valence
-        self._valence_str = valence_str
+
+        self._root_id = desire_item.id if desire_item is not None else "DN"
+        religion_item = RELIGION_DICT[self._root_id]
+
+        self._primer: str = religion_item['primer']
+        self._middle_word: str = religion_item['middle_word']
+        self._valence: bool = valence
+        self._valence_str = religion_item['valence'][1 if self._valence else 0]
+
+        self._description: str = "".join([
+            self._primer,
+            self._desire_name,
+            self._middle_word,
+            self._valence_str])
 
     def __str__(self) -> str:
         return self._description

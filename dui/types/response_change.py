@@ -1,5 +1,9 @@
 import json
 
+from dui.utils.log import get_logger
+
+logger = get_logger(__name__)
+
 
 class ResponseChange:
     def __init__(self, answer: str):
@@ -17,8 +21,8 @@ class ResponseChange:
         try:
             json_data = json.loads(self.json_content)
             json_data_pattern = json_data["emotion_delta"]
-            print(json_data_pattern)
-            print(json.dumps(json_data_pattern, ensure_ascii=False, indent=2))
+            logger.debug(json_data_pattern)
+            logger.debug(json.dumps(json_data_pattern, ensure_ascii=False, indent=2))
             return json_data_pattern
         except json.JSONDecodeError as e:
             raise e

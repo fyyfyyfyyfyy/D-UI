@@ -2,9 +2,12 @@ from datetime import datetime
 
 from dui.llm import LLM_inference, event_to_prompt
 from dui.types import Desire, Emotion, Event, Person, Religion
+from dui.utils.log import get_logger
+
+logger = get_logger(__name__, console_level='DEBUG')
 
 if __name__ == '__main__':
-    print('welcome to D-UI !')
+    logger.info('welcome to D-UI !')
 
     desire = Desire()
     desire[2] = 85
@@ -33,13 +36,17 @@ if __name__ == '__main__':
 
     prompt = event_to_prompt(event, person=person, religions=religions)
 
-    print('prompt:', prompt)
+    logger.debug("PROMPT:")
+    logger.info(prompt)
 
     answer = LLM_inference(question=prompt)
 
-    print('answer:', answer)
+    logger.debug("ANSWER:")
+    logger.info(answer)
+
     # 交互
     while (True):
+        logger.debug('============================')
         iscontinue = input("请输入quit结束运行，输入start继续运行~\n")
         if (iscontinue == "quit"):
             break
@@ -50,13 +57,15 @@ if __name__ == '__main__':
         person.history_push(event)
         religion_str = ['吃辣让人舒适', '吃辣让人难受', '学习让人快乐', '学习让人难受']
         religions = [Religion(rs) for rs in religion_str]
-        print("desire:", religions[1].get_related_strength(desire))
+        logger.debug("desire:" + str(religions[1].get_related_strength(desire)))
 
         prompt = event_to_prompt(
             person.history[-1], person=person, religions=religions)
 
-        print('prompt:', prompt)
+        logger.debug("PROMPT:")
+        logger.info(prompt)
 
         answer = LLM_inference(question=prompt)
 
-        print('answer:', answer)
+        logger.debug("ANSWER:")
+        logger.info(answer)

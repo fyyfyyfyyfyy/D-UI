@@ -69,7 +69,9 @@ class Desire:
         self.root = copy.deepcopy(DESIRE_PROPERTY)
         self._node_layers: list[dict[str, DesireItem]] = []
         self._build_node_layers()
-        self._all_nodes: dict[str, DesireItem] = {}
+        self._all_nodes: set[DesireItem] = set()
+        self._id2nodes: dict[str, DesireItem] = {}
+        self._name2nodes: dict[str, DesireItem] = {}
         self._build_node_dict()
 
         try:
@@ -88,36 +90,37 @@ class Desire:
             )
 
     def _build_node_dict(self):
-        self._all_nodes = {}
+        self._id2nodes = {}
+        self._name2nodes = {}
+
         for layer in self._node_layers:
             for node in layer.values():
-                self._all_nodes[node.id] = node
+                self._all_nodes.add(node)
+                assert node.id not in self._id2nodes, \
+                    f"node.id {node.id} already in self._id2nodes."
+                self._id2nodes[node.id] = node
+                assert node.id not in self._name2nodes, \
+                    f"node.name {node.name} already in self._name2nodes."
+                self._name2nodes[node.name] = node
 
     def validate_all_nodes(self) -> None:
         id_set = set()
         duplicate_ids = set()
-        for node in self._all_nodes.values():
+        for node in self._all_nodes:
             if node.id in id_set:
                 duplicate_ids.add(node.id)
             id_set.add(node.id)
         if duplicate_ids:
             raise ValueError(duplicate_ids)
 
-    def build_name_id_dict(self):
-        self.name_id_dict = {}  # 创建辅助字典
-        for itemid, item in self._all_nodes.items():
-            self.name_id_dict[item.name] = itemid
-
-    def get_id_by_name(self, name):
-        if not hasattr(self, 'name_id_dict'):
-            self.build_name_id_dict()  # 构建辅助字典
-
-        return self.name_id_dict.get(name, None)
+    def get_item_by_name(self, name: str) -> DesireItem:
+        assert name in self._name2nodes, f"name {name} not in desire nodes"
+        return self._name2nodes[name]
 
     @property
     def first_layer(self):
         ids = ["DN", "DS", "DD"]
-        return [0] + [self._all_nodes[i].value for i in ids]
+        return [0] + [self._id2nodes[i].value for i in ids]
 
     @property
     def second_layer(self):
@@ -125,27 +128,27 @@ class Desire:
         node_ids = [
             f"{prefix}{i}" for prefix, count in base for i in range(1, count + 1)
         ]
-        return [0] + [self._all_nodes[i].value for i in node_ids]
+        return [0] + [self._id2nodes[i].value for i in node_ids]
 
     @property
     def third_layer(self):
         return [0] + [
-            self._all_nodes[f"D{i}"].value for i in range(1, Desire.DESIRE_COUNT + 1)
+            self._id2nodes[f"D{i}"].value for i in range(1, Desire.DESIRE_COUNT + 1)
         ]
 
     @third_layer.setter
     def third_layer(self, value: list):
         for i, v in enumerate(value):
-            self._all_nodes[f"D{i+1}"]._value = Decimal(v)
+            self._id2nodes[f"D{i+1}"]._value = Decimal(v)
 
     def __setitem__(self, key: int, value: Decimal | int | float):
         assert key > 0 and key <= Desire.DESIRE_COUNT
         dec_value = Decimal(value)
-        self._all_nodes[f"D{key}"]._value = dec_value
+        self._id2nodes[f"D{key}"]._value = dec_value
 
     def __repr__(self) -> str:
         third_layer_node = [
-            self._all_nodes.get(f"D{i}", None)
+            self._id2nodes.get(f"D{i}", None)
             for i in range(1, Desire.DESIRE_COUNT + 1)
         ]
         valid_nodes = dict(
