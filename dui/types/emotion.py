@@ -12,13 +12,20 @@ class Emotion(DecimalList):
         self._max_value = 500
 
     @property
-    def intensity(self):
-        prod = 1
+    def intensity(self) -> Decimal:
+        prod: Decimal = Decimal(1)
         for i in range(len(self._value) - 1):
             prod = prod * self._value[i + 1]
 
         return sum(self._value[1:]) / \
             (1 + prod / pow(self._max_value, len(self._value) - 1))
+
+    @property
+    def is_positive(self) -> bool:
+        positive_value: Decimal = self.get_emotion_value('happy')
+        negative_value: list[Decimal] = [self.get_emotion_value(i)
+                                         for i in EMOTION_NAMES if i != 'happy']
+        return positive_value >= sum(negative_value)
 
     def get_emotion_value(self, emotion_name: str) -> Decimal:
         return self[EMOTION_NAMES.index(emotion_name)]
