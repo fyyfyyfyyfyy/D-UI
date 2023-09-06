@@ -28,10 +28,10 @@ class Emotion(DecimalList):
         return positive_value >= sum(negative_value)
 
     def get_emotion_value(self, emotion_name: str) -> Decimal:
-        return self[EMOTION_NAMES.index(emotion_name)]
+        return self[EMOTION_NAMES.index(emotion_name) + 1]
 
     def set_emotion_value(self, emotion_name: str, value: Decimal):
-        self[EMOTION_NAMES.index(emotion_name)] = value
+        self[EMOTION_NAMES.index(emotion_name) + 1] = value
 
 
 class Feeling(DecimalList):

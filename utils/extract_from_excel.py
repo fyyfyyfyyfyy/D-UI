@@ -1,9 +1,13 @@
 import copy
 import json
 import os
+import sys
 from typing import List, Union
 
 from openpyxl import load_workbook  # type: ignore
+
+sys.path.append(".")
+
 
 json_model = {}
 
