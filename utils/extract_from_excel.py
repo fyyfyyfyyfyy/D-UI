@@ -6,8 +6,9 @@ from typing import List, Union
 
 from openpyxl import load_workbook  # type: ignore
 
-sys.path.append(".")
+from dui.types import Emotion
 
+sys.path.append(".")    # move to top of Emotion import
 
 json_model = {}
 
@@ -33,11 +34,11 @@ def load_from_excel(
         print("未检测到数据，检查表中是否有“事件内容分解”单元格")
         # 目前检测数据区域依靠表头的“事件内容分解”
 
-    print(f"检测到的数据区域：{(start_col, start_row, start_col + 58, sh.max_row + 1)}")
+    print(f"检测到的数据区域：{(start_col, start_row, start_col + 60, sh.max_row + 1)}")
 
     for row_index in range(start_row, sh.max_row + 1):
         data: List[Union[str, None]] = []
-        for col_index in range(start_col, start_col + 58):
+        for col_index in range(start_col, start_col + 60):
             r = sh.cell(row=row_index, column=col_index)
             if r.value is None or r.value == "\\" or r.value == "/":
                 data.append(None)
@@ -54,6 +55,9 @@ def load_from_excel(
             continue
 
         json_output.append(json_input)
+
+        # For test purpose:
+        # break
 
     print(f"共有{len(json_output)}条数据")
 
@@ -74,7 +78,7 @@ def find_data_region(sheet):
     return None, None
 
 
-def remove_empty_fields(data):
+def remove_empty_fields(data: dict):
     keys_to_remove = []
 
     for key, value in data.items():
@@ -89,63 +93,94 @@ def remove_empty_fields(data):
         data.pop(key, None)
 
 
-def fill_in(json_input, rows):
+def fill_in(json_input: dict, rows: list):
     json_input["背景事件内容"]["输入背景内容"]["事件内容分解"]["内容"] = rows[0]
     json_input["背景事件内容"]["记录事件"]["执行动作"]["人工/GPT推理"] = rows[7]
     json_input["背景事件内容"]["记录事件"]["事件时间"]["年"] = rows[8]
-    json_input["背景事件内容"]["记录事件"]["事件时间"]["月"] = rows[9]
-    json_input["背景事件内容"]["记录事件"]["事件时间"]["日"] = rows[10]
-    json_input["背景事件内容"]["记录事件"]["事件时间"]["时"] = rows[11]
-    json_input["背景事件内容"]["记录事件"]["事件时间"]["分"] = rows[12]
-    json_input["背景事件内容"]["记录事件"]["事件时间"]["秒"] = rows[13]
-    json_input["背景事件内容"]["记录事件"]["事件地点"]["国家"] = rows[14]
-    json_input["背景事件内容"]["记录事件"]["事件地点"]["省"] = rows[15]
-    json_input["背景事件内容"]["记录事件"]["事件地点"]["市"] = rows[16]
-    json_input["背景事件内容"]["记录事件"]["事件地点"]["县"] = rows[17]
-    json_input["背景事件内容"]["记录事件"]["事件地点"]["街道"] = rows[18]
-    json_input["背景事件内容"]["记录事件"]["事件地点"]["门牌号"] = rows[19]
-    json_input["背景事件内容"]["记录事件"]["事件地点"]["地点文本"] = rows[20]
-    json_input["背景事件内容"]["记录事件"]["事件信念"]["引导语"] = rows[21]
-    json_input["背景事件内容"]["记录事件"]["事件信念"]["欲望"] = rows[22]
-    json_input["背景事件内容"]["记录事件"]["事件信念"]["中间词"] = rows[23]
-    json_input["背景事件内容"]["记录事件"]["事件信念"]["信念核心"] = rows[24]
-    json_input["背景事件内容"]["记录事件"]["事件信念"]["信念描述（标准语句）"] = rows[25]
-    json_input["背景事件内容"]["记录事件"]["GPT推理依据"]["推理关键词"] = rows[26]
-    json_input["背景事件内容"]["记录事件"]["GPT推理依据"]["推理过程"] = rows[27]
-    json_input["背景事件内容"]["记录事件"]["欲望数据"]["人物"] = rows[28]
-    json_input["背景事件内容"]["记录事件"]["欲望数据"]["L3欲望编号"] = rows[29]
-    json_input["背景事件内容"]["记录事件"]["欲望数据"]["L3欲望"] = rows[30]
-    json_input["背景事件内容"]["记录事件"]["欲望数据"]["L4欲望"] = rows[31]
-    json_input["背景事件内容"]["记录事件"]["欲望数据"]["L5欲望"] = rows[32]
-    json_input["背景事件内容"]["记录事件"]["欲望数据"]["欲望值"] = rows[33]
-    json_input["背景事件内容"]["记录事件"]["欲望数据"]["识别欲望的关键词"] = rows[34]
-    json_input["背景事件内容"]["记录事件"]["事件关联感受数值"]["FH（开心）"] = rows[35]
-    json_input["背景事件内容"]["记录事件"]["事件关联感受数值"]["FS（难受）"] = rows[36]
-    json_input["背景事件内容"]["记录事件"]["事件关联感受数值"]["FU（讨厌）"] = rows[37]
-    json_input["背景事件内容"]["记录事件"]["事件关联感受数值"]["FW（惊讶）"] = rows[38]
-    json_input["背景事件内容"]["记录事件"]["事件关联感受数值"]["FA（生气）"] = rows[39]
-    json_input["分析推理"]["外部信念与感受作用关系"] = rows[40]
-    json_input["分析推理"]["生成感受数值"]["FH（开心）"] = rows[41]
-    json_input["分析推理"]["生成感受数值"]["FS（难受）"] = rows[42]
-    json_input["分析推理"]["生成感受数值"]["FU（讨厌）"] = rows[43]
-    json_input["分析推理"]["生成感受数值"]["FW（惊讶）"] = rows[44]
-    json_input["分析推理"]["生成感受数值"]["FA（生气）"] = rows[45]
-    json_input["分析推理"]["情绪计算公式"] = rows[46]
-    json_input["输出内容"]["生成情绪数值"]["EH（开心）"] = rows[47]
-    json_input["输出内容"]["生成情绪数值"]["ES（难过）"] = rows[48]
-    json_input["输出内容"]["生成情绪数值"]["EU（讨厌）"] = rows[49]
-    json_input["输出内容"]["生成情绪数值"]["EW（惊讶）"] = rows[50]
-    json_input["输出内容"]["生成情绪数值"]["EA（生气）"] = rows[51]
-    json_input["输出内容"]["输出信念Rx"]["正向信念"] = rows[52]
-    json_input["输出内容"]["输出信念Rx"]["负向信念"] = rows[53]
-    json_input["输出内容"]["表达习惯（HL）"]["开头语"] = rows[54]
-    json_input["输出内容"]["表达习惯（HL）"]["句中常用语"] = rows[55]
-    json_input["输出内容"]["表达习惯（HL）"]["结束语气词"] = rows[56]
-    json_input["输出内容"]["GPT推理格式"]["格式"] = rows[57]
+    json_input["背景事件内容"]["记录事件"]["事件时间"]["年"] = rows[9]
+    json_input["背景事件内容"]["记录事件"]["事件时间"]["月"] = rows[10]
+    json_input["背景事件内容"]["记录事件"]["事件时间"]["日"] = rows[11]
+    json_input["背景事件内容"]["记录事件"]["事件时间"]["时"] = rows[12]
+    json_input["背景事件内容"]["记录事件"]["事件时间"]["分"] = rows[13]
+    json_input["背景事件内容"]["记录事件"]["事件时间"]["秒"] = rows[14]
+    json_input["背景事件内容"]["记录事件"]["事件地点"]["国家"] = rows[15]
+    json_input["背景事件内容"]["记录事件"]["事件地点"]["省"] = rows[16]
+    json_input["背景事件内容"]["记录事件"]["事件地点"]["市"] = rows[17]
+    json_input["背景事件内容"]["记录事件"]["事件地点"]["县"] = rows[18]
+    json_input["背景事件内容"]["记录事件"]["事件地点"]["街道"] = rows[19]
+    json_input["背景事件内容"]["记录事件"]["事件地点"]["门牌号"] = rows[21]
+    json_input["背景事件内容"]["记录事件"]["事件地点"]["地点文本"] = rows[22]
+    json_input["背景事件内容"]["记录事件"]["事件信念"]["引导语"] = rows[23]
+    json_input["背景事件内容"]["记录事件"]["事件信念"]["欲望"] = rows[24]
+    json_input["背景事件内容"]["记录事件"]["事件信念"]["中间词"] = rows[25]
+    json_input["背景事件内容"]["记录事件"]["事件信念"]["信念核心"] = rows[26]
+    json_input["背景事件内容"]["记录事件"]["事件信念"]["信念描述（标准语句）"] = rows[27]
+    json_input["背景事件内容"]["记录事件"]["GPT推理依据"]["推理关键词"] = rows[28]
+    json_input["背景事件内容"]["记录事件"]["GPT推理依据"]["推理过程"] = rows[29]
+    json_input["背景事件内容"]["记录事件"]["欲望数据"]["人物"] = rows[30]
+    json_input["背景事件内容"]["记录事件"]["欲望数据"]["L3欲望编号"] = rows[31]
+    json_input["背景事件内容"]["记录事件"]["欲望数据"]["L3欲望"] = rows[32]
+    json_input["背景事件内容"]["记录事件"]["欲望数据"]["L4欲望"] = rows[33]
+    json_input["背景事件内容"]["记录事件"]["欲望数据"]["L5欲望"] = rows[34]
+    json_input["背景事件内容"]["记录事件"]["欲望数据"]["欲望值"] = rows[35]
+    json_input["背景事件内容"]["记录事件"]["欲望数据"]["识别欲望的关键词"] = rows[36]
+    json_input["背景事件内容"]["记录事件"]["事件关联感受数值"]["FH（开心）"] = rows[37]
+    json_input["背景事件内容"]["记录事件"]["事件关联感受数值"]["FS（难受）"] = rows[38]
+    json_input["背景事件内容"]["记录事件"]["事件关联感受数值"]["FU（讨厌）"] = rows[39]
+    json_input["背景事件内容"]["记录事件"]["事件关联感受数值"]["FW（惊讶）"] = rows[40]
+    json_input["背景事件内容"]["记录事件"]["事件关联感受数值"]["FA（生气）"] = rows[41]
+    json_input["分析推理"]["外部信念与感受作用关系"] = rows[42]
+    json_input["分析推理"]["生成感受数值"]["FH（开心）"] = rows[43]
+    json_input["分析推理"]["生成感受数值"]["FS（难受）"] = rows[44]
+    json_input["分析推理"]["生成感受数值"]["FU（讨厌）"] = rows[45]
+    json_input["分析推理"]["生成感受数值"]["FW（惊讶）"] = rows[46]
+    json_input["分析推理"]["生成感受数值"]["FA（生气）"] = rows[47]
+    json_input["分析推理"]["情绪计算公式"] = rows[48]
+    json_input["输出内容"]["生成情绪数值"]["EH（开心）"] = rows[49]
+    json_input["输出内容"]["生成情绪数值"]["ES（难过）"] = rows[50]
+    json_input["输出内容"]["生成情绪数值"]["EU（讨厌）"] = rows[51]
+    json_input["输出内容"]["生成情绪数值"]["EW（惊讶）"] = rows[52]
+    json_input["输出内容"]["生成情绪数值"]["EA（生气）"] = rows[53]
+    json_input["输出内容"]["输出信念Rx"]["正向信念"] = rows[54]
+    json_input["输出内容"]["输出信念Rx"]["负向信念"] = rows[55]
+    json_input["输出内容"]["表达习惯（HL）"]["开头语"] = rows[56]
+    json_input["输出内容"]["表达习惯（HL）"]["句中常用语"] = rows[57]
+    json_input["输出内容"]["表达习惯（HL）"]["结束语气词"] = rows[58]
+    json_input["输出内容"]["GPT推理格式"]["格式"] = rows[59]
+
+    update_emotion(rows)
+
+
+def update_emotion(rows: list):
+
+    third_layer_desire_type = rows[31]
+    rows[35]
+    if not third_layer_desire_type:
+        return
+
+    feelings = [rows[i] for i in range(37, 42)]
+    print(feelings)
+
+    emotion = Emotion()
+
+    emotion.set_emotion_value('happy', feelings[0])
+    emotion.set_emotion_value('sad', feelings[1])
+    emotion.set_emotion_value('hate', feelings[2])
+    emotion.set_emotion_value('amazed', feelings[3])
+    emotion.set_emotion_value('angry', feelings[4])
+    print(emotion.items())
+
+    delta = int(emotion.intensity) ** 0.5
+    if not emotion.is_positive:
+        delta = -delta
+
+    print(f"Emotion intensity: {emotion.intensity}, is_positive: {emotion.is_positive}")
+    print(f"Desire type: {third_layer_desire_type}, delta value: {delta}")
+    ...
 
 
 if __name__ == "__main__":
-    load_from_excel()
+    load_from_excel(file="./example/origin.xlsx")
 
 """
 结构：
