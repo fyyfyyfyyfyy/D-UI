@@ -25,6 +25,7 @@ class TestReligion(unittest.TestCase):
     def test_create_successes(self):
         instance1 = Religion(desc="我相信/认为伴侣是舒服的", desire_name="伴侣")
         instance2 = Religion(desc="我相信/认为危险是不舒服的", desire_name="危险", valence=False)
+
         # 断言类实例是否创建成功
         self.assertIsInstance(instance1, Religion)
         self.assertIsInstance(instance2, Religion)

@@ -112,22 +112,23 @@ def fake_LLM_completion() -> str:
 ```'''
 
 
-def GPT_completion(question, user='user',
+def GPT_completion(question, history, user='user',
                    model='gpt-3.5-turbo', system_prompt=SYSTEM_PROMPT) -> str:
+    question = "事件场景历史为:" + ','.join(str(history[-3:])) + "。" + question
+
     completion = openai.ChatCompletion.create(
         model=model,  # gpt-3.5-turbo, gpt-4 ...
         messages=[
             {"role": "system", "content": system_prompt},
-            {"role": user, "content": question}
-        ]
+            {"role": user, "content": question}]
     )
     return completion.choices[0].message.content
 
 
-def LLM_inference(question, user='user',
+def LLM_inference(question, history, user='user',
                   model='gpt-3.5-turbo', system_prompt=SYSTEM_PROMPT):
     if has_envvar('OPENAI_API_KEY'):
-        return GPT_completion(question=question, user=user,
+        return GPT_completion(question=question, history=history, user=user,
                               model=model, system_prompt=system_prompt)
     else:
         return fake_LLM_completion()

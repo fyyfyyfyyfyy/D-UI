@@ -39,7 +39,7 @@ if __name__ == '__main__':
     logger.debug("PROMPT:")
     logger.info(prompt)
 
-    answer = LLM_inference(question=prompt)
+    answer = LLM_inference(question=prompt, history=person.history)
 
     logger.debug("ANSWER:")
     logger.info(answer)
@@ -54,18 +54,21 @@ if __name__ == '__main__':
         environment = input("请输入发生的事件:\n")
         time = datetime.now()
         event = Event(location=location, environment=environment, time=time)
-        person.history_push(event)
+
         religion_str = ['吃辣让人舒适', '吃辣让人难受', '学习让人快乐', '学习让人难受']
-        religions = [Religion(rs) for rs in religion_str]
+        religions = [Religion(rs, desire_name="食物") for rs in religion_str]
         logger.debug("desire:" + str(religions[1].get_related_strength(desire)))
 
         prompt = event_to_prompt(
-            person.history[-1], person=person, religions=religions)
+            event=event, person=person, religions=religions)
 
         logger.debug("PROMPT:")
         logger.info(prompt)
 
-        answer = LLM_inference(question=prompt)
+        answer = LLM_inference(question=prompt, history=person.history)
+        person.history_push(event)
 
         logger.debug("ANSWER:")
         logger.info(answer)
+
+        logger.debug("person.history:\n" + str(person.history))
