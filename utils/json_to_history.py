@@ -3,7 +3,7 @@ from datetime import datetime
 
 from dui.types.emotion import Emotion
 from dui.types.event import Event
-from dui.types.history import History
+from dui.types.history import HistoryItem
 from dui.types.religion import Religion
 
 
@@ -71,13 +71,14 @@ def json_to_history_list(json_file) -> list:
         desire_dict = json_record['欲望数据']
         impact_desire = dict(list(desire_dict.items())[:5])
         num_desire = int(desire_dict['欲望值'])
-        history_event = History(bg_event=bg_event,
-                                action=action,
-                                event=event,
-                                religion=religion,
-                                impact_emotion=impact_emotion,
-                                impact_desire=impact_desire,
-                                num_desire=num_desire
-                                )
+        history_event = HistoryItem(
+            bg_event=bg_event,
+            action=action,
+            event=event,
+            religion=religion,
+            impact_emotion=impact_emotion,
+            impact_desire=impact_desire,
+            num_desire=num_desire
+        )
         history_list.append(history_event)
     return history_list

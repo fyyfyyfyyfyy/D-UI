@@ -25,3 +25,13 @@ class Event:
         if self.religion is not None:
             output_dict['religion'] = str(self.religion)
         return str(output_dict)
+
+    @classmethod
+    def from_dict(cls, data):
+        location = data['location']
+        environment = data['event']
+        time_str = data['time']
+        time = datetime.strptime(time_str, "%Y-%m-%d %H:%M:%S")
+        religion_data = data.get('religion')
+        religion = Religion.from_dict(religion_data) if religion_data else None
+        return cls(location, environment, time, religion)

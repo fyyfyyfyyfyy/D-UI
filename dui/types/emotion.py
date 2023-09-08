@@ -33,6 +33,13 @@ class Emotion(DecimalList):
     def set_emotion_value(self, emotion_name: str, value: Decimal):
         self[EMOTION_NAMES.index(emotion_name) + 1] = value
 
+    @classmethod
+    def from_dict(cls, data):
+        emotion = cls()
+        for emotion_name, value in data.items():
+            emotion.set_emotion_value(emotion_name, Decimal(value))
+        return emotion
+
 
 class Feeling(DecimalList):
     def __init__(self, **kwargs) -> None:

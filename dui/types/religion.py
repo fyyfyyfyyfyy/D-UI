@@ -69,3 +69,31 @@ class Religion:
             s_res = s_desire * s_desire_weight
             total_desire = total_desire + s_res
         return total_desire
+
+    @classmethod
+    def from_dict(cls, data):
+        desc = data.get('desc', "放下自我去享受此刻")
+        desire_name = data.get('desire_name')
+        desire_item_data = data.get('desire_item')
+        valence = data.get('valence', True)
+        feeling_data = data.get('feeling')
+        desire_data = data.get('desire')
+        desire_weight_data = data.get('desire_weight')
+
+        feeling = Feeling.from_dict(feeling_data) if feeling_data else Feeling()
+        desire = Desire.from_dict(desire_data) if desire_data else Desire()
+        desire_weight = (
+            DesireWeight.from_dict(desire_weight_data)
+            if desire_weight_data
+            else DesireWeight()
+        )
+
+        return cls(
+            desc,
+            desire_name,
+            desire_item_data,
+            valence,
+            feeling,
+            desire,
+            desire_weight
+        )
