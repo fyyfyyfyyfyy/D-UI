@@ -1,10 +1,11 @@
 from datetime import datetime
 
 from dui.llm import LLM_inference, event_to_prompt
-from dui.types import Desire, Emotion, Event, Person, Religion
+from dui.types import Desire, Emotion, Event, History, Person, Religion
 from dui.utils.log import get_logger
 
 logger = get_logger(__name__, console_level='DEBUG')
+
 
 if __name__ == '__main__':
     logger.info('welcome to D-UI !')
@@ -24,7 +25,10 @@ if __name__ == '__main__':
 
     emotion = Emotion(item_values=[30])
 
-    person = Person(desire, emotion)
+    history = History.open("example/example_out_clean.json")
+    logger.debug(f'History has {len(history)} items.')
+
+    person = Person(desire, emotion, history=history)
 
     location = "四川北路666号"
     environment = "和好朋友去了川菜馆"

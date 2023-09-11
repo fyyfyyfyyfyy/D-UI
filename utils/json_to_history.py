@@ -10,6 +10,7 @@ from dui.types.religion import Religion
 def json_to_history_list(json_file) -> list:
     with open(json_file, encoding="utf-8") as f:
         raw_dict = json.load(f)
+
     history_list = []
     for item in raw_dict:
         json_content = item['背景事件内容']['输入背景内容']

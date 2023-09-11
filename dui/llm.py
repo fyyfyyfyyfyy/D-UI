@@ -7,6 +7,7 @@ import re
 import openai  # type: ignore
 
 from dui.types import Event, Person, Religion
+from dui.types.history import HistoryItem
 from dui.utils.log import get_logger
 
 logger = get_logger(__name__)
@@ -112,7 +113,7 @@ def fake_LLM_completion() -> str:
 ```'''
 
 
-def GPT_completion(question, history, user='user',
+def GPT_completion(question, history: list[HistoryItem] = [], user='user',
                    model='gpt-3.5-turbo', system_prompt=SYSTEM_PROMPT) -> str:
     question = "事件场景历史为:" + ','.join(str(history[-3:])) + "。" + question
 
@@ -125,7 +126,7 @@ def GPT_completion(question, history, user='user',
     return completion.choices[0].message.content
 
 
-def LLM_inference(question, history, user='user',
+def LLM_inference(question, history: list[HistoryItem] = [], user='user',
                   model='gpt-3.5-turbo', system_prompt=SYSTEM_PROMPT):
     if has_envvar('OPENAI_API_KEY'):
         return GPT_completion(question=question, history=history, user=user,

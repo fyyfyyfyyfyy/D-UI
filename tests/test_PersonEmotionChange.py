@@ -1,6 +1,7 @@
 import unittest
 
 from dui.types import Desire, Emotion, Feeling
+from dui.types.emotion import EMOTION_NAMES
 from dui.types.person import Person
 from dui.types.response_change import ResponseChange
 
@@ -13,7 +14,7 @@ class TestPerson(unittest.TestCase):
         self.person = Person(self.desire, self.emotion, self.feeling)
 
     def test_apply_response_change(self):
-        answer = '''
+        answer = """
         这是一些文本。在这里包含一个 JSON 部分：
 
         ```json
@@ -28,17 +29,19 @@ class TestPerson(unittest.TestCase):
         }
         }
         ```
-        '''
+        """
         response_change = ResponseChange(answer)
 
-        self.person.emotion.__setitem__(0, 5)
-        self.person.emotion.__setitem__(1, 3)
+        self.person.emotion.set_emotion_value("happy", 5)
+        self.person.emotion.set_emotion_value("sad", 3)
 
         self.person.apply_response_change(response_change)
 
-        self.assertAlmostEqual(self.person.emotion.__getitem__(0), 15, places=2)
-        self.assertAlmostEqual(self.person.emotion.__getitem__(1), 6, places=2)
+        expected_results = [15, 6, 0, 0, 0]
 
-        self.assertAlmostEqual(self.person.emotion.__getitem__(2), 0, places=2)
-        self.assertAlmostEqual(self.person.emotion.__getitem__(3), 0, places=2)
-        self.assertAlmostEqual(self.person.emotion.__getitem__(4), 0, places=2)
+        for en in EMOTION_NAMES:
+            self.assertAlmostEqual(
+                self.person.emotion.get_emotion_value(en),
+                expected_results[EMOTION_NAMES.index(en)],
+                places=2,
+            )
