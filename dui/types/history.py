@@ -1,6 +1,7 @@
 import json
 from datetime import datetime
 from decimal import Decimal
+from typing import Any
 
 from dui.types.emotion import EMOTION_NAMES_CN, Emotion
 from dui.types.event import Event
@@ -84,6 +85,14 @@ class HistoryItem:
         return cls(
             bg_event, action, event, religion, impact_emotion, impact_desire, num_desire
         )
+
+    @classmethod
+    def from_event(cls, event: Any) -> 'HistoryItem':
+        assert isinstance(event, cls) or isinstance(event, Event)
+        if isinstance(event, Event):
+            return HistoryItem(event=event)
+        else:
+            return event
 
 
 def process_json(file_path):

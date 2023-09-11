@@ -49,11 +49,7 @@ class Person:
         return self._emotion - self._stable_point
 
     def history_push(self, event: Event | HistoryItem):
-        if isinstance(event, Event):
-            item = HistoryItem(event=event)
-        else:
-            item = event
-        self._history.append(item)
+        self._history.append(HistoryItem.from_event(event))
 
     def apply_response_change(self, response_change):
         parsed_json = response_change.get_parsed_json()
