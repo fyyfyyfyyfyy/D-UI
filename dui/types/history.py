@@ -10,7 +10,7 @@ from dui.types.religion import Religion
 
 class History:
     @classmethod
-    def from_data(cls, data: list) -> list["HistoryItem"]:
+    def from_data(cls, data: list[dict]) -> list["HistoryItem"]:
         return [HistoryItem.from_dict(item) for item in data]
 
     @classmethod
