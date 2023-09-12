@@ -36,6 +36,9 @@ class EmotionBase(DecimalList):
     def set_value_by_name(self, name: str, value: Decimal):
         self[EMOTION_NAMES.index(name) + 1] = value
 
+    def __repr__(self):
+        return repr(dict(zip(EMOTION_NAMES, self._value[1:])))
+
     @classmethod
     def from_dict(cls, data: dict) -> "EmotionBase":
         base = cls()
@@ -58,6 +61,17 @@ class Emotion(EmotionBase):
             emotion.set_emotion_value(emotion_name, Decimal(value))
         return emotion
 
+    def __repr__(self):
+        return super().__repr__()
+
+    # TODO: fix emotion binary operation
+    # def __add__(self, rhs: 'EmotionBase') -> 'Emotion':
+    #     result = Emotion()
+    #     for n in EMOTION_NAMES:
+    #         result.set_emotion_value(n,
+    #               self.get_value_by_name(n) + rhs.get_value_by_name(n))
+    #     return result
+
 
 class Feeling(EmotionBase):
     def get_feeling_value(self, feeling_name: str) -> Decimal:
@@ -72,3 +86,6 @@ class Feeling(EmotionBase):
         for feeling_name, value in data.items():
             feeling.set_feeling_value(feeling_name, Decimal(value))
         return feeling
+
+    def __repr__(self):
+        return super().__repr__()

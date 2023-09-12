@@ -1,4 +1,5 @@
 from datetime import datetime
+from decimal import Decimal
 
 from dui.llm import LLM_inference, event_to_prompt
 from dui.types import Desire, Emotion, Event, History, Person, Religion
@@ -11,24 +12,16 @@ if __name__ == '__main__':
     logger.info('welcome to D-UI !')
 
     desire = Desire()
-    desire[2] = 85
-    desire[3] = 75
-    desire[4] = 60
-    desire[6] = 40
-    desire[7] = 40
-    desire[9] = 30
-    desire[18] = 70
-    desire[21] = 60
-    desire[22] = 60
-    desire[23] = 60
-    desire[27] = 80
+    desire._id2nodes['DN']._value = Decimal(300)
+    desire._id2nodes['DS']._value = Decimal(100)
+    desire._id2nodes['DD']._value = Decimal(50)
 
     emotion = Emotion(item_values=[30])
 
     history = History.open("example/example_out_clean.json")
     logger.debug(f'History has {len(history)} items.')
 
-    person = Person(desire, emotion, history=history)
+    person = Person(desire, emotion=emotion, history=history)
 
     logger.debug(f'current desire is {person.desire}')
 

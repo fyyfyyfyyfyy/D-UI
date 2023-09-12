@@ -40,7 +40,11 @@ class Person:
         return "\n".join(["Person:"] + item_lines)
 
     def _apply_change(self, hi: HistoryItem):
-        self._emotion += hi.impact_feeling * 0.1
+        result = self._emotion + hi.impact_feeling * 0.1
+        logger.debug(
+            f"emotion = {self._emotion} + 0.1 * {hi.impact_feeling} = {result}"
+        )
+        self._emotion = result
 
         k = 1 if hi.impact_feeling.is_positive else -1
 
