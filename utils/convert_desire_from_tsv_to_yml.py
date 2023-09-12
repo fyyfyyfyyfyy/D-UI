@@ -115,7 +115,10 @@ def merge_yamls(yaml1, yaml2):
             v1 = yaml1.get(k)
             v2 = yaml2.get(k)
         if v1 and v2:
-            merged[k] = v1 + v2
+            merged[k] = sorted(
+                [dict(t) for t in {tuple(d.items()) for d in v1 + v2}],
+                key=lambda x: list(x.keys())[0]
+            )
 
     return merged
 
