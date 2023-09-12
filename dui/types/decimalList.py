@@ -6,14 +6,16 @@ from typing import Any, Sequence
 
 
 class DecimalList(MutableMapping):
-    def __init__(self, item_count: int,
-                 item_values: Sequence | None = None,
-                 item_names: Sequence | None = None,
-                 raw_data_flag: bool = False,
-                 raw_disp_flag: bool | None = None) -> None:
+    def __init__(
+        self,
+        item_count: int,
+        item_values: Sequence | None = None,
+        item_names: Sequence | None = None,
+        raw_data_flag: bool = False,
+        raw_disp_flag: bool | None = None,
+    ) -> None:
         self._item_count = item_count
-        self._value: list[Decimal] = [
-            Decimal(0) for _ in range(self._item_count + 1)]
+        self._value: list[Decimal] = [Decimal(0) for _ in range(self._item_count + 1)]
         self._item_names = {}
         self._raw_data_flag = raw_data_flag or False
         self._raw_disp_flag = raw_disp_flag or self._raw_data_flag
@@ -49,10 +51,17 @@ class DecimalList(MutableMapping):
 
     def __repr__(self):
         start_i = 1 if self._raw_disp_flag else 0  # modify the logical relationship
-        items = dict([(i, str(v)) for (i, v) in enumerate(self._value) if i >= start_i])
-        items_str = ', '.join([f'{self._item_names.get(i, str(i))}: {v}'
-                               for i, v in items.items()])
-        return '{' + items_str + '}'
+        items = dict(
+            [
+                (i, str(v.quantize(Decimal(".01"))))
+                for (i, v) in enumerate(self._value)
+                if i >= start_i
+            ]
+        )
+        items_str = ", ".join(
+            [f"{self._item_names.get(i, str(i))}: {v}" for i, v in items.items()]
+        )
+        return "{" + items_str + "}"
 
     def __add__(self, rhs: Any) -> Any:
         values = [iv + r for (iv, r) in zip(self._value, rhs)]

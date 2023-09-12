@@ -3,6 +3,9 @@ import typing
 from decimal import Decimal
 
 from dui.utils.data import load_data
+from dui.utils.log import get_logger
+
+logger = get_logger("desire")
 
 
 class DesireItem:
@@ -37,7 +40,7 @@ class DesireItem:
 
     @property
     def value(self) -> Decimal:
-        result = _fetch_value_backward(self, None)
+        result = _fetch_value_forward(self, None)
         return result if result is not None else Decimal(0)
 
 
@@ -85,6 +88,10 @@ def _data_to_desire_tree(data: list[typing.Any]) -> DesireItem:
     for i in items:
         i.parent = root
     return root
+
+
+def _get_desire_item_placeholder_by_name(name: str) -> DesireItem:
+    return DesireItem("UNDEFINED", f"未知欲望【{name}】", "XX", 5)
 
 
 DESIRE_PROPERTY: DesireItem = _data_to_desire_tree(load_data("desire"))
@@ -146,7 +153,9 @@ class Desire:
             raise ValueError(duplicate_ids)
 
     def get_item_by_name(self, name: str) -> DesireItem:
-        assert name in self._name2nodes, f"name {name} not in desire nodes"
+        if name not in self._name2nodes:
+            logger.warning(f"name {name} not in desire nodes")
+            return _get_desire_item_placeholder_by_name(name)
         return self._name2nodes[name]
 
     @property

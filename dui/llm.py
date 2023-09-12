@@ -16,7 +16,7 @@ logger = get_logger(__name__)
 class ResponseChange:
     def __init__(self, answer: str):
         self.answer = answer
-        self.pattern = r'{[^{}]*}'
+        self.pattern = r"{[^{}]*}"
         self.match = re.findall(self.pattern, self.answer)
 
     def get_parsed_json(self):
@@ -37,12 +37,14 @@ def has_envvar(name: str):
     return True
 
 
-openai.api_key = os.getenv('OPENAI_API_KEY')
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
-if not has_envvar('https_proxy'):
+if not has_envvar("https_proxy"):
     openai.api_base = "https://openkey.cloud/v1"  # 换成代理，一定要加v1
 
-SYSTEM_PROMPT = '''You play the role of a psychologist,\
+logger.info(f"using {openai.api_base} as api_base")
+
+SYSTEM_PROMPT = """You play the role of a psychologist,\
 and I will input a number of events, scenarios and my states (desires, emotions),\
 as well as a list of beliefs from which\
 you will need to select the one I am most likely to have given that event.\
@@ -67,8 +69,8 @@ Before each output you need to analyze the reasons for choosing beliefs \
 and mood changes in 100 words.\
 Next I start the first input.\
 You must output the JSON format data of the example above.\
-The output in JSON format is preceded and followed by the symbol \'''
-'''
+The output in JSON format is preceded and followed by the symbol '''
+"""
 
 
 # def build_system_prompt():
@@ -83,9 +85,10 @@ The output in JSON format is preceded and followed by the symbol \'''
 # ```"""
 #     return json_limit
 
+
 def fake_LLM_completion() -> str:
-    logger.warning('WARNING: fake LLM completion is called.')
-    return '''在这个事件场景中，选择信念"吃辣让人舒适"。因为我们在川菜馆，\
+    logger.warning("WARNING: fake LLM completion is called.")
+    return """在这个事件场景中，选择信念"吃辣让人舒适"。因为我们在川菜馆，\
 川菜以辣味著称，对于喜欢辣的人来说，吃辣可以带来舒适的感觉。\
 这个信念会对情绪产生影响，具体的情绪变化如下：
 
@@ -110,47 +113,74 @@ def fake_LLM_completion() -> str:
     "angry": 0
   }
 }
-```'''
+```"""
 
 
-def GPT_completion(question, history: list[HistoryItem] = [], user='user',
-                   model='gpt-3.5-turbo', system_prompt=SYSTEM_PROMPT) -> str:
-    question = "事件场景历史为:" + ','.join(str(history[-3:])) + "。" + question
+def GPT_completion(
+    question,
+    history: list[HistoryItem] = [],
+    user="user",
+    model="gpt-3.5-turbo",
+    system_prompt=SYSTEM_PROMPT,
+) -> str:
+    question = question
 
+    messages = [
+        {"role": "system", "content": system_prompt},
+        {"role": user, "content": question},
+    ]
+
+    # logger.info(messages)
     completion = openai.ChatCompletion.create(
-        model=model,  # gpt-3.5-turbo, gpt-4 ...
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": user, "content": question}]
+        model=model, messages=messages  # gpt-3.5-turbo, gpt-4 ...
     )
     return completion.choices[0].message.content
 
 
-def LLM_inference(question, history: list[HistoryItem] = [], user='user',
-                  model='gpt-3.5-turbo', system_prompt=SYSTEM_PROMPT):
-    if has_envvar('OPENAI_API_KEY'):
-        return GPT_completion(question=question, history=history, user=user,
-                              model=model, system_prompt=system_prompt)
+def LLM_inference(
+    question,
+    history: list[HistoryItem] = [],
+    user="user",
+    model="gpt-3.5-turbo",
+    system_prompt=SYSTEM_PROMPT,
+):
+    if has_envvar("OPENAI_API_KEY"):
+        return GPT_completion(
+            question=question,
+            history=history,
+            user=user,
+            model=model,
+            system_prompt=system_prompt,
+        )
     else:
         return fake_LLM_completion()
 
 
-def event_to_prompt(event: Event, person: Person, religions: list[Religion]) -> str:
-    religions_str = json.dumps([str(r) for r in religions], ensure_ascii=False)
+def event_to_prompt(
+    event: Event, person: Person, religions: list[Religion] | None = None
+) -> str:
     prompt_dict = {
-        '要推理的事件场景': event,
-        '初始情绪': person._emotion,
-        '初始欲望': person._desire,
-        '信念列表': religions_str
+        "要推理的事件场景": event,
+        "初始情绪": person._emotion,
+        "初始欲望": person._desire,
     }
-    prompt = ','.join([f'{k}为{v}' for k, v in prompt_dict.items()])
+    if religions is not None:
+        religions_str = json.dumps([str(r) for r in religions], ensure_ascii=False)
+        prompt_dict["信念列表"] = religions_str
+    prompt = ",".join([f"{k}为{v}" for k, v in prompt_dict.items()])
     return prompt
 
 
 def raw_event_to_str(background: str, emotions: str, desire: str, belief_list: str):
-    event = '事件和场景为%s,初始情绪为%s,初始欲望为%s,信念列表为%s.' \
-            % (background, emotions, desire, belief_list)
-    json_limit = '请推理信念以及情绪变化,输出仅给出JSON, JSON格式示例:' \
-        '{"belief": "学习", "emotion_change": {"happiness": +5, "anger": 0,' \
+    event = "事件和场景为%s,初始情绪为%s,初始欲望为%s,信念列表为%s." % (
+        background,
+        emotions,
+        desire,
+        belief_list,
+    )
+    json_limit = (
+        "请推理信念以及情绪变化,输出仅给出JSON, JSON格式示例:"
+        '{"belief": "学习", "emotion_change": {"happiness": +5, "anger": 0,'
         'surprise": 0, "disgust": 0, "sadness": 0}}'
+    )
     return event + json_limit

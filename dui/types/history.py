@@ -3,9 +3,15 @@ from datetime import datetime
 from decimal import Decimal
 from typing import Any
 
-from dui.types.emotion import EMOTION_NAMES_CN, Emotion
+from dui.types.emotion import EMOTION_NAMES, Emotion, Feeling
 from dui.types.event import Event
 from dui.types.religion import Religion
+from dui.utils.log import get_logger
+
+logger = get_logger("history")
+
+logger.warning("temporal emotion_names_cn is used.")
+EMOTION_NAMES_CN = ["开心", "难受", "讨厌", "惊讶", "生气"]
 
 
 class History:
@@ -20,25 +26,25 @@ class History:
         with open(file_path, mode=mode, encoding=encoding) as f:
             raw_dict = json.load(f)
 
-            return History.from_data(raw_dict)
+            return process_json(raw_dict)
 
 
 class HistoryItem:
     def __init__(
         self,
-        bg_event: str = None,
-        action: str = "人工标记",
-        event: Event = None,
-        religion: Religion = None,
-        impact_emotion: Emotion = None,
+        event: Event,
+        bg_event: str,
+        religion: Religion,
+        impact_feeling: Feeling,
         impact_desire: dict = {},
+        action: str = "人工标记",
         num_desire: int = 0,
     ):
         self.bg_event = bg_event
         self.action = action
         self.event = event
         self.religion = religion
-        self.impact_emotion = impact_emotion
+        self.impact_feeling = impact_feeling
         self.impact_desire = impact_desire
         self.num_desire = num_desire
 
@@ -47,7 +53,7 @@ class HistoryItem:
             "action": action,
             "event": event,
             "religion": religion,
-            "impact_emotion": impact_emotion,
+            "impact_emotion": impact_feeling,
             "impact_desire": impact_desire,
             "num_desire": num_desire,
         }
@@ -61,7 +67,7 @@ class HistoryItem:
         output_dict["action"] = self.action
         output_dict["event"] = str(self.event)
         output_dict["religion"] = str(self.religion)
-        output_dict["impact_emotion"] = str(self.impact_emotion)
+        output_dict["impact_feeling"] = str(self.impact_feeling)
         output_dict["impact_desire"] = str(self.impact_desire)
         output_dict["num_desire"] = str(self.num_desire)
         return str(output_dict)
@@ -78,27 +84,36 @@ class HistoryItem:
 
         event = Event.from_dict(event_data) if event_data else None
         religion = Religion.from_dict(religion_data) if religion_data else None
-        impact_emotion = (
-            Emotion.from_dict(impact_emotion_data) if impact_emotion_data else None
+
+        impact_emotion: Feeling = (
+            Feeling.from_dict(impact_emotion_data) if impact_emotion_data else Feeling()
         )
 
         return cls(
-            bg_event, action, event, religion, impact_emotion, impact_desire, num_desire
+            bg_event=bg_event,
+            action=action,
+            event=event,
+            religion=religion,
+            impact_feeling=impact_emotion,
+            impact_desire=impact_desire,
+            num_desire=num_desire,
         )
 
     @classmethod
-    def from_event(cls, event: Any) -> 'HistoryItem':
+    def from_event(cls, event: Any) -> "HistoryItem":
         assert isinstance(event, cls) or isinstance(event, Event)
         if isinstance(event, Event):
-            return HistoryItem(event=event)
+            return HistoryItem(
+                event=event,
+                bg_event="placeholder",
+                religion=Religion(desire_name="占位符"),
+                impact_feeling=Feeling(),
+            )
         else:
             return event
 
 
-def process_json(file_path):
-    with open(file_path, "r", encoding="utf-8") as file:
-        json_data = json.load(file)
-
+def process_json(json_data):
     events = []  # 存储处理后的事件数据
 
     for item in json_data:
@@ -144,7 +159,7 @@ def process_json(file_path):
             "environment": bg_event,
             "time": event_time,
         }
-        event = Event.from_dict(event_data)
+        # event = Event.from_dict(event_data)
 
         # impact_desire
         desire_dict = json_record["欲望数据"]
@@ -166,9 +181,18 @@ def process_json(file_path):
         impact_emotion = None
         if "事件关联感受数值" in json_record:
             impact_emotion_dict = json_record["事件关联感受数值"]
-            impact_emotion = Emotion(EMOTION_NAMES_CN)
-            for emotion, value in impact_emotion_dict.items():
-                impact_emotion.set_emotion_value(emotion, Decimal(value * 0.01))
+            EMOTION_NAMES_CN2EN = dict(zip(EMOTION_NAMES_CN, EMOTION_NAMES))
+            impact_emotion_data = dict(
+                [
+                    (EMOTION_NAMES_CN2EN[k[3:5]], v)
+                    for k, v in impact_emotion_dict.items()
+                ]
+            )
+
+            impact_emotion = Emotion()
+            for name_CN, value in impact_emotion_dict.items():
+                name_EN = EMOTION_NAMES_CN2EN[name_CN[3:5]]
+                impact_emotion.set_emotion_value(name_EN, Decimal(value * 0.01))
 
         # num_desire
         num_desire = int(desire_dict["欲望值"])
@@ -177,9 +201,9 @@ def process_json(file_path):
         history_item_data = {
             "bg_event": bg_event,
             "action": action,
-            "event": event,
+            "event": event_data,
             "religion": religion_data,
-            "impact_emotion": impact_emotion,
+            "impact_emotion": impact_emotion_data,
             "impact_desire": impact_desire,
             "num_desire": num_desire,
         }

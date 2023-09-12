@@ -20,7 +20,7 @@ class Event:
     def __str__(self) -> str:
         output_dict = {}
         output_dict['location'] = self.location
-        output_dict['event'] = self.environment
+        output_dict['environment'] = self.environment
         output_dict['time'] = self.time.strftime("%Y-%m-%d %H:%M:%S")
         if self.religion is not None:
             output_dict['religion'] = str(self.religion)
@@ -29,9 +29,9 @@ class Event:
     @classmethod
     def from_dict(cls, data):
         location = data['location']
-        environment = data['event']
-        time_str = data['time']
-        time = datetime.strptime(time_str, "%Y-%m-%d %H:%M:%S")
+        environment = data['environment']
+        time = data['time']
+        # time = datetime.strptime(time_str, "%Y-%m-%d %H:%M:%S")
         religion_data = data.get('religion')
         religion = Religion.from_dict(religion_data) if religion_data else None
         return cls(location, environment, time, religion)

@@ -72,7 +72,7 @@ class Religion:
 
     @classmethod
     def from_dict(cls, data):
-        desc = data.get('desc', "放下自我去享受此刻")
+        desc = data.get('desc', "描述占位符")
         desire_name = data.get('desire_name')
         desire_item_data = data.get('desire_item')
         valence = data.get('valence', True)
