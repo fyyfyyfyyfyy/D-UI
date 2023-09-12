@@ -14,7 +14,7 @@ class DesireItem:
         level: int,
         items: list["DesireItem"] = None,
         parent: "DesireItem" = None,
-        value: Decimal = None,
+        value: Decimal | int | float | None = None,
     ) -> None:
         self.code = code
         self.level = level
@@ -22,7 +22,7 @@ class DesireItem:
         self.name = name
         self.items = items if items is not None else []
         self.parent = parent
-        self._value: Decimal = Decimal(value) if value is not None else Decimal(0)
+        self._value: Decimal | None = Decimal(value) if value is not None else None
 
     def to_dict(self) -> dict:
         target: dict[str, typing.Any] = {
@@ -37,8 +37,38 @@ class DesireItem:
 
     @property
     def value(self) -> Decimal:
-        child_max = max([item.value for item in self.items], default=0)
-        return max(self._value, Decimal(child_max))
+        result = _fetch_value_backward(self, None)
+        return result if result is not None else Decimal(0)
+
+
+def _is_decimal(x: Decimal | None) -> typing.TypeGuard[Decimal]:
+    return x is not None
+
+
+def _fetch_value_forward(
+    item: DesireItem, ignore: DesireItem | None = None
+) -> Decimal | None:
+    if item._value is not None:
+        return item._value
+
+    sub_items_v: filter[Decimal] = filter(
+        _is_decimal,
+        [_fetch_value_forward(i) for i in item.items if i != ignore],
+    )
+    return max(sub_items_v, default=None)
+
+
+def _fetch_value_backward(
+    item: DesireItem, origin: DesireItem | None
+) -> Decimal | None:
+    item_and_child_v: Decimal | None = _fetch_value_forward(item, origin)
+
+    if item.parent is None:
+        return item_and_child_v
+
+    parent_v = _fetch_value_backward(item.parent, item)
+    optional_v = filter(_is_decimal, [item_and_child_v, parent_v])
+    return max(optional_v, default=None)
 
 
 def _dict_to_desire_item(data: dict[str, typing.Any], level: int) -> DesireItem:
@@ -96,11 +126,13 @@ class Desire:
         for layer in self._node_layers:
             for node in layer.values():
                 self._all_nodes.add(node)
-                assert node.id not in self._id2nodes, \
-                    f"node.id {node.id} already in self._id2nodes."
+                assert (
+                    node.id not in self._id2nodes
+                ), f"node.id {node.id} already in self._id2nodes."
                 self._id2nodes[node.id] = node
-                assert node.id not in self._name2nodes, \
-                    f"node.name {node.name} already in self._name2nodes."
+                assert (
+                    node.id not in self._name2nodes
+                ), f"node.name {node.name} already in self._name2nodes."
                 self._name2nodes[node.name] = node
 
     def validate_all_nodes(self) -> None:
@@ -148,8 +180,7 @@ class Desire:
 
     def __repr__(self) -> str:
         third_layer_node = [
-            self._id2nodes.get(f"D{i}", None)
-            for i in range(1, Desire.DESIRE_COUNT + 1)
+            self._id2nodes.get(f"D{i}", None) for i in range(1, Desire.DESIRE_COUNT + 1)
         ]
         valid_nodes = dict(
             [(i.name, int(i.value)) for i in third_layer_node if i and i.value > 0]

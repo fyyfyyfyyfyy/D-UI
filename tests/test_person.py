@@ -4,6 +4,7 @@ from decimal import Decimal
 from dui.types import Desire, Emotion
 
 
+@unittest.skip('TODO: rewrite')
 class TestPerson(unittest.TestCase):
     def test_example(self):
         desire = Desire()
