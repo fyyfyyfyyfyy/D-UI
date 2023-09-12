@@ -6,9 +6,9 @@ from typing import List, Union
 
 from openpyxl import load_workbook  # type: ignore
 
-from dui.types import Emotion
-
 sys.path.append(".")    # move to top of Emotion import
+
+from dui.types import Emotion
 
 json_model = {}
 
@@ -180,7 +180,7 @@ def update_emotion(rows: list):
 
 
 if __name__ == "__main__":
-    load_from_excel(file="./example/origin.xlsx")
+    load_from_excel(file="./example/origin.xlsx", write_to_file=True)
 
 """
 结构：

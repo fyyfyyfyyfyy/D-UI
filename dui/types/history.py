@@ -133,14 +133,17 @@ def process_json(json_data):
         if "事件时间" in json_record:
             time_dict = json_record["事件时间"]
             # 此处时间默认值可能需要修改，应该不重要
-            event_time = datetime(
-                time_dict.get("年", 2023),
-                time_dict.get("月", 8),
-                time_dict.get("日", 20),
-                time_dict.get("时", 0),
-                time_dict.get("分", 0),
-                time_dict.get("秒", 0),
-            )
+            try:
+                event_time = datetime(
+                    time_dict.get("年", 2023),
+                    time_dict.get("月", 8),
+                    time_dict.get("日", 20),
+                    time_dict.get("时", 0),
+                    time_dict.get("分", 0),
+                    time_dict.get("秒", 0),
+                )
+            except Exception:
+                event_time = datetime(1970, 1, 1)
         # 将事件地点字典转化为字符串格式
         if "事件地点" in json_record:
             location_dict = json_record["事件地点"]

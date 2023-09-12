@@ -40,7 +40,7 @@ class DesireItem:
 
     @property
     def value(self) -> Decimal:
-        result = _fetch_value_forward(self, None)
+        result = _fetch_value_backward(self, None)
         return result if result is not None else Decimal(0)
 
 
@@ -66,12 +66,13 @@ def _fetch_value_backward(
 ) -> Decimal | None:
     item_and_child_v: Decimal | None = _fetch_value_forward(item, origin)
 
-    if item.parent is None:
+    if item_and_child_v is not None:
         return item_and_child_v
 
-    parent_v = _fetch_value_backward(item.parent, item)
-    optional_v = filter(_is_decimal, [item_and_child_v, parent_v])
-    return max(optional_v, default=None)
+    parent_v = (
+        _fetch_value_backward(item.parent, item) if item.parent is not None else None
+    )
+    return parent_v
 
 
 def _dict_to_desire_item(data: dict[str, typing.Any], level: int) -> DesireItem:
