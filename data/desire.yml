@@ -1487,7 +1487,7 @@
     name: 物质
     code: SL2
     items:
-    - id: D15
+    - id: D16
       name: 金钱
       code: SL3
       items:
@@ -1589,7 +1589,7 @@
         - id: D1605-R401
           name: 积分代币
           code: SL5
-    - id: D16
+    - id: D17
       name: 收藏
       code: SL3
       items:
