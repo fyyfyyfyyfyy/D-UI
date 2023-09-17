@@ -1,4 +1,5 @@
 import unittest
+from decimal import Decimal
 
 from dui.types.person import Desire, Feeling
 from dui.types.religion import DesireWeight, Religion
@@ -67,12 +68,16 @@ class TestReligion(unittest.TestCase):
 
             self.assertEqual(religion._root_id, root[i], f"{religion}")
 
-    @unittest.skip("TODO: rewrite")
     def test_Desire_to_religion(self):
         desire = Desire()
-        desire[2] = 85
-        desire[3] = 30
-        # print(type(eval(desire.__repr__())))
+        desire._id2nodes['DN']._value = Decimal(300)
+        desire._id2nodes['DS']._value = Decimal(100)
+        desire._id2nodes['DD']._value = Decimal(50)
         for des in eval(desire.__repr__()):
             religion = Religion(desire_name=des)
-            self.assertEqual(religion._root_id, "DN")
+            if religion._root_id == 'DN':
+                self.assertEqual(f"{religion}", f"我相信/认为{des}是舒服的")
+            if religion._root_id == 'DS':
+                self.assertEqual(f"{religion}", f"我相信/认为{des}是正确的")
+            if religion._root_id == 'DD':
+                self.assertEqual(f"{religion}", f"我相信/认为{des}是有我的")
