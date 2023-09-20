@@ -3,14 +3,11 @@ import time
 
 from dui.llm import ChatMessageItem, LLM_inference
 from dui.types import Religion
-from dui.types.desire import DESIRE_PROPERTY
+from dui.types.desire import DESIRE_PROPERTY, DesireItem
 from dui.types.religion_feeling import map_religion_feeling
-from dui.utils.data import load_data
 from dui.utils.log import get_logger
 
 logger = get_logger("desc2feeling", console_level="DEBUG")
-
-DESIRE_DICT = load_data("desire")
 
 SYSTEM_PROMPT = """
 你扮演一个担任自然语言表达动机提取工作AI程序。\
@@ -58,6 +55,8 @@ def extract_religion(
 
 
 if __name__ == "__main__":
+    desire = DESIRE_PROPERTY
+
     while True:
         user_input = input("请输入事件：(输入quit结束运行~)\n")
         if user_input == "quit":
@@ -69,27 +68,23 @@ if __name__ == "__main__":
 
         logger.debug(f"用户输入问题 input: {user_input}")
 
-        desire = DESIRE_PROPERTY
-        desire_list = []
-        for i in range(1, 30):
-            item_name = desire._id2nodes[f"D{i}"].name
-            desire_list.append(item_name)
+        desire_list_1 = [desire.get(f"D{i}") for i in range(1, 30)]
+        desire_name_list_1 = [item.name for item in desire_list_1]
 
-        religion1 = extract_religion(user_input, desire_list, chat_history)
+        religion_1 = extract_religion(user_input, desire_name_list_1, chat_history)
+        desire_1 = religion_1.desire
 
-        high_desire_list = []
+        desire_list_2: list[DesireItem] = desire_1.fetch_subtree(
+            depth=2, including_self=True
+        )
+        desire_name_list_2 = [item.name for item in desire_list_2]
 
-        high_desire_list.append(religion1._desire_item.name)
-        for l4 in religion1._desire_item.items:
-            high_desire_list.append(l4.name)
-            for l5 in l4.items:
-                high_desire_list.append(l5.name)
-
-        religion2 = extract_religion(user_input, high_desire_list, chat_history)
+        religion_2 = extract_religion(user_input, desire_name_list_2, chat_history)
 
         end = time.time()
-        logger.info(f"最终选择的信念 religion: {religion2}")
-        logger.debug(f"信念对应感受 feeling: {map_religion_feeling(religion2)}")
+
+        logger.info(f"最终选择的信念 religion: {religion_2}")
+        logger.debug(f"信念对应感受 feeling: {map_religion_feeling(religion_2)}")
 
         logger.debug(f"消耗的时间 cost_time: {end - start}")
 

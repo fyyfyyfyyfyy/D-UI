@@ -61,6 +61,10 @@ class Religion:
         return self._description
 
     @property
+    def desire(self) -> DesireItem:
+        return self._desire_item
+
+    @property
     def valence(self) -> str:
         return self._valence_str
 

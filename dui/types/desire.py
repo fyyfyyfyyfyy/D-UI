@@ -1,5 +1,6 @@
 import copy
 import typing
+from collections import deque
 from decimal import Decimal
 
 from dui.utils.data import load_data
@@ -37,6 +38,25 @@ class DesireItem:
             target["items"] = [item.to_dict() for item in self.items]
 
         return target
+
+    def fetch_subtree(self, depth: int = 1, including_self: bool = False) -> list:
+        queue = deque([self]) if including_self else deque(self.items)
+        current_depth = 0 if including_self else 1
+        result = []
+
+        while queue and current_depth <= depth:
+            level_items = []
+            level_size = len(queue)
+
+            for _ in range(level_size):
+                item = queue.popleft()
+                level_items.append(item)
+                queue.extend(item.items)
+
+            result.extend(level_items)
+            current_depth += 1
+
+        return result
 
     @property
     def value(self) -> Decimal:
@@ -158,6 +178,15 @@ class Desire:
             logger.warning(f"name {name} not in desire nodes")
             return _get_desire_item_placeholder_by_name(name)
         return self._name2nodes[name]
+
+    def get_item_by_id(self, id_: str) -> DesireItem:
+        if id_ not in self._id2nodes:
+            logger.warning(f"id {id_} not in desire nodes")
+            return _get_desire_item_placeholder_by_name(f'ID: {id_}')
+        return self._id2nodes[id_]
+
+    def get(self, id_: str) -> DesireItem:
+        return self.get_item_by_id(id_)
 
     @property
     def first_layer(self):
