@@ -1,3324 +1,4370 @@
 - id: DN
   name: 本能
   code: NL1
+  init_v: 300
   items:
   - id: DN1
     name: 生存
     code: NL2
+    init_v: 300
     items:
     - id: D1
       name: 活着
       code: NL3
+      init_v: 300
       items:
       - id: D101
         name: 身体健全
         code: NL4
+        init_v: 300
         items:
         - id: D101-R1
           name: 四肢健全
           code: NL5
+          init_v: 300
         - id: D101-R2
-          name: 语言健全
+          name: 说话健全
           code: NL5
+          init_v: 300
         - id: D101-R3
           name: 大脑健全
           code: NL5
+          init_v: 300
         - id: D101-R4
           name: 呼吸健全
           code: NL5
+          init_v: 300
         - id: D101-R5
           name: 生育健全
           code: NL5
+          init_v: 300
       - id: D102
         name: 躲避
         code: NL4
+        init_v: 300
         items:
         - id: D102-R6
           name: 逃跑
           code: NL5
+          init_v: 300
         - id: D102-R7
           name: 躲藏
           code: NL5
+          init_v: 300
         - id: D102-R8
           name: 伪装
           code: NL5
+          init_v: 300
         - id: D102-R9
           name: 示弱
           code: NL5
+          init_v: 300
         - id: D102-R10
           name: 投降
           code: NL5
+          init_v: 300
       - id: D103
         name: 攻击
         code: NL4
+        init_v: 300
         items:
         - id: D103-R11
           name: 追逐
           code: NL5
+          init_v: 300
         - id: D103-R12
           name: 殴打
           code: NL5
+          init_v: 300
         - id: D103-R13
           name: 陷害
           code: NL5
+          init_v: 300
         - id: D103-R14
           name: 辱骂
           code: NL5
+          init_v: 300
         - id: D103-R15
           name: 恐吓
           code: NL5
+          init_v: 300
       - id: D104
         name: 呼吸
         code: NL4
+        init_v: 300
         items:
         - id: D104-R16
           name: 吸烟
           code: NL5
+          init_v: 300
         - id: D104-R17
           name: 吸毒
           code: NL5
+          init_v: 300
         - id: D104-R18
           name: 毒气
           code: NL5
+          init_v: 300
         - id: D104-R19
           name: 空气
           code: NL5
+          init_v: 300
         - id: D104-R20
           name: 气压
           code: NL5
+          init_v: 300
     - id: D2
       name: 死亡
       code: NL3
+      init_v: 300
       items:
       - id: D201
         name: 疾病
         code: NL4
+        init_v: 300
         items:
         - id: D201-R21
           name: 绝症
           code: NL5
+          init_v: 300
         - id: D201-R22
           name: 慢性
           code: NL5
+          init_v: 300
         - id: D201-R23
           name: 急性
           code: NL5
+          init_v: 300
         - id: D201-R24
           name: 心理疾病
           code: NL5
+          init_v: 300
         - id: D201-R25
           name: 脑部疾病
           code: NL5
+          init_v: 300
         - id: D201-R26
           name: 肺部疾病
           code: NL5
+          init_v: 300
         - id: D201-R27
           name: 胃部疾病
           code: NL5
+          init_v: 300
         - id: D201-R28
           name: 皮肤疾病
           code: NL5
+          init_v: 300
         - id: D201-R29
           name: 四肢疾病
           code: NL5
+          init_v: 300
         - id: D201-R30
           name: 其他疾病
           code: NL5
+          init_v: 300
       - id: D202
         name: 自杀
         code: NL4
+        init_v: 300
         items:
         - id: D202-R31
           name: 自残
           code: NL5
+          init_v: 300
         - id: D202-R32
           name: 服毒
           code: NL5
+          init_v: 300
         - id: D202-R33
           name: 撞击
           code: NL5
+          init_v: 300
         - id: D202-R34
           name: 窒息
           code: NL5
+          init_v: 300
         - id: D202-R35
           name: 饿死
           code: NL5
+          init_v: 300
       - id: D203
         name: 灾难
         code: NL4
+        init_v: 300
         items:
         - id: D203-R36
           name: 地震
           code: NL5
+          init_v: 300
         - id: D203-R37
           name: 水灾
           code: NL5
+          init_v: 300
         - id: D203-R38
           name: 火灾
           code: NL5
+          init_v: 300
         - id: D203-R39
           name: 暴风
           code: NL5
+          init_v: 300
         - id: D203-R40
           name: 旱灾
           code: NL5
+          init_v: 300
         - id: D203-R41
           name: 战争
           code: NL5
+          init_v: 300
         - id: D203-R42
           name: 极寒
           code: NL5
+          init_v: 300
       - id: D204
         name: 衰老
         code: NL4
+        init_v: 300
         items:
         - id: D204-R43
           name: 身体衰老
           code: NL5
+          init_v: 300
         - id: D204-R44
           name: 外貌衰老
           code: NL5
+          init_v: 300
         - id: D204-R45
           name: 行为衰老
           code: NL5
+          init_v: 300
         - id: D204-R46
           name: 大脑衰退
           code: NL5
+          init_v: 300
         - id: D204-R47
           name: 语言衰退
           code: NL5
+          init_v: 300
   - id: DN2
     name: 食物
     code: NL2
+    init_v: 200
     items:
     - id: D3
       name: 吃
       code: NL3
+      init_v: 200
       items:
       - id: D301
         name: 吃辣
         code: NL4
+        init_v: 200
         items:
         - id: D301-R48
           name: 辣舌
           code: NL5
+          init_v: 200
         - id: D301-R49
           name: 辣嘴
           code: NL5
+          init_v: 200
         - id: D301-R50
           name: 麻辣
           code: NL5
+          init_v: 200
         - id: D301-R51
           name: 辛辣
           code: NL5
+          init_v: 200
         - id: D301-R52
           name: 辣度
           code: NL5
+          init_v: 200
       - id: D302
         name: 吃酸
         code: NL4
+        init_v: 200
         items:
         - id: D302-R53
           name: 醋酸
           code: NL5
+          init_v: 200
         - id: D302-R54
           name: 乳酸
           code: NL5
+          init_v: 200
         - id: D302-R55
           name: 柠檬酸
           code: NL5
+          init_v: 200
         - id: D302-R56
           name: 苹果酸
           code: NL5
+          init_v: 200
         - id: D302-R57
           name: 葡萄酸
           code: NL5
+          init_v: 200
         - id: D302-R58
           name: 酸度
           code: NL5
+          init_v: 200
       - id: D303
         name: 吃甜
         code: NL4
+        init_v: 200
         items:
         - id: D303-R59
           name: 果糖
           code: NL5
+          init_v: 200
         - id: D303-R60
           name: 蔗糖
           code: NL5
+          init_v: 200
         - id: D303-R61
           name: 乳糖
           code: NL5
+          init_v: 200
         - id: D303-R62
           name: 蜂蜜
           code: NL5
+          init_v: 200
         - id: D303-R63
           name: 甜度
           code: NL5
+          init_v: 200
       - id: D304
         name: 吃苦
         code: NL4
+        init_v: 200
         items:
         - id: D304-R64
           name: 咖啡苦
           code: NL5
+          init_v: 200
         - id: D304-R65
           name: 茶苦
           code: NL5
+          init_v: 200
         - id: D304-R66
           name: 干涩
           code: NL5
+          init_v: 200
         - id: D304-R67
           name: 药苦
           code: NL5
+          init_v: 200
         - id: D304-R68
           name: 苦度
           code: NL5
+          init_v: 200
       - id: D305
         name: 吃咸
         code: NL4
+        init_v: 200
         items:
         - id: D305-R69
           name: 食盐
           code: NL5
+          init_v: 200
         - id: D305-R70
           name: 酱油
           code: NL5
+          init_v: 200
         - id: D305-R71
           name: 味精
           code: NL5
+          init_v: 200
         - id: D305-R72
           name: 海藻咸
           code: NL5
+          init_v: 200
         - id: D305-R73
           name: 腌制咸
           code: NL5
+          init_v: 200
         - id: D305-R74
           name: 调味咸
           code: NL5
+          init_v: 200
         - id: D305-R75
           name: 咸度
           code: NL5
+          init_v: 200
     - id: D4
       name: 喝
       code: NL3
+      init_v: 200
       items:
       - id: D401
-        name: 热
+        name: 喝热
         code: NL4
+        init_v: 200
         items:
         - id: D401-R76
-          name: 烫
+          name: 喝烫
           code: NL5
+          init_v: 200
         - id: D401-R77
-          name: 温
+          name: 喝温
           code: NL5
+          init_v: 200
         - id: D401-R78
-          name: 烧
+          name: 喝暖
           code: NL5
+          init_v: 200
         - id: D401-R79
           name: 湿热
           code: NL5
+          init_v: 200
         - id: D401-R80
-          name: 温度（热）
+          name: 热温度
           code: NL5
+          init_v: 200
       - id: D402
-        name: 冷
+        name: 喝冷
         code: NL4
+        init_v: 200
         items:
         - id: D402-R81
-          name: 冰
+          name: 喝冰
           code: NL5
+          init_v: 200
         - id: D402-R82
-          name: 凉
+          name: 喝凉
           code: NL5
+          init_v: 200
         - id: D402-R83
-          name: 冻
+          name: 喝冻
           code: NL5
+          init_v: 200
         - id: D402-R84
           name: 湿冷
           code: NL5
+          init_v: 200
         - id: D402-R85
-          name: 温度（冷）
+          name: 冷温度
           code: NL5
+          init_v: 200
       - id: D403
         name: 饮品
         code: NL4
+        init_v: 200
         items:
         - id: D403-R86
           name: 咖啡
           code: NL5
+          init_v: 200
         - id: D403-R87
           name: 茶饮
           code: NL5
+          init_v: 200
         - id: D403-R88
           name: 乳饮
           code: NL5
+          init_v: 200
         - id: D403-R89
           name: 粥饮
           code: NL5
+          init_v: 200
         - id: D403-R90
           name: 汤品
           code: NL5
+          init_v: 200
         - id: D403-R91
           name: 粘稠度
           code: NL5
+          init_v: 200
       - id: D404
         name: 酒精
         code: NL4
+        init_v: 200
         items:
         - id: D404-R92
           name: 白酒
           code: NL5
+          init_v: 200
         - id: D404-R93
           name: 红酒
           code: NL5
+          init_v: 200
         - id: D404-R94
           name: 啤酒
           code: NL5
+          init_v: 200
         - id: D404-R95
           name: 黄酒
           code: NL5
+          init_v: 200
         - id: D404-R96
           name: 清酒
           code: NL5
+          init_v: 200
         - id: D404-R97
           name: 果酒
           code: NL5
+          init_v: 200
         - id: D404-R98
           name: 鸡尾酒
           code: NL5
+          init_v: 200
         - id: D404-R99
           name: 其他酒
           code: NL5
+          init_v: 200
         - id: D404-R100
           name: 酒精度
           code: NL5
+          init_v: 200
       - id: D405
         name: 药物
         code: NL4
+        init_v: 200
         items:
         - id: D405-R101
           name: 中药
           code: NL5
+          init_v: 200
         - id: D405-R102
           name: 西药
           code: NL5
+          init_v: 200
         - id: D405-R103
           name: 违禁药
           code: NL5
+          init_v: 200
         - id: D405-R104
           name: 毒药
           code: NL5
+          init_v: 200
         - id: D405-R105
           name: 药效
           code: NL5
+          init_v: 200
   - id: DN3
     name: 休息
     code: NL2
+    init_v: 200
     items:
     - id: D5
       name: 休息
       code: NL3
+      init_v: 200
       items:
       - id: D501
         name: 懒惰
         code: NL4
+        init_v: 200
         items:
         - id: D501-R106
           name: 懒床
           code: NL5
+          init_v: 200
         - id: D501-R107
           name: 懒散
           code: NL5
+          init_v: 200
         - id: D501-R108
           name: 拖延
           code: NL5
+          init_v: 200
         - id: D501-R109
           name: 颓废
           code: NL5
+          init_v: 200
         - id: D501-R110
           name: 宅
           code: NL5
+          init_v: 200
       - id: D502
         name: 安静
         code: NL4
+        init_v: 200
         items:
         - id: D502-R111
           name: 沉默
           code: NL5
+          init_v: 200
         - id: D502-R112
           name: 发呆
           code: NL5
+          init_v: 200
         - id: D502-R113
           name: 走神
           code: NL5
+          init_v: 200
         - id: D502-R114
           name: 静坐
           code: NL5
+          init_v: 200
         - id: D502-R115
           name: 独处
           code: NL5
+          init_v: 200
       - id: D503
         name: 休闲
         code: NL4
+        init_v: 200
         items:
         - id: D503-R116
           name: 游戏
           code: NL5
+          init_v: 200
         - id: D503-R117
           name: 棋牌
           code: NL5
+          init_v: 200
         - id: D503-R118
           name: 烹饪
           code: NL5
+          init_v: 200
         - id: D503-R119
           name: 户外
           code: NL5
+          init_v: 200
         - id: D503-R120
           name: 按摩
           code: NL5
+          init_v: 200
     - id: D6
       name: 睡眠
       code: NL3
+      init_v: 200
       items:
       - id: D601
         name: 睡眠环境
         code: NL4
+        init_v: 200
         items:
         - id: D601-R121
           name: 床
           code: NL5
+          init_v: 200
         - id: D601-R122
           name: 床垫
           code: NL5
+          init_v: 200
         - id: D601-R123
           name: 光线
           code: NL5
+          init_v: 200
         - id: D601-R124
           name: 噪音
           code: NL5
+          init_v: 200
         - id: D601-R125
           name: 睡眠地点
           code: NL5
+          init_v: 200
       - id: D602
         name: 睡眠质量
         code: NL4
+        init_v: 200
         items:
         - id: D602-R126
           name: 睡眠时长
           code: NL5
+          init_v: 200
         - id: D602-R127
           name: 睡眠做梦
           code: NL5
+          init_v: 200
         - id: D602-R128
           name: 睡眠姿势
           code: NL5
+          init_v: 200
         - id: D602-R129
           name: 睡眠伴侣
           code: NL5
+          init_v: 200
         - id: D602-R130
           name: 睡眠深度
           code: NL5
+          init_v: 200
       - id: D603
         name: 昏迷
         code: NL4
+        init_v: 200
         items:
         - id: D603-R131
           name: 浅昏迷
           code: NL5
+          init_v: 200
         - id: D603-R132
           name: 深昏迷
           code: NL5
+          init_v: 200
         - id: D603-R133
           name: 慢性昏迷
           code: NL5
+          init_v: 200
         - id: D603-R134
           name: 临时昏迷
           code: NL5
+          init_v: 200
         - id: D603-R135
           name: 昏迷时长
           code: NL5
+          init_v: 200
   - id: DN4
     name: 性爱
     code: NL2
+    init_v: 200
     items:
     - id: D7
       name: 生理
       code: NL3
+      init_v: 200
       items:
       - id: D701
         name: 性高潮
         code: NL4
+        init_v: 200
         items:
         - id: D701-R136
           name: 阴蒂高潮
           code: NL5
+          init_v: 200
         - id: D701-R137
           name: 射精高潮
           code: NL5
+          init_v: 200
         - id: D701-R138
           name: 多重高潮
           code: NL5
+          init_v: 200
         - id: D701-R139
           name: 全身高潮
           code: NL5
+          init_v: 200
         - id: D701-R140
           name: 高潮频率
           code: NL5
+          init_v: 200
       - id: D702
         name: 性刺激
         code: NL4
+        init_v: 200
         items:
         - id: D702-R141
-          name: 性刺激1
+          name: 性抚摸刺激
           code: NL5
+          init_v: 200
         - id: D702-R142
-          name: 性刺激2
+          name: 性声音刺激
           code: NL5
+          init_v: 200
         - id: D702-R143
-          name: 性刺激3
+          name: 性视觉刺激
           code: NL5
+          init_v: 200
         - id: D702-R144
-          name: 性刺激4
+          name: 性幻想刺激
           code: NL5
+          init_v: 200
         - id: D702-R145
-          name: 性刺激5
+          name: 性语言刺激
           code: NL5
+          init_v: 200
       - id: D703
         name: 性场景
         code: NL4
+        init_v: 200
         items:
         - id: D703-R146
-          name: 性场景1
+          name: 卧室性场景
           code: NL5
+          init_v: 200
         - id: D703-R147
-          name: 性场景2
+          name: 户外性场景
           code: NL5
+          init_v: 200
         - id: D703-R148
-          name: 性场景3
+          name: 情趣性场景
           code: NL5
+          init_v: 200
         - id: D703-R149
-          name: 性场景4
+          name: 虚拟性场景
           code: NL5
+          init_v: 200
         - id: D703-R150
-          name: 性场景5
+          name: 其他性场景
           code: NL5
+          init_v: 200
       - id: D704
         name: 性功能
         code: NL4
+        init_v: 200
         items:
         - id: D704-R151
           name: 性时长
           code: NL5
+          init_v: 200
         - id: D704-R152
           name: 性勃起
           code: NL5
+          init_v: 200
         - id: D704-R153
           name: 性频率
           code: NL5
+          init_v: 200
         - id: D704-R154
           name: 性器官
           code: NL5
+          init_v: 200
         - id: D704-R155
           name: 生殖力
           code: NL5
+          init_v: 200
       - id: D705
         name: 性行为
         code: NL4
+        init_v: 200
         items:
         - id: D705-R156
-          name: 性行为1
+          name: 阴道性交
           code: NL5
+          init_v: 200
         - id: D705-R157
-          name: 性行为2
+          name: 非阴道性交
           code: NL5
+          init_v: 200
         - id: D705-R158
-          name: 性行为3
+          name: 群体性交
           code: NL5
+          init_v: 200
         - id: D705-R159
-          name: 性行为4
+          name: 手淫自慰
           code: NL5
+          init_v: 200
         - id: D705-R160
-          name: 性行为5
+          name: 道具性交
           code: NL5
+          init_v: 200
     - id: D8
       name: 心理
       code: NL3
+      init_v: 200
       items:
       - id: D801
         name: 性癖好
         code: NL4
+        init_v: 200
         items:
         - id: D801-R161
-          name: 性癖好1
+          name: BDSM
           code: NL5
+          init_v: 200
         - id: D801-R162
-          name: 性癖好2
+          name: 展示癖
           code: NL5
+          init_v: 200
         - id: D801-R163
-          name: 性癖好3
+          name: 窥视癖
           code: NL5
+          init_v: 200
         - id: D801-R164
-          name: 性癖好4
+          name: 制服癖
           code: NL5
+          init_v: 200
         - id: D801-R165
-          name: 性癖好5
+          name: 其他癖
           code: NL5
+          init_v: 200
       - id: D802
         name: 性取向
         code: NL4
+        init_v: 200
         items:
         - id: D802-R166
           name: 性取向
           code: NL5
+          init_v: 200
         - id: D802-R167
-          name: 性取向1
+          name: 同性恋
           code: NL5
+          init_v: 200
         - id: D802-R168
-          name: 性取向2
+          name: 异性恋
           code: NL5
+          init_v: 200
         - id: D802-R169
-          name: 性取向3
+          name: 双性恋
           code: NL5
+          init_v: 200
         - id: D802-R170
-          name: 性取向4
+          name: 泛性恋
           code: NL5
+          init_v: 200
         - id: D802-R171
-          name: 性取向5
+          name: 无性恋
           code: NL5
+          init_v: 200
       - id: D803
         name: 性和谐
         code: NL4
+        init_v: 200
         items:
         - id: D803-R172
           name: 性前戏
           code: NL5
+          init_v: 200
         - id: D803-R173
           name: 性交流
           code: NL5
+          init_v: 200
         - id: D803-R174
           name: 性中戏
           code: NL5
+          init_v: 200
         - id: D803-R175
           name: 性后戏
           code: NL5
+          init_v: 200
         - id: D803-R176
           name: 性满意
           code: NL5
+          init_v: 200
       - id: D804
         name: 性冒险
         code: NL4
+        init_v: 200
         items:
         - id: D804-R177
-          name: 性冒险1
+          name: 性出轨
           code: NL5
+          init_v: 200
         - id: D804-R178
-          name: 性冒险2
+          name: 性换妻
           code: NL5
+          init_v: 200
         - id: D804-R179
-          name: 性冒险3
+          name: 性滥交
           code: NL5
+          init_v: 200
         - id: D804-R180
-          name: 性冒险4
+          name: 性交易
           code: NL5
+          init_v: 200
         - id: D804-R181
-          name: 性冒险5
+          name: 危险性行为
           code: NL5
+          init_v: 200
       - id: D805
         name: 性变态
         code: NL4
+        init_v: 200
         items:
         - id: D805-R182
           name: 性虐待
           code: NL5
+          init_v: 200
         - id: D805-R183
           name: 性暴力
           code: NL5
+          init_v: 200
         - id: D805-R184
           name: 恋尸癖
           code: NL5
+          init_v: 200
         - id: D805-R185
           name: 恋童癖
           code: NL5
+          init_v: 200
         - id: D805-R186
           name: 性依赖
           code: NL5
+          init_v: 200
 - id: DS
   name: 社会
   code: SL1
+  init_v: 100
   items:
   - id: DS1
     name: 社交
     code: SL2
+    init_v: 100
     items:
     - id: D9
       name: 亲情
       code: SL3
+      init_v: 100
       items:
       - id: D901
         name: 家庭
         code: SL4
+        init_v: 100
         items:
         - id: D901-R187
-          name: 居住
+          name: 房屋
           code: SL5
+          init_v: 100
         - id: D901-R188
           name: 籍贯
           code: SL5
+          init_v: 100
         - id: D901-R189
           name: 家人
           code: SL5
+          init_v: 100
         - id: D901-R190
           name: 经济状况
           code: SL5
+          init_v: 100
         - id: D901-R191
           name: 社会阶层
           code: SL5
+          init_v: 100
       - id: D902
         name: 血缘
         code: SL4
+        init_v: 100
         items:
         - id: D902-R192
           name: 父亲
           code: SL5
+          init_v: 100
         - id: D902-R193
           name: 母亲
           code: SL5
+          init_v: 100
         - id: D902-R194
           name: 孩子
           code: SL5
+          init_v: 100
         - id: D902-R195
           name: 祖辈
           code: SL5
+          init_v: 100
         - id: D902-R196
           name: 兄弟姐妹
           code: SL5
+          init_v: 100
       - id: D903
         name: 孝顺
         code: SL4
+        init_v: 100
         items:
         - id: D903-R197
           name: 孝敬
           code: SL5
+          init_v: 100
         - id: D903-R198
           name: 尊老
           code: SL5
+          init_v: 100
         - id: D903-R199
           name: 爱幼
           code: SL5
+          init_v: 100
         - id: D903-R200
           name: 帮扶家人
           code: SL5
+          init_v: 100
         - id: D903-R201
           name: 陪伴家人
           code: SL5
+          init_v: 100
       - id: D904
         name: 宗族
         code: SL4
+        init_v: 100
         items:
         - id: D904-R202
           name: 祖训
           code: SL5
+          init_v: 100
         - id: D904-R203
           name: 亲属
           code: SL5
+          init_v: 100
         - id: D904-R204
           name: 祭祀
           code: SL5
+          init_v: 100
         - id: D904-R205
           name: 家谱
           code: SL5
+          init_v: 100
         - id: D904-R206
           name: 继承
           code: SL5
+          init_v: 100
       - id: D905
         name: 教育
         code: SL4
+        init_v: 100
         items:
         - id: D905-R207
           name: 学前教育
           code: SL5
+          init_v: 100
         - id: D905-R208
           name: 小学教育
           code: SL5
+          init_v: 100
         - id: D905-R209
           name: 中学教育
           code: SL5
+          init_v: 100
         - id: D905-R210
           name: 高中教育
           code: SL5
+          init_v: 100
         - id: D905-R211
           name: 大学教育
           code: SL5
+          init_v: 100
         - id: D905-R212
           name: 成人教育
           code: SL5
+          init_v: 100
         - id: D905-R213
           name: 老年教育
           code: SL5
+          init_v: 100
         - id: D905-R214
           name: 海外教育
           code: SL5
+          init_v: 100
         - id: D905-R215
           name: 其他教育
           code: SL5
+          init_v: 100
     - id: D10
       name: 友情
       code: SL3
+      init_v: 100
       items:
       - id: D1001
         name: 朋友
         code: SL4
+        init_v: 100
         items:
         - id: D1001-R216
           name: 陌生人
           code: SL5
+          init_v: 100
         - id: D1001-R217
           name: 熟人
           code: SL5
+          init_v: 100
         - id: D1001-R218
           name: 好友
           code: SL5
+          init_v: 100
         - id: D1001-R219
           name: 知己
           code: SL5
+          init_v: 100
         - id: D1001-R220
           name: 同学
           code: SL5
+          init_v: 100
         - id: D1001-R221
           name: 同事
           code: SL5
+          init_v: 100
       - id: D1002
         name: 合作
         code: SL4
+        init_v: 100
         items:
         - id: D1002-R222
           name: 契约
           code: SL5
+          init_v: 100
         - id: D1002-R223
           name: 竞争
           code: SL5
+          init_v: 100
         - id: D1002-R224
           name: 共赢
           code: SL5
+          init_v: 100
         - id: D1002-R225
           name: 团队
           code: SL5
+          init_v: 100
         - id: D1002-R226
           name: 信任
           code: SL5
+          init_v: 100
       - id: D1003
         name: 帮助
         code: SL4
+        init_v: 100
         items:
         - id: D1003-R227
           name: 指导
           code: SL5
+          init_v: 100
         - id: D1003-R228
           name: 提醒
           code: SL5
+          init_v: 100
         - id: D1003-R229
           name: 援助
           code: SL5
+          init_v: 100
         - id: D1003-R230
           name: 救助
           code: SL5
+          init_v: 100
         - id: D1003-R231
           name: 赠予
           code: SL5
+          init_v: 100
       - id: D1004
         name: 娱乐
         code: SL4
+        init_v: 100
         items:
         - id: D1004-R232
           name: 唱歌
           code: SL5
+          init_v: 100
         - id: D1004-R233
           name: 跳舞
           code: SL5
+          init_v: 100
         - id: D1004-R234
           name: 聚会
           code: SL5
+          init_v: 100
         - id: D1004-R235
           name: 社团
           code: SL5
+          init_v: 100
         - id: D1004-R236
           name: 活动
           code: SL5
+          init_v: 100
       - id: D1005
         name: 八卦
         code: SL4
+        init_v: 100
         items:
         - id: D1005-R237
           name: 新闻
           code: SL5
+          init_v: 100
         - id: D1005-R238
           name: 隐私
           code: SL5
+          init_v: 100
         - id: D1005-R239
           name: 谣言
           code: SL5
+          init_v: 100
         - id: D1005-R240
-          name: 碰瓷
+          name: 奇事
           code: SL5
+          init_v: 100
         - id: D1005-R241
-          name: 陷害
+          name: 谎言
           code: SL5
+          init_v: 100
     - id: D11
       name: 爱情
       code: SL3
+      init_v: 100
       items:
       - id: D1101
         name: 恋爱
         code: SL4
+        init_v: 100
         items:
         - id: D1101-R242
           name: 单身
           code: SL5
+          init_v: 100
         - id: D1101-R243
           name: 初恋
           code: SL5
+          init_v: 100
         - id: D1101-R244
           name: 热恋
           code: SL5
+          init_v: 100
         - id: D1101-R245
           name: 虐恋
           code: SL5
+          init_v: 100
         - id: D1101-R246
           name: 失恋
           code: SL5
+          init_v: 100
       - id: D1102
         name: 婚姻
         code: SL4
+        init_v: 100
         items:
         - id: D1102-R247
           name: 试婚
           code: SL5
+          init_v: 100
         - id: D1102-R248
           name: 结婚
           code: SL5
+          init_v: 100
         - id: D1102-R249
           name: 婚礼
           code: SL5
+          init_v: 100
         - id: D1102-R250
           name: 分居
           code: SL5
+          init_v: 100
         - id: D1102-R251
           name: 离婚
           code: SL5
+          init_v: 100
       - id: D1103
-        name: 伴侣
+        name: 恋爱伴侣
         code: SL4
+        init_v: 100
         items:
         - id: D1103-R252
           name: 师生恋
           code: SL5
+          init_v: 100
         - id: D1103-R253
           name: 姐弟恋
           code: SL5
+          init_v: 100
         - id: D1103-R254
           name: 朋友恋
           code: SL5
+          init_v: 100
         - id: D1103-R255
           name: 夕阳恋
           code: SL5
+          init_v: 100
         - id: D1103-R256
           name: 同学恋
           code: SL5
+          init_v: 100
         - id: D1103-R257
           name: 跨国恋
           code: SL5
+          init_v: 100
         - id: D1103-R258
           name: 恋物癖
           code: SL5
+          init_v: 100
         - id: D1103-R259
           name: 其他伴侣
           code: SL5
+          init_v: 100
       - id: D1104
         name: 情感
         code: SL4
+        init_v: 100
         items:
         - id: D1104-R260
           name: 情感冷淡
           code: SL5
+          init_v: 100
         - id: D1104-R261
           name: 情感孤独
           code: SL5
+          init_v: 100
         - id: D1104-R262
           name: 情感喜欢
           code: SL5
+          init_v: 100
         - id: D1104-R263
           name: 情感依赖
           code: SL5
+          init_v: 100
         - id: D1104-R264
           name: 情感甜蜜
           code: SL5
+          init_v: 100
         - id: D1104-R265
           name: 情感破裂
           code: SL5
+          init_v: 100
         - id: D1104-R266
           name: 情感时间
           code: SL5
+          init_v: 100
       - id: D1105
         name: 利益
         code: SL4
+        init_v: 100
         items:
         - id: D1105-R267
           name: 家庭地位
           code: SL5
+          init_v: 100
         - id: D1105-R268
           name: 生育子女
           code: SL5
+          init_v: 100
         - id: D1105-R269
           name: 家庭财产
           code: SL5
+          init_v: 100
         - id: D1105-R270
           name: 性爱权力
           code: SL5
+          init_v: 100
         - id: D1105-R271
           name: 遗产继承
           code: SL5
+          init_v: 100
   - id: DS2
     name: 审美
     code: SL2
+    init_v: 100
     items:
     - id: D12
       name: 视觉
       code: SL3
+      init_v: 100
       items:
       - id: D1201
         name: 艺术
         code: SL4
+        init_v: 100
         items:
         - id: D1201-R272
           name: 绘画
           code: SL5
+          init_v: 100
         - id: D1201-R273
           name: 摄影
           code: SL5
+          init_v: 100
         - id: D1201-R274
           name: 设计
           code: SL5
+          init_v: 100
         - id: D1201-R275
           name: 影视
           code: SL5
+          init_v: 100
         - id: D1201-R276
           name: 舞蹈
           code: SL5
+          init_v: 100
       - id: D1202
         name: 风景
         code: SL4
+        init_v: 100
         items:
         - id: D1202-R277
           name: 山峰
           code: SL5
+          init_v: 100
         - id: D1202-R278
           name: 河流
           code: SL5
+          init_v: 100
         - id: D1202-R279
           name: 大海
           code: SL5
+          init_v: 100
         - id: D1202-R280
           name: 森林
           code: SL5
+          init_v: 100
         - id: D1202-R281
           name: 天气
           code: SL5
+          init_v: 100
       - id: D1203
         name: 空间
         code: SL4
+        init_v: 100
         items:
         - id: D1203-R282
           name: 建筑
           code: SL5
+          init_v: 100
         - id: D1203-R283
           name: 雕塑
           code: SL5
+          init_v: 100
         - id: D1203-R284
           name: 装置
           code: SL5
+          init_v: 100
         - id: D1203-R285
           name: 光影
           code: SL5
+          init_v: 100
         - id: D1203-R286
           name: 场景
           code: SL5
+          init_v: 100
       - id: D1204
         name: 颜色
         code: SL4
+        init_v: 100
         items:
         - id: D1204-R287
           name: 冷色
           code: SL5
+          init_v: 100
         - id: D1204-R288
           name: 暖色
           code: SL5
+          init_v: 100
         - id: D1204-R289
           name: 亮度
           code: SL5
+          init_v: 100
         - id: D1204-R290
           name: 混色
           code: SL5
+          init_v: 100
         - id: D1204-R291
           name: 色值
           code: SL5
+          init_v: 100
       - id: D1205
         name: 颜值
         code: SL4
+        init_v: 100
         items:
         - id: D1205-R292
           name: 端正
           code: SL5
+          init_v: 100
         - id: D1205-R293
           name: 优雅
           code: SL5
+          init_v: 100
         - id: D1205-R294
           name: 帅气
           code: SL5
+          init_v: 100
         - id: D1205-R295
           name: 普通
           code: SL5
+          init_v: 100
         - id: D1205-R296
           name: 丑陋
           code: SL5
+          init_v: 100
     - id: D13
       name: 听觉
       code: SL3
+      init_v: 100
       items:
       - id: D1301
         name: 音乐
         code: SL4
+        init_v: 100
         items:
         - id: D1301-R297
           name: 古典
           code: SL5
+          init_v: 100
         - id: D1301-R298
           name: 流行
           code: SL5
+          init_v: 100
         - id: D1301-R299
           name: 摇滚
           code: SL5
+          init_v: 100
         - id: D1301-R300
           name: 爵士
           code: SL5
+          init_v: 100
         - id: D1301-R301
           name: 蓝调
           code: SL5
+          init_v: 100
         - id: D1301-R302
           name: 乡村
           code: SL5
+          init_v: 100
         - id: D1301-R303
           name: 乐器
           code: SL5
+          init_v: 100
         - id: D1301-R304
           name: 音色
           code: SL5
+          init_v: 100
       - id: D1302
         name: 语言
         code: SL4
+        init_v: 100
         items:
         - id: D1302-R305
           name: 语种
           code: SL5
+          init_v: 100
         - id: D1302-R306
           name: 语气
           code: SL5
+          init_v: 100
         - id: D1302-R307
           name: 语速
           code: SL5
+          init_v: 100
         - id: D1302-R308
           name: 语法
           code: SL5
+          init_v: 100
         - id: D1302-R309
           name: 语言习惯
           code: SL5
+          init_v: 100
       - id: D1303
         name: 称谓
         code: SL4
+        init_v: 100
         items:
         - id: D1303-R310
           name: 性别称谓
           code: SL5
+          init_v: 100
         - id: D1303-R311
           name: 年龄称谓
           code: SL5
+          init_v: 100
         - id: D1303-R312
           name: 职业称谓
           code: SL5
+          init_v: 100
         - id: D1303-R313
           name: 社会称谓
           code: SL5
+          init_v: 100
         - id: D1303-R314
           name: 个人称谓
           code: SL5
+          init_v: 100
       - id: D1304
         name: 自然音
         code: SL4
+        init_v: 100
         items:
         - id: D1304-R315
           name: 雨声
           code: SL5
+          init_v: 100
         - id: D1304-R316
           name: 风声
           code: SL5
+          init_v: 100
         - id: D1304-R317
           name: 动物声
           code: SL5
+          init_v: 100
         - id: D1304-R318
           name: 海浪声
           code: SL5
+          init_v: 100
         - id: D1304-R319
           name: 爆炸声
           code: SL5
+          init_v: 100
       - id: D1305
         name: 频率
         code: SL4
+        init_v: 100
         items:
         - id: D1305-R320
           name: 低音
           code: SL5
+          init_v: 100
         - id: D1305-R321
           name: 中音
           code: SL5
+          init_v: 100
         - id: D1305-R322
           name: 高音
           code: SL5
+          init_v: 100
         - id: D1305-R323
           name: 超高音
           code: SL5
+          init_v: 100
         - id: D1305-R324
           name: 频率值
           code: SL5
+          init_v: 100
     - id: D14
       name: 嗅觉
       code: SL3
+      init_v: 100
       items:
       - id: D1401
         name: 香味
         code: SL4
+        init_v: 100
         items:
         - id: D1401-R325
           name: 植物香
           code: SL5
+          init_v: 100
         - id: D1401-R326
           name: 动物香
           code: SL5
+          init_v: 100
         - id: D1401-R327
           name: 食物香
           code: SL5
+          init_v: 100
         - id: D1401-R328
           name: 香水味
           code: SL5
+          init_v: 100
         - id: D1401-R329
           name: 香味浓度
           code: SL5
+          init_v: 100
       - id: D1402
         name: 臭味
         code: SL4
+        init_v: 100
         items:
         - id: D1402-R330
           name: 自然臭
           code: SL5
+          init_v: 100
         - id: D1402-R331
           name: 化学臭
           code: SL5
+          init_v: 100
         - id: D1402-R332
           name: 燃烧臭
           code: SL5
+          init_v: 100
         - id: D1402-R333
           name: 食品臭
           code: SL5
+          init_v: 100
         - id: D1402-R334
           name: 臭味浓度
           code: SL5
+          init_v: 100
       - id: D1403
         name: 刺激味
         code: SL4
+        init_v: 100
         items:
         - id: D1403-R335
           name: 自然刺激味
           code: SL5
+          init_v: 100
         - id: D1403-R336
           name: 工业刺激味
           code: SL5
+          init_v: 100
         - id: D1403-R337
           name: 植物刺激味
           code: SL5
+          init_v: 100
         - id: D1403-R338
           name: 动物刺激味
           code: SL5
+          init_v: 100
         - id: D1403-R339
           name: 其他刺激味
           code: SL5
+          init_v: 100
       - id: D1404
         name: 体味
         code: SL4
+        init_v: 100
         items:
         - id: D1404-R340
           name: 人体味
           code: SL5
+          init_v: 100
         - id: D1404-R341
           name: 汗味
           code: SL5
+          init_v: 100
         - id: D1404-R342
           name: 腋味
           code: SL5
+          init_v: 100
         - id: D1404-R343
           name: 口腔味
           code: SL5
+          init_v: 100
         - id: D1404-R344
           name: 其他异味
           code: SL5
+          init_v: 100
     - id: D15
       name: 触觉
       code: SL3
+      init_v: 100
       items:
       - id: D1501
         name: 体感
         code: SL4
+        init_v: 100
         items:
         - id: D1501-R345
           name: 痒感
           code: SL5
+          init_v: 100
         - id: D1501-R346
           name: 湿润
           code: SL5
+          init_v: 100
         - id: D1501-R347
           name: 柔软
           code: SL5
+          init_v: 100
         - id: D1501-R348
           name: 疼痛
           code: SL5
+          init_v: 100
         - id: D1501-R349
           name: 酸痛
           code: SL5
+          init_v: 100
         - id: D1501-R350
           name: 麻痹
           code: SL5
+          init_v: 100
         - id: D1501-R351
           name: 无感
           code: SL5
+          init_v: 100
       - id: D1502
         name: 礼仪
         code: SL4
+        init_v: 100
         items:
         - id: D1502-R352
           name: 握手
           code: SL5
+          init_v: 100
         - id: D1502-R353
           name: 拥抱
           code: SL5
+          init_v: 100
         - id: D1502-R354
           name: 亲吻
           code: SL5
+          init_v: 100
         - id: D1502-R355
           name: 抚摸
           code: SL5
+          init_v: 100
         - id: D1502-R356
           name: 牵手
           code: SL5
+          init_v: 100
         - id: D1502-R357
           name: 击掌
           code: SL5
+          init_v: 100
         - id: D1502-R358
           name: 碰拳
           code: SL5
+          init_v: 100
         - id: D1502-R359
           name: 碰肩
           code: SL5
+          init_v: 100
         - id: D1502-R360
           name: 碰肘
           code: SL5
+          init_v: 100
         - id: D1502-R361
           name: 祈祷
           code: SL5
+          init_v: 100
       - id: D1503
         name: 运动
         code: SL4
+        init_v: 100
         items:
         - id: D1503-R362
           name: 有氧运动
           code: SL5
+          init_v: 100
         - id: D1503-R363
           name: 力量训练
           code: SL5
+          init_v: 100
         - id: D1503-R364
           name: 灵活训练
           code: SL5
+          init_v: 100
         - id: D1503-R365
           name: 平衡训练
           code: SL5
+          init_v: 100
         - id: D1503-R366
           name: 功能训练
           code: SL5
+          init_v: 100
         - id: D1503-R367
           name: 运动时长
           code: SL5
+          init_v: 100
         - id: D1503-R368
           name: 运动环境
           code: SL5
+          init_v: 100
         - id: D1503-R369
           name: 运动装备
           code: SL5
+          init_v: 100
         - id: D1503-R370
           name: 运动服务
           code: SL5
+          init_v: 100
       - id: D1504
         name: 服装
         code: SL4
+        init_v: 100
         items:
         - id: D1504-R371
           name: 服装款式
           code: SL5
+          init_v: 100
         - id: D1504-R372
           name: 服装材质
           code: SL5
+          init_v: 100
         - id: D1504-R373
           name: 服装尺寸
           code: SL5
+          init_v: 100
         - id: D1504-R374
           name: 服装做工
           code: SL5
+          init_v: 100
         - id: D1504-R375
           name: 服装设计
           code: SL5
+          init_v: 100
   - id: DS3
     name: 物质
     code: SL2
+    init_v: 100
     items:
     - id: D16
       name: 金钱
       code: SL3
+      init_v: 100
       items:
       - id: D1601
         name: 赚钱
         code: SL4
+        init_v: 100
         items:
         - id: D1601-R376
           name: 打工
           code: SL5
+          init_v: 100
         - id: D1601-R377
           name: 创业
           code: SL5
+          init_v: 100
         - id: D1601-R378
           name: 生意
           code: SL5
+          init_v: 100
         - id: D1601-R379
           name: 乞讨
           code: SL5
+          init_v: 100
         - id: D1601-R380
           name: 偏财
           code: SL5
+          init_v: 100
       - id: D1602
         name: 花钱
         code: SL4
+        init_v: 100
         items:
         - id: D1602-R381
           name: 生活开支
           code: SL5
+          init_v: 100
         - id: D1602-R382
           name: 教育开支
           code: SL5
+          init_v: 100
         - id: D1602-R383
           name: 医疗开支
           code: SL5
+          init_v: 100
         - id: D1602-R384
           name: 爱好开支
           code: SL5
+          init_v: 100
         - id: D1602-R385
           name: 社交开支
           code: SL5
+          init_v: 100
       - id: D1603
         name: 骗钱
         code: SL4
+        init_v: 100
         items:
         - id: D1603-R386
           name: 网络诈骗
           code: SL5
+          init_v: 100
         - id: D1603-R387
           name: 旁氏骗局
           code: SL5
+          init_v: 100
         - id: D1603-R388
           name: 虚假广告
           code: SL5
+          init_v: 100
         - id: D1603-R389
           name: 情感诈骗
           code: SL5
+          init_v: 100
         - id: D1603-R390
           name: 集资诈骗
           code: SL5
+          init_v: 100
         - id: D1603-R391
           name: 冒用身份
           code: SL5
+          init_v: 100
       - id: D1604
         name: 抢钱
         code: SL4
+        init_v: 100
         items:
         - id: D1604-R392
           name: 抢劫
           code: SL5
+          init_v: 100
         - id: D1604-R393
           name: 盗窃
           code: SL5
+          init_v: 100
         - id: D1604-R394
           name: 绑架
           code: SL5
+          init_v: 100
         - id: D1604-R395
           name: 勒索
           code: SL5
+          init_v: 100
         - id: D1604-R396
           name: 贪污
           code: SL5
+          init_v: 100
       - id: D1605
         name: 印钱
         code: SL4
+        init_v: 100
         items:
         - id: D1605-R397
           name: 自然资源
           code: SL5
+          init_v: 100
         - id: D1605-R398
           name: 发行股票
           code: SL5
+          init_v: 100
         - id: D1605-R399
           name: 发行货币
           code: SL5
+          init_v: 100
         - id: D1605-R400
           name: 释放贷款
           code: SL5
+          init_v: 100
         - id: D1605-R401
           name: 积分代币
           code: SL5
+          init_v: 100
     - id: D17
       name: 收藏
       code: SL3
+      init_v: 100
       items:
       - id: D1701
         name: 收集
         code: SL4
+        init_v: 100
         items:
         - id: D1701-R402
           name: 收集邮币卡
           code: SL5
+          init_v: 100
         - id: D1701-R403
           name: 收集玩具
           code: SL5
+          init_v: 100
         - id: D1701-R404
           name: 收集知识
           code: SL5
+          init_v: 100
         - id: D1701-R405
           name: 收集音乐
           code: SL5
+          init_v: 100
         - id: D1701-R406
           name: 收集珠宝
           code: SL5
+          init_v: 100
         - id: D1701-R407
           name: 收集自然
           code: SL5
+          init_v: 100
         - id: D1701-R408
           name: 收集古董
           code: SL5
+          init_v: 100
         - id: D1701-R409
           name: 收集程度
           code: SL5
+          init_v: 100
       - id: D1702
         name: 囤积
         code: SL4
+        init_v: 100
         items:
         - id: D1702-R410
           name: 食品囤积
           code: SL5
+          init_v: 100
         - id: D1702-R411
           name: 货币囤积
           code: SL5
+          init_v: 100
         - id: D1702-R412
           name: 商品囤积
           code: SL5
+          init_v: 100
         - id: D1702-R413
           name: 房产囤积
           code: SL5
+          init_v: 100
         - id: D1702-R414
           name: 药品囤积
           code: SL5
+          init_v: 100
         - id: D1702-R415
           name: 能源囤积
           code: SL5
+          init_v: 100
         - id: D1702-R416
           name: 日用囤积
           code: SL5
+          init_v: 100
         - id: D1702-R417
           name: 土地囤积
           code: SL5
+          init_v: 100
         - id: D1702-R418
           name: 囤积数量
           code: SL5
+          init_v: 100
       - id: D1703
         name: 珍藏
         code: SL4
+        init_v: 100
         items:
         - id: D1703-R419
           name: 珍藏孤品
           code: SL5
+          init_v: 100
         - id: D1703-R420
           name: 珍藏古董
           code: SL5
+          init_v: 100
         - id: D1703-R421
           name: 珍藏书籍
           code: SL5
+          init_v: 100
         - id: D1703-R422
           name: 珍藏好酒
           code: SL5
+          init_v: 100
         - id: D1703-R423
           name: 珍藏文玩
           code: SL5
+          init_v: 100
         - id: D1703-R424
           name: 珍藏价值
           code: SL5
+          init_v: 100
       - id: D1704
         name: 纪念
         code: SL4
+        init_v: 100
         items:
         - id: D1704-R425
           name: 纪念日
           code: SL5
+          init_v: 100
         - id: D1704-R426
           name: 纪念品
           code: SL5
+          init_v: 100
         - id: D1704-R427
           name: 纪念物
           code: SL5
+          init_v: 100
         - id: D1704-R428
           name: 纪念活动
           code: SL5
+          init_v: 100
         - id: D1704-R429
           name: 纪念历史
           code: SL5
+          init_v: 100
         - id: D1704-R430
           name: 纪念文学
           code: SL5
+          init_v: 100
         - id: D1704-R431
           name: 纪念仪式
           code: SL5
+          init_v: 100
     - id: D18
       name: 交易
       code: SL3
+      init_v: 100
       items:
       - id: D1801
         name: 购买
         code: SL4
+        init_v: 100
         items:
         - id: D1801-R432
           name: 消费
           code: SL5
+          init_v: 100
         - id: D1801-R433
           name: 拍卖
           code: SL5
+          init_v: 100
         - id: D1801-R434
           name: 线下购物
           code: SL5
+          init_v: 100
         - id: D1801-R435
           name: 网上购物
           code: SL5
+          init_v: 100
         - id: D1801-R436
           name: 消费金额
           code: SL5
+          init_v: 100
       - id: D1802
         name: 投资
         code: SL4
+        init_v: 100
         items:
         - id: D1802-R437
           name: 股票投资
           code: SL5
+          init_v: 100
         - id: D1802-R438
           name: 债券投资
           code: SL5
+          init_v: 100
         - id: D1802-R439
           name: 期货投资
           code: SL5
+          init_v: 100
         - id: D1802-R440
           name: 风险投资
           code: SL5
+          init_v: 100
         - id: D1802-R441
           name: 基金投资
           code: SL5
+          init_v: 100
         - id: D1802-R442
           name: 股权投资
           code: SL5
+          init_v: 100
         - id: D1802-R443
           name: 房产投资
           code: SL5
+          init_v: 100
         - id: D1802-R444
           name: 投资周期
           code: SL5
+          init_v: 100
         - id: D1802-R445
           name: 投资金额
           code: SL5
+          init_v: 100
         - id: D1802-R446
           name: 投资策略
           code: SL5
+          init_v: 100
       - id: D1803
         name: 交换
         code: SL4
+        init_v: 100
         items:
         - id: D1803-R447
           name: 物物交换
           code: SL5
+          init_v: 100
         - id: D1803-R448
           name: 现货交换
           code: SL5
+          init_v: 100
         - id: D1803-R449
           name: 服务交换
           code: SL5
+          init_v: 100
         - id: D1803-R450
           name: 时间交换
           code: SL5
+          init_v: 100
         - id: D1803-R451
           name: 身体交换
           code: SL5
+          init_v: 100
       - id: D1804
         name: 出售
         code: SL4
+        init_v: 100
         items:
         - id: D1804-R452
           name: 出售劳力
           code: SL5
+          init_v: 100
         - id: D1804-R453
           name: 出售产品
           code: SL5
+          init_v: 100
         - id: D1804-R454
           name: 出售时间
           code: SL5
+          init_v: 100
         - id: D1804-R455
           name: 出售服务
           code: SL5
+          init_v: 100
         - id: D1804-R456
           name: 出售身体
           code: SL5
+          init_v: 100
         - id: D1804-R457
           name: 出售知识
           code: SL5
+          init_v: 100
         - id: D1804-R458
           name: 出售技能
           code: SL5
+          init_v: 100
         - id: D1804-R459
           name: 出售规则
           code: SL5
+          init_v: 100
       - id: D1805
         name: 赠予
         code: SL4
+        init_v: 100
         items:
         - id: D1805-R460
           name: 捐款
           code: SL5
+          init_v: 100
         - id: D1805-R461
           name: 捐物
           code: SL5
+          init_v: 100
         - id: D1805-R462
           name: 献血
           code: SL5
+          init_v: 100
         - id: D1805-R463
           name: 义工
           code: SL5
+          init_v: 100
         - id: D1805-R464
           name: 公益
           code: SL5
+          init_v: 100
   - id: DS4
     name: 掌控
     code: SL2
+    init_v: 100
     items:
     - id: D19
       name: 占有
       code: SL3
+      init_v: 100
       items:
       - id: D1901
         name: 索取
         code: SL4
+        init_v: 100
         items:
         - id: D1901-R465
           name: 请求
           code: SL5
+          init_v: 100
         - id: D1901-R466
           name: 申请
           code: SL5
+          init_v: 100
         - id: D1901-R467
           name: 索赔
           code: SL5
+          init_v: 100
         - id: D1901-R468
           name: 借用
           code: SL5
+          init_v: 100
         - id: D1901-R469
           name: 赊账
           code: SL5
+          init_v: 100
         - id: D1901-R470
           name: 征税
           code: SL5
+          init_v: 100
         - id: D1901-R471
           name: 维权
           code: SL5
+          init_v: 100
       - id: D1902
         name: 掠夺
         code: SL4
+        init_v: 100
         items:
         - id: D1902-R472
           name: 掠夺资源
           code: SL5
+          init_v: 100
         - id: D1902-R473
           name: 掠夺时间
           code: SL5
+          init_v: 100
         - id: D1902-R474
           name: 掠夺空间
           code: SL5
+          init_v: 100
         - id: D1902-R475
           name: 掠夺生命
           code: SL5
+          init_v: 100
         - id: D1902-R476
           name: 掠夺财富
           code: SL5
+          init_v: 100
       - id: D1903
         name: 杀戮
         code: SL4
+        init_v: 100
         items:
         - id: D0903-R477
           name: 战争
           code: SL5
+          init_v: 100
         - id: D0903-R478
           name: 屠宰
           code: SL5
+          init_v: 100
         - id: D0903-R479
           name: 死刑
           code: SL5
+          init_v: 100
         - id: D0903-R480
           name: 猎杀
           code: SL5
+          init_v: 100
         - id: D0903-R481
           name: 杀戮习惯
           code: SL5
+          init_v: 100
       - id: D1904
         name: 控制
         code: SL4
+        init_v: 100
         items:
         - id: D1904-R482
           name: 信息控制
           code: SL5
+          init_v: 100
         - id: D1904-R483
           name: 法律控制
           code: SL5
+          init_v: 100
         - id: D1904-R484
           name: 宗教控制
           code: SL5
+          init_v: 100
         - id: D1904-R485
           name: 文化控制
           code: SL5
+          init_v: 100
         - id: D1904-R486
           name: 军队控制
           code: SL5
+          init_v: 100
         - id: D1904-R487
           name: 资源控制
           code: SL5
+          init_v: 100
         - id: D1904-R488
           name: 生物控制
           code: SL5
+          init_v: 100
       - id: D1905
         name: 强迫
         code: SL4
+        init_v: 100
         items:
         - id: D1905-R489
           name: 强占
           code: SL5
+          init_v: 100
         - id: D1905-R490
           name: 强奸
           code: SL5
+          init_v: 100
         - id: D1905-R491
           name: 强暴
           code: SL5
+          init_v: 100
         - id: D1905-R492
           name: 强制
           code: SL5
+          init_v: 100
         - id: D1905-R493
           name: 强势
           code: SL5
+          init_v: 100
     - id: D20
       name: 权力
       code: SL3
+      init_v: 100
       items:
       - id: D2001
         name: 决策
         code: SL4
+        init_v: 100
         items:
         - id: D2001-R494
           name: 协商
           code: SL5
+          init_v: 100
         - id: D2001-R495
           name: 决定
           code: SL5
+          init_v: 100
         - id: D2001-R496
           name: 论证
           code: SL5
+          init_v: 100
         - id: D2001-R497
           name: 争议
           code: SL5
+          init_v: 100
         - id: D2001-R498
           name: 共识
           code: SL5
+          init_v: 100
         - id: D2001-R499
           name: 投票
           code: SL5
+          init_v: 100
       - id: D2002
         name: 命令
         code: SL4
+        init_v: 100
         items:
         - id: D2002-R500
           name: 直接命令
           code: SL5
+          init_v: 100
         - id: D2002-R501
           name: 间接命令
           code: SL5
+          init_v: 100
         - id: D2002-R502
           name: 法律命令
           code: SL5
+          init_v: 100
         - id: D2002-R503
           name: 紧急命令
           code: SL5
+          init_v: 100
         - id: D2002-R504
           name: 随机命令
           code: SL5
+          init_v: 100
       - id: D2003
         name: 指挥
         code: SL4
+        init_v: 100
         items:
         - id: D2003-R505
           name: 直接指挥
           code: SL5
+          init_v: 100
         - id: D2003-R506
           name: 间接指挥
           code: SL5
+          init_v: 100
         - id: D2003-R507
           name: 集中指挥
           code: SL5
+          init_v: 100
         - id: D2003-R508
           name: 分散指挥
           code: SL5
+          init_v: 100
         - id: D2003-R509
           name: 自由指挥
           code: SL5
+          init_v: 100
       - id: D2004
         name: 管理
         code: SL4
+        init_v: 100
         items:
         - id: D2004-R510
           name: 规划管理
           code: SL5
+          init_v: 100
         - id: D2004-R511
           name: 组织管理
           code: SL5
+          init_v: 100
         - id: D2004-R512
           name: 用人管理
           code: SL5
+          init_v: 100
         - id: D2004-R513
           name: 日常管理
           code: SL5
+          init_v: 100
         - id: D2004-R514
           name: 财务管理
           code: SL5
+          init_v: 100
         - id: D2004-R515
           name: 管理指标
           code: SL5
+          init_v: 100
       - id: D2005
         name: 平等
         code: SL4
+        init_v: 100
         items:
         - id: D2005-R516
           name: 生物平等
           code: SL5
+          init_v: 100
         - id: D2005-R517
           name: 人性平等
           code: SL5
+          init_v: 100
         - id: D2005-R518
           name: 地位平等
           code: SL5
+          init_v: 100
         - id: D2005-R519
           name: 性别平等
           code: SL5
+          init_v: 100
         - id: D2005-R520
           name: 种族平等
           code: SL5
+          init_v: 100
         - id: D2005-R521
           name: 法律平等
           code: SL5
+          init_v: 100
         - id: D2005-R522
           name: 教育平等
           code: SL5
+          init_v: 100
         - id: D2005-R523
           name: 财富平等
           code: SL5
+          init_v: 100
   - id: DS5
     name: 成就
     code: SL2
+    init_v: 100
     items:
     - id: D21
       name: 成功
       code: SL3
+      init_v: 100
       items:
       - id: D2101
         name: 努力
         code: SL4
+        init_v: 100
         items:
         - id: D2101-R524
           name: 努力拼搏
           code: SL5
+          init_v: 100
         - id: D2101-R525
           name: 努力坚强
           code: SL5
+          init_v: 100
         - id: D2101-R526
           name: 努力坚持
           code: SL5
+          init_v: 100
         - id: D2101-R527
           name: 努力前进
           code: SL5
+          init_v: 100
         - id: D2101-R528
           name: 努力程度
           code: SL5
+          init_v: 100
       - id: D2102
         name: 目标
         code: SL4
+        init_v: 100
         items:
         - id: D2102-R529
           name: 事业目标
           code: SL5
+          init_v: 100
         - id: D2102-R530
           name: 财富目标
           code: SL5
+          init_v: 100
         - id: D2102-R531
           name: 健康目标
           code: SL5
+          init_v: 100
         - id: D2102-R532
           name: 教育目标
           code: SL5
+          init_v: 100
         - id: D2102-R533
           name: 理想目标
           code: SL5
+          init_v: 100
         - id: D2102-R534
           name: 家庭目标
           code: SL5
+          init_v: 100
       - id: D2103
         name: 竞争
         code: SL4
+        init_v: 100
         items:
         - id: D2103-R535
           name: 竞技
           code: SL5
+          init_v: 100
         - id: D2103-R536
           name: 比赛
           code: SL5
+          init_v: 100
         - id: D2103-R537
           name: 垄断
           code: SL5
+          init_v: 100
         - id: D2103-R538
           name: 价格竞争
           code: SL5
+          init_v: 100
         - id: D2103-R539
           name: 产品竞争
           code: SL5
+          init_v: 100
         - id: D2103-R540
           name: 服务竞争
           code: SL5
+          init_v: 100
         - id: D2103-R541
           name: 品牌竞争
           code: SL5
+          init_v: 100
         - id: D2103-R542
           name: 人才竞争
           code: SL5
+          init_v: 100
         - id: D2103-R543
           name: 竞争策略
           code: SL5
+          init_v: 100
       - id: D2104
         name: 赢
         code: SL4
+        init_v: 100
         items:
         - id: D2104-R544
           name: 胜利
           code: SL5
+          init_v: 100
         - id: D2104-R545
           name: 共赢
           code: SL5
+          init_v: 100
         - id: D2104-R546
           name: 成绩
           code: SL5
+          init_v: 100
         - id: D2104-R547
           name: 名次
           code: SL5
+          init_v: 100
         - id: D2104-R548
           name: 运气
           code: SL5
+          init_v: 100
     - id: D22
       name: 荣誉
       code: SL3
+      init_v: 100
       items:
       - id: D2201
         name: 成名
         code: SL4
+        init_v: 100
         items:
         - id: D2201-R549
           name: 头衔
           code: SL5
+          init_v: 100
         - id: D2201-R550
           name: 名人
           code: SL5
+          init_v: 100
         - id: D2201-R551
           name: 知名度
           code: SL5
+          init_v: 100
         - id: D2201-R552
           name: 影响力
           code: SL5
+          init_v: 100
         - id: D2201-R553
           name: 权威
           code: SL5
+          init_v: 100
       - id: D2202
         name: 经历
         code: SL4
+        init_v: 100
         items:
         - id: D2202-R554
           name: 学校经历
           code: SL5
+          init_v: 100
         - id: D2202-R555
           name: 科研经历
           code: SL5
+          init_v: 100
         - id: D2202-R556
           name: 事业经历
           code: SL5
+          init_v: 100
         - id: D2202-R557
           name: 成长经历
           code: SL5
+          init_v: 100
         - id: D2202-R558
           name: 生活经历
           code: SL5
+          init_v: 100
       - id: D2203
         name: 获奖
         code: SL4
+        init_v: 100
         items:
         - id: D2203-R559
           name: 学校获奖
           code: SL5
+          init_v: 100
         - id: D2203-R560
           name: 艺术获奖
           code: SL5
+          init_v: 100
         - id: D2203-R561
           name: 体育获奖
           code: SL5
+          init_v: 100
         - id: D2203-R562
           name: 商业获奖
           code: SL5
+          init_v: 100
         - id: D2203-R563
           name: 社会获奖
           code: SL5
+          init_v: 100
         - id: D2203-R564
           name: 科学获奖
           code: SL5
+          init_v: 100
         - id: D2203-R565
           name: 顶级奖项
           code: SL5
+          init_v: 100
         - id: D2203-R566
           name: 获奖次数
           code: SL5
+          init_v: 100
       - id: D2204
         name: 信仰
         code: SL4
+        init_v: 100
         items:
         - id: D2204-R567
           name: 信仰宗教
           code: SL5
+          init_v: 100
         - id: D2204-R568
           name: 信仰哲学
           code: SL5
+          init_v: 100
         - id: D2204-R569
           name: 信仰科学
           code: SL5
+          init_v: 100
         - id: D2204-R570
           name: 信仰政治
           code: SL5
+          init_v: 100
         - id: D2204-R571
           name: 信仰文化
           code: SL5
+          init_v: 100
         - id: D2204-R572
           name: 特殊信仰
           code: SL5
+          init_v: 100
         - id: D2204-R573
           name: 信仰程度
           code: SL5
+          init_v: 100
       - id: D2205
         name: 认可
         code: SL4
+        init_v: 100
         items:
         - id: D2205-R574
           name: 自我认可
           code: SL5
+          init_v: 100
         - id: D2205-R575
           name: 家庭认可
           code: SL5
+          init_v: 100
         - id: D2205-R576
           name: 学校认可
           code: SL5
+          init_v: 100
         - id: D2205-R577
           name: 社会认可
           code: SL5
+          init_v: 100
         - id: D2205-R578
           name: 专业认可
           code: SL5
+          init_v: 100
         - id: D2205-R579
           name: 法律认可
           code: SL5
+          init_v: 100
         - id: D2205-R580
           name: 文化认可
           code: SL5
+          init_v: 100
         - id: D2205-R581
           name: 认可程度
           code: SL5
+          init_v: 100
 - id: DD
   name: 深层欲望
   code: DL1
+  init_v: 50
   items:
   - id: DD1
     name: 爱
     code: DL2
+    init_v: 50
     items:
     - id: D23
       name: 悦己
       code: DL3
+      init_v: 50
       items:
       - id: D2301
         name: 接纳自己
         code: DL4
+        init_v: 50
         items:
         - id: D2301-R582
           name: 接纳身体
           code: DL5
+          init_v: 50
         - id: D2301-R583
           name: 接纳过去
           code: DL5
+          init_v: 50
         - id: D2301-R584
           name: 接纳才能
           code: DL5
+          init_v: 50
         - id: D2301-R585
           name: 接纳观点
           code: DL5
+          init_v: 50
         - id: D2301-R586
           name: 接纳失败
           code: DL5
+          init_v: 50
         - id: D2301-R587
           name: 接纳方式
           code: DL5
+          init_v: 50
       - id: D2302
         name: 欣赏自己
         code: DL4
+        init_v: 50
         items:
         - id: D2302-R588
           name: 欣赏身体
           code: DL5
+          init_v: 50
         - id: D2302-R589
           name: 欣赏过去
           code: DL5
+          init_v: 50
         - id: D2302-R590
           name: 欣赏才能
           code: DL5
+          init_v: 50
         - id: D2302-R591
           name: 欣赏观点
           code: DL5
+          init_v: 50
         - id: D2302-R592
           name: 欣赏特质
           code: DL5
+          init_v: 50
         - id: D2302-R593
           name: 欣赏方式
           code: DL5
+          init_v: 50
       - id: D2303
         name: 疼惜自己
         code: DL4
+        init_v: 50
         items:
         - id: D2303-R594
           name: 疼惜身体
           code: DL5
+          init_v: 50
         - id: D2303-R595
           name: 疼惜经历
           code: DL5
+          init_v: 50
         - id: D2303-R596
           name: 疼惜才能
           code: DL5
+          init_v: 50
         - id: D2303-R597
           name: 疼惜心灵
           code: DL5
+          init_v: 50
         - id: D2303-R598
           name: 疼惜方式
           code: DL5
+          init_v: 50
       - id: D2304
         name: 讨好自己
         code: DL4
+        init_v: 50
         items:
         - id: D2304-R599
           name: 讨好身体
           code: DL5
+          init_v: 50
         - id: D2304-R600
           name: 讨好心灵
           code: DL5
+          init_v: 50
         - id: D2304-R601
           name: 讨好方式
           code: DL5
+          init_v: 50
       - id: D2305
         name: 原谅自己
         code: DL4
+        init_v: 50
         items:
         - id: D2305-R602
           name: 原谅错误
           code: DL5
+          init_v: 50
         - id: D2305-R603
           name: 原谅遗憾
           code: DL5
+          init_v: 50
         - id: D2305-R604
           name: 原谅过去
           code: DL5
+          init_v: 50
         - id: D2305-R605
           name: 原谅身体
           code: DL5
+          init_v: 50
         - id: D2305-R606
           name: 原谅心灵
           code: DL5
+          init_v: 50
         - id: D2305-R607
           name: 原谅方式
           code: DL5
+          init_v: 50
     - id: D24
       name: 博爱
       code: DL3
+      init_v: 50
       items:
       - id: D2401
         name: 热爱
         code: DL4
+        init_v: 50
         items:
         - id: D2401-R608
           name: 热爱生命
           code: DL5
+          init_v: 50
         - id: D2401-R609
           name: 热爱世界
           code: DL5
+          init_v: 50
         - id: D2401-R610
           name: 热爱运动
           code: DL5
+          init_v: 50
         - id: D2401-R611
           name: 热爱美食
           code: DL5
+          init_v: 50
         - id: D2401-R612
           name: 热爱知识
           code: DL5
+          init_v: 50
         - id: D2401-R613
           name: 热爱文化
           code: DL5
+          init_v: 50
         - id: D2401-R614
           name: 热爱程度
           code: DL5
+          init_v: 50
         - id: D2401-R615
           name: 热爱祖国
           code: DL5
+          init_v: 50
         - id: D2401-R616
           name: 热爱方式
           code: DL5
+          init_v: 50
       - id: D2402
         name: 赞美
         code: DL4
+        init_v: 50
         items:
         - id: D2402-R617
           name: 赞美外貌
           code: DL5
+          init_v: 50
         - id: D2402-R618
           name: 赞美特质
           code: DL5
+          init_v: 50
         - id: D2402-R619
           name: 赞美方式
           code: DL5
+          init_v: 50
         - id: D2402-R620
           name: 赞美心灵
           code: DL5
+          init_v: 50
         - id: D2402-R621
           name: 赞美文化
           code: DL5
+          init_v: 50
         - id: D2402-R622
           name: 赞美世界
           code: DL5
+          init_v: 50
         - id: D2402-R623
           name: 赞美他人
           code: DL5
+          init_v: 50
       - id: D2403
         name: 理解
         code: DL4
+        init_v: 50
         items:
         - id: D2403-R624
           name: 理解观点
           code: DL5
+          init_v: 50
         - id: D2403-R625
           name: 理解文化
           code: DL5
+          init_v: 50
         - id: D2403-R626
           name: 理解分歧
           code: DL5
+          init_v: 50
         - id: D2403-R627
           name: 理解环境
           code: DL5
+          init_v: 50
         - id: D2403-R628
           name: 理解规律
           code: DL5
+          init_v: 50
         - id: D2403-R629
           name: 理解他人
           code: DL5
+          init_v: 50
         - id: D2403-R630
           name: 理解方式
           code: DL5
+          init_v: 50
       - id: D2404
         name: 包容
         code: DL4
+        init_v: 50
         items:
         - id: D2404-R631
           name: 包容观点
           code: DL5
+          init_v: 50
         - id: D2404-R632
           name: 包容他人
           code: DL5
+          init_v: 50
         - id: D2404-R633
           name: 包容分歧
           code: DL5
+          init_v: 50
         - id: D2404-R634
           name: 包容环境
           code: DL5
+          init_v: 50
         - id: D2404-R635
           name: 包容文化
           code: DL5
+          init_v: 50
         - id: D2404-R636
           name: 包容规律
           code: DL5
+          init_v: 50
         - id: D2404-R637
           name: 包容形式
           code: DL5
+          init_v: 50
       - id: D2405
         name: 保护
         code: DL4
+        init_v: 50
         items:
         - id: D2405-R638
           name: 保护历史
           code: DL5
+          init_v: 50
         - id: D2405-R639
           name: 保护文化
           code: DL5
+          init_v: 50
         - id: D2405-R640
           name: 保护环境
           code: DL5
+          init_v: 50
         - id: D2405-R641
           name: 保护生命
           code: DL5
+          init_v: 50
         - id: D2405-R642
           name: 保护差异
           code: DL5
+          init_v: 50
         - id: D2405-R643
           name: 保护法律
           code: DL5
+          init_v: 50
         - id: D2405-R644
           name: 保护国家
           code: DL5
+          init_v: 50
         - id: D2405-R645
           name: 保护家人
           code: DL5
+          init_v: 50
         - id: D2405-R646
           name: 保护方式
           code: DL5
+          init_v: 50
   - id: DD2
     name: 求知
     code: DL2
+    init_v: 50
     items:
     - id: D25
       name: 学习
       code: DL3
+      init_v: 50
       items:
       - id: D2501
         name: 阅读
         code: DL4
+        init_v: 50
         items:
         - id: D2501-R647
           name: 小说
           code: DL5
+          init_v: 50
         - id: D2501-R648
           name: 史籍
           code: DL5
+          init_v: 50
         - id: D2501-R649
           name: 杂志
           code: DL5
+          init_v: 50
         - id: D2501-R650
           name: 新闻
           code: DL5
+          init_v: 50
         - id: D2501-R651
           name: 科普
           code: DL5
+          init_v: 50
         - id: D2501-R652
           name: 学术著作
           code: DL5
+          init_v: 50
         - id: D2501-R653
           name: 哲学著作
           code: DL5
+          init_v: 50
         - id: D2501-R654
           name: 阅读习惯
           code: DL5
+          init_v: 50
       - id: D2502
         name: 分享
         code: DL4
+        init_v: 50
         items:
         - id: D2502-R655
           name: 传播
           code: DL5
+          init_v: 50
         - id: D2502-R656
           name: 咨询
           code: DL5
+          init_v: 50
         - id: D2502-R657
           name: 转发
           code: DL5
+          init_v: 50
         - id: D2502-R658
           name: 传授
           code: DL5
+          init_v: 50
         - id: D2502-R659
           name: 讲座
           code: DL5
+          init_v: 50
         - id: D2502-R660
           name: 安慰
           code: DL5
+          init_v: 50
         - id: D2502-R661
           name: 演讲
           code: DL5
+          init_v: 50
       - id: D2503
         name: 记忆
         code: DL4
+        init_v: 50
         items:
         - id: D2503-R662
           name: 文字记忆
           code: DL5
+          init_v: 50
         - id: D2503-R663
           name: 图像记忆
           code: DL5
+          init_v: 50
         - id: D2503-R664
           name: 身体记忆
           code: DL5
+          init_v: 50
         - id: D2503-R665
           name: 事件记忆
           code: DL5
+          init_v: 50
         - id: D2503-R666
           name: 情感记忆
           code: DL5
+          init_v: 50
         - id: D2503-R667
           name: 声音记忆
           code: DL5
+          init_v: 50
         - id: D2503-R668
           name: 味道记忆
           code: DL5
+          init_v: 50
         - id: D2503-R669
           name: 数字记忆
           code: DL5
+          init_v: 50
         - id: D2503-R670
           name: 位置记忆
           code: DL5
+          init_v: 50
       - id: D2504
         name: 计算
         code: DL4
+        init_v: 50
         items:
         - id: D2504-R671
           name: 数字计算
           code: DL5
+          init_v: 50
         - id: D2504-R672
           name: 图形计算
           code: DL5
+          init_v: 50
         - id: D2504-R673
           name: 程序计算
           code: DL5
+          init_v: 50
         - id: D2504-R674
           name: 统计计算
           code: DL5
+          init_v: 50
         - id: D2504-R675
           name: 心算计算
           code: DL5
+          init_v: 50
         - id: D2504-R676
           name: 感知计算
           code: DL5
+          init_v: 50
         - id: D2504-R677
           name: 推理计算
           code: DL5
+          init_v: 50
       - id: D2505
         name: 模仿
         code: DL4
+        init_v: 50
         items:
         - id: D2505-R678
           name: 模仿语言
           code: DL5
+          init_v: 50
         - id: D2505-R679
           name: 模仿行为
           code: DL5
+          init_v: 50
         - id: D2505-R680
           name: 模仿技能
           code: DL5
+          init_v: 50
         - id: D2505-R681
           name: 模仿情绪
           code: DL5
+          init_v: 50
         - id: D2505-R682
           name: 模仿角色
           code: DL5
+          init_v: 50
         - id: D2505-R683
           name: 模仿社会
           code: DL5
+          init_v: 50
         - id: D2505-R684
           name: 模仿艺术
           code: DL5
+          init_v: 50
     - id: D26
       name: 思考
       code: DL3
+      init_v: 50
       items:
       - id: D2601
         name: 回忆
         code: DL4
+        init_v: 50
         items:
         - id: D2601-R685
           name: 回忆观点
           code: DL5
+          init_v: 50
         - id: D2601-R686
           name: 回忆感受
           code: DL5
+          init_v: 50
         - id: D2601-R687
           name: 回忆事件
           code: DL5
+          init_v: 50
         - id: D2601-R688
           name: 回忆过去
           code: DL5
+          init_v: 50
         - id: D2601-R689
           name: 回忆知识
           code: DL5
+          init_v: 50
         - id: D2601-R690
           name: 回忆梦境
           code: DL5
+          init_v: 50
         - id: D2601-R691
           name: 回忆场景
           code: DL5
+          init_v: 50
         - id: D2601-R692
           name: 回忆地点
           code: DL5
+          init_v: 50
       - id: D2602
         name: 分析
         code: DL4
+        init_v: 50
         items:
         - id: D2602-R693
           name: 分析数据
           code: DL5
+          init_v: 50
         - id: D2602-R694
           name: 分析文字
           code: DL5
+          init_v: 50
         - id: D2602-R695
           name: 分析行业
           code: DL5
+          init_v: 50
         - id: D2602-R696
           name: 分析语言
           code: DL5
+          init_v: 50
         - id: D2602-R697
           name: 分析环境
           code: DL5
+          init_v: 50
         - id: D2602-R698
           name: 分析方法
           code: DL5
+          init_v: 50
         - id: D2602-R699
           name: 分析感受
           code: DL5
+          init_v: 50
         - id: D2602-R700
           name: 分析行为
           code: DL5
+          init_v: 50
         - id: D2602-R701
           name: 分析人性
           code: DL5
+          init_v: 50
       - id: D2603
         name: 反思
         code: DL4
+        init_v: 50
         items:
         - id: D2603-R702
           name: 反思事件
           code: DL5
+          init_v: 50
         - id: D2603-R703
           name: 反思分歧
           code: DL5
+          init_v: 50
         - id: D2603-R704
           name: 反思自己
           code: DL5
+          init_v: 50
         - id: D2603-R705
           name: 反思成败
           code: DL5
+          init_v: 50
         - id: D2603-R706
           name: 反思结果
           code: DL5
+          init_v: 50
         - id: D2603-R707
           name: 反思行为
           code: DL5
+          init_v: 50
         - id: D2603-R708
           name: 反思关系
           code: DL5
+          init_v: 50
       - id: D2604
         name: 判断
         code: DL4
+        init_v: 50
         items:
         - id: D2604-R709
           name: 判断价值
           code: DL5
+          init_v: 50
         - id: D2604-R710
           name: 判断事实
           code: DL5
+          init_v: 50
         - id: D2604-R711
           name: 判断预测
           code: DL5
+          init_v: 50
         - id: D2604-R712
           name: 判断行为
           code: DL5
+          init_v: 50
         - id: D2604-R713
           name: 判断情绪
           code: DL5
+          init_v: 50
         - id: D2604-R714
           name: 判断关系
           code: DL5
+          init_v: 50
         - id: D2604-R715
           name: 判断利益
           code: DL5
+          init_v: 50
         - id: D2604-R716
           name: 判断概率
           code: DL5
+          init_v: 50
       - id: D2605
         name: 总结
         code: DL4
+        init_v: 50
         items:
         - id: D2605-R717
           name: 总结规律
           code: DL5
+          init_v: 50
         - id: D2605-R718
           name: 总结利益
           code: DL5
+          init_v: 50
         - id: D2605-R719
           name: 总结事实
           code: DL5
+          init_v: 50
         - id: D2605-R720
           name: 总结价值
           code: DL5
+          init_v: 50
         - id: D2605-R721
           name: 总结结果
           code: DL5
+          init_v: 50
         - id: D2605-R722
           name: 总结教训
           code: DL5
+          init_v: 50
         - id: D2605-R723
           name: 总结成败
           code: DL5
+          init_v: 50
   - id: DD3
     name: 探索
     code: DL2
+    init_v: 30
     items:
     - id: D27
       name: 冒险
       code: DL3
+      init_v: 30
       items:
       - id: D2701
         name: 选择
         code: DL4
+        init_v: 30
         items:
         - id: D2701-R724
           name: 选择重要
           code: DL5
+          init_v: 30
         - id: D2701-R725
           name: 选择梦想
           code: DL5
+          init_v: 30
         - id: D2701-R726
           name: 选择渴望
           code: DL5
+          init_v: 30
         - id: D2701-R727
           name: 选择放弃
           code: DL5
+          init_v: 30
         - id: D2701-R728
           name: 选择感觉
           code: DL5
+          init_v: 30
         - id: D2701-R729
           name: 选择利益
           code: DL5
+          init_v: 30
         - id: D2701-R730
           name: 选择目标
           code: DL5
+          init_v: 30
       - id: D2702
         name: 尝试
         code: DL4
+        init_v: 30
         items:
         - id: D2702-R731
           name: 尝试新食物
           code: DL5
+          init_v: 30
         - id: D2702-R732
           name: 尝试新活动
           code: DL5
+          init_v: 30
         - id: D2702-R733
           name: 尝试新思维
           code: DL5
+          init_v: 30
         - id: D2702-R734
           name: 尝试新技能
           code: DL5
+          init_v: 30
         - id: D2702-R735
           name: 尝试新职业
           code: DL5
+          init_v: 30
         - id: D2702-R736
           name: 尝试新生活
           code: DL5
+          init_v: 30
         - id: D2702-R737
           name: 尝试新观点
           code: DL5
+          init_v: 30
         - id: D2702-R738
           name: 尝试新方法
           code: DL5
+          init_v: 30
       - id: D2703
         name: 博弈
         code: DL4
+        init_v: 30
         items:
         - id: D2703-R739
           name: 零和博弈
           code: DL5
+          init_v: 30
         - id: D2703-R740
           name: 非零和博弈
           code: DL5
+          init_v: 30
         - id: D2703-R741
           name: 完全信息博弈
           code: DL5
+          init_v: 30
         - id: D2703-R742
           name: 非完全信息博弈
           code: DL5
+          init_v: 30
         - id: D2703-R743
           name: 同时博弈
           code: DL5
+          init_v: 30
         - id: D2703-R744
           name: 顺序博弈
           code: DL5
+          init_v: 30
         - id: D2703-R745
           name: 协商博弈
           code: DL5
+          init_v: 30
         - id: D2703-R746
           name: 非协商博弈
           code: DL5
+          init_v: 30
       - id: D2704
         name: 信任
         code: DL4
+        init_v: 30
         items:
         - id: D2704-R747
           name: 信任自己
           code: DL5
+          init_v: 30
         - id: D2704-R748
           name: 信任他人
           code: DL5
+          init_v: 30
         - id: D2704-R749
           name: 互相信任
           code: DL5
+          init_v: 30
         - id: D2704-R750
           name: 信任忠诚
           code: DL5
+          init_v: 30
         - id: D2704-R751
           name: 信任国家
           code: DL5
+          init_v: 30
         - id: D2704-R752
           name: 信任文化
           code: DL5
+          init_v: 30
         - id: D2704-R753
           name: 信任法律
           code: DL5
+          init_v: 30
       - id: D2705
         name: 挑战
         code: DL4
+        init_v: 30
         items:
         - id: D2705-R754
           name: 挑战自己
           code: DL5
+          init_v: 30
         - id: D2705-R755
           name: 挑战他人
           code: DL5
+          init_v: 30
         - id: D2705-R756
           name: 挑战困难
           code: DL5
+          init_v: 30
         - id: D2705-R757
           name: 挑战极限
           code: DL5
+          init_v: 30
         - id: D2705-R758
           name: 挑战未知
           code: DL5
+          init_v: 30
         - id: D2705-R759
           name: 挑战技术
           code: DL5
+          init_v: 30
         - id: D2705-R760
           name: 挑战智力
           code: DL5
+          init_v: 30
         - id: D2705-R761
           name: 挑战权威
           code: DL5
+          init_v: 30
     - id: D28
       name: 进步
       code: DL3
+      init_v: 30
       items:
       - id: D2801
         name: 创新
         code: DL4
+        init_v: 30
         items:
         - id: D2801-R762
           name: 创新产品
           code: DL5
+          init_v: 30
         - id: D2801-R763
           name: 创新技术
           code: DL5
+          init_v: 30
         - id: D2801-R764
           name: 创新流程
           code: DL5
+          init_v: 30
         - id: D2801-R765
           name: 创新文化
           code: DL5
+          init_v: 30
         - id: D2801-R766
           name: 创新组织
           code: DL5
+          init_v: 30
         - id: D2801-R767
           name: 创新服务
           code: DL5
+          init_v: 30
         - id: D2801-R768
           name: 创新市场
           code: DL5
+          init_v: 30
         - id: D2801-R769
           name: 创新策略
           code: DL5
+          init_v: 30
       - id: D2802
         name: 假设
         code: DL4
+        init_v: 30
         items:
         - id: D2802-R770
           name: 描述假设
           code: DL5
+          init_v: 30
         - id: D2802-R771
           name: 关系假设
           code: DL5
+          init_v: 30
         - id: D2802-R772
           name: 因果假设
           code: DL5
+          init_v: 30
         - id: D2802-R773
           name: 比较假设
           code: DL5
+          init_v: 30
         - id: D2802-R774
           name: 未知假设
           code: DL5
+          init_v: 30
       - id: D2803
         name: 实验
         code: DL4
+        init_v: 30
         items:
         - id: D2803-R775
           name: 对照实验
           code: DL5
+          init_v: 30
         - id: D2803-R776
           name: 观察实验
           code: DL5
+          init_v: 30
         - id: D2803-R777
           name: 特定实验
           code: DL5
+          init_v: 30
         - id: D2803-R778
           name: 双盲实验
           code: DL5
+          init_v: 30
         - id: D2803-R779
           name: 单盲实验
           code: DL5
+          init_v: 30
         - id: D2803-R780
           name: 随机实验
           code: DL5
+          init_v: 30
         - id: D2803-R781
           name: 长期实验
           code: DL5
+          init_v: 30
       - id: D2804
         name: 考察
         code: DL4
+        init_v: 30
         items:
         - id: D2804-R782
           name: 科学考察
           code: DL5
+          init_v: 30
         - id: D2804-R783
           name: 历史考察
           code: DL5
+          init_v: 30
         - id: D2804-R784
           name: 文化考察
           code: DL5
+          init_v: 30
         - id: D2804-R785
           name: 知识考察
           code: DL5
+          init_v: 30
         - id: D2804-R786
           name: 探险考察
           code: DL5
+          init_v: 30
         - id: D2804-R787
           name: 未知考察
           code: DL5
+          init_v: 30
         - id: D2804-R788
           name: 生物考察
           code: DL5
+          init_v: 30
       - id: D2805
         name: 用心
         code: DL4
+        init_v: 30
         items:
         - id: D2805-R789
           name: 用心做事
           code: DL5
+          init_v: 30
         - id: D2805-R790
           name: 用心观察
           code: DL5
+          init_v: 30
         - id: D2805-R791
           name: 用心倾听
           code: DL5
+          init_v: 30
         - id: D2805-R792
           name: 用心感知
           code: DL5
+          init_v: 30
         - id: D2805-R793
           name: 用心推理
           code: DL5
+          init_v: 30
         - id: D2805-R794
           name: 用心关爱
           code: DL5
+          init_v: 30
         - id: D2805-R795
           name: 用心冥想
           code: DL5
+          init_v: 30
   - id: DD4
     name: 自我实现
     code: DL2
+    init_v: 20
     items:
     - id: D29
       name: 生命意义
       code: DL3
+      init_v: 20
       items:
       - id: D2901
         name: 价值
         code: DL4
+        init_v: 20
         items:
         - id: D2901-R796
           name: 自我价值
           code: DL5
+          init_v: 20
         - id: D2901-R797
           name: 关系价值
           code: DL5
+          init_v: 20
         - id: D2901-R798
           name: 社会价值
           code: DL5
+          init_v: 20
         - id: D2901-R799
           name: 人类价值
           code: DL5
+          init_v: 20
         - id: D2901-R800
           name: 文化价值
           code: DL5
+          init_v: 20
         - id: D2901-R801
           name: 未来价值
           code: DL5
+          init_v: 20
       - id: D2902
         name: 付出
         code: DL4
+        init_v: 20
         items:
         - id: D2902-R802
           name: 金钱付出
           code: DL5
+          init_v: 20
         - id: D2902-R803
           name: 时间付出
           code: DL5
+          init_v: 20
         - id: D2902-R804
           name: 情感付出
           code: DL5
+          init_v: 20
         - id: D2902-R805
           name: 行为付出
           code: DL5
+          init_v: 20
         - id: D2902-R806
           name: 知识付出
           code: DL5
+          init_v: 20
         - id: D2902-R807
           name: 身体付出
           code: DL5
+          init_v: 20
         - id: D2902-R808
           name: 思维付出
           code: DL5
+          init_v: 20
       - id: D2903
         name: 感恩
         code: DL4
+        init_v: 20
         items:
         - id: D2903-R809
           name: 感恩自然
           code: DL5
+          init_v: 20
         - id: D2903-R810
           name: 感恩生命
           code: DL5
+          init_v: 20
         - id: D2903-R811
           name: 感恩自己
           code: DL5
+          init_v: 20
         - id: D2903-R812
           name: 感恩家庭
           code: DL5
+          init_v: 20
         - id: D2903-R813
           name: 感恩社会
           code: DL5
+          init_v: 20
         - id: D2903-R814
           name: 感恩国家
           code: DL5
+          init_v: 20
         - id: D2903-R815
           name: 感恩宗教
           code: DL5
+          init_v: 20
       - id: D2904
         name: 牺牲
         code: DL4
+        init_v: 20
         items:
         - id: D2904-R816
           name: 牺牲时间
           code: DL5
+          init_v: 20
         - id: D2904-R817
           name: 牺牲生命
           code: DL5
+          init_v: 20
         - id: D2904-R818
           name: 牺牲自我
           code: DL5
+          init_v: 20
         - id: D2904-R819
           name: 牺牲家庭
           code: DL5
+          init_v: 20
         - id: D2904-R820
           name: 牺牲灵魂
           code: DL5
+          init_v: 20
         - id: D2904-R821
           name: 牺牲理想
           code: DL5
+          init_v: 20
         - id: D2904-R822
           name: 牺牲文化
           code: DL5
+          init_v: 20
         - id: D2904-R823
           name: 牺牲环境
           code: DL5
+          init_v: 20
       - id: D2905
         name: 实现
         code: DL4
+        init_v: 20
         items:
         - id: D2905-R824
           name: 实现价值
           code: DL5
+          init_v: 20
         - id: D2905-R825
           name: 实现使命
           code: DL5
+          init_v: 20
         - id: D2905-R826
           name: 实现目标
           code: DL5
+          init_v: 20
         - id: D2905-R827
           name: 实现责任
           code: DL5
+          init_v: 20
         - id: D2905-R828
           name: 实现义务
           code: DL5
+          init_v: 20
         - id: D2905-R829
           name: 实现承诺
           code: DL5
+          init_v: 20
         - id: D2905-R830
           name: 实现理想
           code: DL5
+          init_v: 20
     - id: D30
       name: 追求圆满
       code: DL3
+      init_v: 10
       items:
       - id: D3001
         name: 遵从内心
         code: DL4
+        init_v: 10
         items:
         - id: D3001-R831
           name: 遵从内心感受
           code: DL5
+          init_v: 10
         - id: D3001-R832
           name: 遵从内心选择
           code: DL5
+          init_v: 10
         - id: D3001-R833
           name: 遵从内心向往
           code: DL5
+          init_v: 10
         - id: D3001-R834
           name: 遵从内心简约
           code: DL5
+          init_v: 10
         - id: D3001-R835
           name: 遵从内心平静
           code: DL5
+          init_v: 10
         - id: D3001-R836
           name: 遵从内心声音
           code: DL5
+          init_v: 10
       - id: D3002
         name: 天人和一
         code: DL4
+        init_v: 10
         items:
         - id: D3002-R837
           name: 与自然合一
           code: DL5
+          init_v: 10
         - id: D3002-R838
           name: 与生灵合一
           code: DL5
+          init_v: 10
         - id: D3002-R839
           name: 与文化合一
           code: DL5
+          init_v: 10
         - id: D3002-R840
           name: 与心灵合一
           code: DL5
+          init_v: 10
         - id: D3002-R841
           name: 与感受合一
           code: DL5
+          init_v: 10
         - id: D3002-R842
           name: 与矛盾合一
           code: DL5
+          init_v: 10
       - id: D3003
         name: 此生无悔
         code: DL4
+        init_v: 10
         items:
         - id: D3003-R843
           name: 于己无悔
           code: DL5
+          init_v: 10
         - id: D3003-R844
           name: 于家无悔
           code: DL5
+          init_v: 10
         - id: D3003-R845
           name: 于人无悔
           code: DL5
+          init_v: 10
         - id: D3003-R846
           name: 于国无悔
           code: DL5
+          init_v: 10
         - id: D3003-R847
           name: 于生无悔
           code: DL5
+          init_v: 10
         - id: D3003-R848
           name: 于死无悔
           code: DL5
+          init_v: 10
       - id: D3004
         name: 因果循环
         code: DL4
+        init_v: 10
         items:
         - id: D3004-R849
           name: 是非因果
           code: DL5
+          init_v: 10
         - id: D3004-R850
           name: 对错因果
           code: DL5
+          init_v: 10
         - id: D3004-R851
           name: 得失因果
           code: DL5
+          init_v: 10
         - id: D3004-R852
           name: 成败因果
           code: DL5
+          init_v: 10
         - id: D3004-R853
           name: 爱恨因果
           code: DL5
+          init_v: 10
         - id: D3004-R854
           name: 生死因果
           code: DL5
+          init_v: 10
       - id: D3005
         name: 道法自然
         code: DL4
+        init_v: 10
         items:
         - id: D3005-R855
           name: 生死自然
           code: DL5
+          init_v: 10
         - id: D3005-R856
           name: 是非自然
           code: DL5
+          init_v: 10
         - id: D3005-R857
           name: 成败自然
           code: DL5
+          init_v: 10
         - id: D3005-R858
           name: 爱恨自然
           code: DL5
+          init_v: 10
         - id: D3005-R859
           name: 得失自然
           code: DL5
+          init_v: 10
         - id: D3005-R860
           name: 对错自然
           code: DL5
+          init_v: 10

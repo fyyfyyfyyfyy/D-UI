@@ -7,18 +7,25 @@ import yaml
 
 class DesireItem:
     def __init__(
-        self, code: str, id: str, name: str, items: list["DesireItem"] = None
+        self,
+        code: str,
+        id: str,
+        name: str,
+        init_v: int | None = None,
+        items: list["DesireItem"] = None,
     ) -> None:
         self.code = code
         self.id = id
         self.name = name
         self.items = items if items is not None else []
+        self.init_v = init_v
 
     def to_dict(self) -> dict:
         target: dict[str, typing.Any] = {
             "id": self.id,
             "name": self.name,
             "code": self.code,
+            "init_v": self.init_v,
         }
         if len(self.items) > 0:
             target["items"] = [item.to_dict() for item in self.items]
@@ -38,9 +45,9 @@ def process_data(data) -> DesireItem:
 
     for line in lines:
         parts = line.split("\t")
-        assert len(parts) == 3
+        assert len(parts) == 4
 
-        p_code, id, name = parts
+        p_code, id, name, init_v = parts
 
         if len(p_code) > 0:
             assert len(p_code) == 3
@@ -50,8 +57,9 @@ def process_data(data) -> DesireItem:
             d_code = p_code
 
         d_id, d_name = id, name
+        d_init_v = int(init_v)
 
-        item = DesireItem(d_code, d_id, d_name)
+        item = DesireItem(d_code, d_id, d_name, d_init_v)
 
         level = int(d_code[2:])
 
@@ -63,7 +71,7 @@ def process_data(data) -> DesireItem:
             child = stack.pop()
             parent.items.append(child)
 
-        if d_code[0] == 'D' and d_code == p_code:
+        if d_code[0] == "D" and d_code == p_code:
             print(p_code, item.to_dict(), len(stack))
 
         stack.append(item)
@@ -94,10 +102,10 @@ def generate_zh_yaml(data):
     yaml_data = {}
 
     def recursive_parse(item):
-        yaml_data[item['id']] = [{'zh': item['name']}]
+        yaml_data[item["id"]] = [{"zh": item["name"]}]
 
-        if 'items' in item:
-            for sub_item in item['items']:
+        if "items" in item:
+            for sub_item in item["items"]:
                 recursive_parse(sub_item)
 
     for item in data:
@@ -107,7 +115,6 @@ def generate_zh_yaml(data):
 
 
 def merge_yamls(yaml1, yaml2):
-
     merged = {**yaml1, **yaml2}
 
     for k, v in merged.items():
@@ -117,14 +124,14 @@ def merge_yamls(yaml1, yaml2):
         if v1 and v2:
             merged[k] = sorted(
                 [dict(t) for t in {tuple(d.items()) for d in v1 + v2}],
-                key=lambda x: list(x.keys())[0]
+                key=lambda x: list(x.keys())[0],
             )
 
     return merged
 
 
 if __name__ == "__main__":
-    with open("desire.tsv", "r", encoding='utf-8') as f:
+    with open("desire.tsv", "r", encoding="utf-8") as f:
         raw_data = f.read()
 
     desire_root = process_data(raw_data)
@@ -140,7 +147,7 @@ if __name__ == "__main__":
             sort_keys=False,
         )
 
-    yaml_zh = generate_zh_yaml(desire_root.to_dict()['items'])
+    yaml_zh = generate_zh_yaml(desire_root.to_dict()["items"])
 
     if os.path.exists("desire_name.yml"):
         with open("desire_name.yml") as f:
@@ -161,5 +168,5 @@ if __name__ == "__main__":
                 f,
                 default_flow_style=False,
                 allow_unicode=True,
-                sort_keys=False
+                sort_keys=False,
             )
