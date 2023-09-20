@@ -55,9 +55,10 @@ def GPT_completion(
     messages.append(_get_message_item(question))
     chat_history.append(messages[-1])
 
-    logger.debug(f"GPT completion with model = {model}, messages = ")
+    logger.debug('----------- Start GPT Completion -----------')
+    logger.debug(f"model = {model}, messages as following:")
     for m in messages:
-        logger.debug(f"{m}")
+        logger.debug(f"{m['role']}: {m['content']}")
     # logger.info(messages)
     completion = openai.ChatCompletion.create(
         model=model, messages=messages  # gpt-3.5-turbo, gpt-4 ...
@@ -69,6 +70,7 @@ def GPT_completion(
 
     logger.debug("completion output:")
     logger.debug(f"{answer_content}")
+    logger.debug('----------- End GPT Completion -----------')
 
     chat_history.append(_get_message_item(answer_content, answer_role))
     return answer_content
