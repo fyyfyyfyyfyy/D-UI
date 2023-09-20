@@ -1,50 +1,14 @@
 from __future__ import annotations
 
 import json
-import os
-import re
-
-import openai  # type: ignore
 
 from dui.types import Event, Person, Religion
-from dui.types.history import HistoryItem
 from dui.utils.log import get_logger
 
 logger = get_logger(__name__)
 
 
-class ResponseChange:
-    def __init__(self, answer: str):
-        self.answer = answer
-        self.pattern = r"{[^{}]*}"
-        self.match = re.findall(self.pattern, self.answer)
-
-    def get_parsed_json(self):
-        if self.match:
-            last_match = self.match[-1]
-            try:
-                json_data = json.loads(last_match)
-                print(json.dumps(json_data, ensure_ascii=False, indent=2))
-                return json_data
-            except json.JSONDecodeError as e:
-                raise e
-
-
-def has_envvar(name: str):
-    env_var = os.getenv(name)
-    if env_var is None or len(env_var) <= 0:
-        return False
-    return True
-
-
-openai.api_key = os.getenv("OPENAI_API_KEY")
-
-if not has_envvar("https_proxy"):
-    openai.api_base = "https://openkey.cloud/v1"  # 换成代理，一定要加v1
-
-logger.info(f"using {openai.api_base} as api_base")
-
-SYSTEM_PROMPT = """You play the role of a psychologist,\
+PROMPT_EVENT2RELIGION_AND_FEELING = """You play the role of a psychologist,\
 and I will input a number of events, scenarios and my states (desires, emotions),\
 as well as a list of beliefs from which\
 you will need to select the one I am most likely to have given that event.\
@@ -73,21 +37,8 @@ The output in JSON format is preceded and followed by the symbol '''
 """
 
 
-# def build_system_prompt():
-#     json_output = {
-#         'religion': '学习让人快乐',
-#         'emotion_delta': dict([(name, 5 if i == 0 else 0)
-# for (i, name) in enumerate(EMOTION_NAMES)])
-#     }
-#     json_limit = f"""请推理信念以及情绪变化,输出仅给出JSON, JSON格式示例:
-# ```
-# {json.dumps(json_output, ensure_ascii=False)}
-# ```"""
-#     return json_limit
-
-
-def fake_LLM_completion() -> str:
-    logger.warning("WARNING: fake LLM completion is called.")
+def fake_LLM_completion_Event2Religion_feeling() -> str:
+    logger.warning("fake_LLM_completion_Event2Religion_feeling is called.")
     return """在这个事件场景中，选择信念"吃辣让人舒适"。因为我们在川菜馆，\
 川菜以辣味著称，对于喜欢辣的人来说，吃辣可以带来舒适的感觉。\
 这个信念会对情绪产生影响，具体的情绪变化如下：
@@ -114,52 +65,6 @@ def fake_LLM_completion() -> str:
   }
 }
 ```"""
-
-
-def GPT_completion(
-    question,
-    history: list[HistoryItem] = [],
-    chat_history: list[dict] = [],
-    user="user",
-    model="gpt-3.5-turbo",
-    system_prompt=SYSTEM_PROMPT,
-) -> str:
-    question = question
-
-    messages = [
-        {"role": "system", "content": system_prompt},
-        {"role": user, "content": question}
-    ]
-
-    if (len(chat_history) != 0):
-        chat_history.append({"role": user, "content": question})
-        messages = chat_history[:]
-    # logger.info(messages)
-    completion = openai.ChatCompletion.create(
-        model=model, messages=messages  # gpt-3.5-turbo, gpt-4 ...
-    )
-    return completion.choices[0].message.content
-
-
-def LLM_inference(
-    question,
-    history: list[HistoryItem] = [],
-    chat_history: list[dict] = [],
-    user="user",
-    model="gpt-3.5-turbo",
-    system_prompt=SYSTEM_PROMPT,
-):
-    if has_envvar("OPENAI_API_KEY"):
-        return GPT_completion(
-            question=question,
-            history=history,
-            chat_history=chat_history,
-            user=user,
-            model=model,
-            system_prompt=system_prompt,
-        )
-    else:
-        return fake_LLM_completion()
 
 
 def event_to_prompt(

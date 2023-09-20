@@ -2,29 +2,19 @@ import json
 import time
 from decimal import Decimal
 
-import openai  # type: ignore
-
-from dui.llm import LLM_inference
+from dui.llm import ChatMessageItem, LLM_inference
 from dui.types import Desire, Religion
 from dui.types.religion_feeling import map_religion_feeling
 from dui.utils.data import load_data
 from dui.utils.log import get_logger
 
-logger = get_logger(__name__, console_level="DEBUG")
+logger = get_logger("desc2feeling", console_level="DEBUG")
 
 DESIRE_DICT = load_data("desire")
 
 
-def AskChatGPT(messages):
-    response = openai.ChatCompletion.create(
-        model="gpt-4",
-        messages=messages,
-    )
-    return response.choices[0].message.content
-
-
-def ReligionPipeline(user, question, prompt) -> Religion:
-    print("input:", question)
+def ReligionPipeline(question, prompt) -> Religion:
+    logger.debug(f"用户输入问题 input: {question}")
 
     desire = Desire()
     desire._id2nodes["DN"]._value = Decimal(300)
@@ -33,14 +23,11 @@ def ReligionPipeline(user, question, prompt) -> Religion:
         desire_list.append(des)
     condition1 = prompt + str(desire_list)
 
-    ans1 = LLM_inference(question=question, system_prompt=condition1)
-    chat_history = [
-        {"role": "system", "content": condition1},
-        {"role": user, "content": question},
-    ]
-    print("ans1\n", ans1)
-
-    chat_history.append({"role": "system", "content": ans1})
+    chat_history: list[ChatMessageItem] = []
+    ans1 = LLM_inference(
+        question=question, system_prompt=condition1, chat_history=chat_history
+    )
+    logger.debug(f"GPT推理 answer [1st]: {ans1}")
 
     ans1 = json.loads(ans1)
     low_desire = ans1["desire"]
@@ -60,15 +47,16 @@ def ReligionPipeline(user, question, prompt) -> Religion:
                     high_desire_list.append({l4["id"]: l4["name"]})
                     for l5 in l4["items"]:
                         high_desire_list.append({l5["id"]: l5["name"]})
-    print(high_desire_list)
+    logger.debug(f"备选欲望列表: {high_desire_list}")
     condition2 = prompt2 + str(high_desire_list)
-    ans2 = LLM_inference(question=condition2, chat_history=chat_history)
-    # print("ans2:\n", ans2)
+    ans2 = LLM_inference(
+        question=condition2, chat_history=chat_history, system_prompt=condition1
+    )
+    logger.debug(f"GPT推理 answer [2nd]: {ans2}")
     ans2 = json.loads(ans2)
     high_desire = ans2["desire"]
-    # ans2_id = ans2['id']
     ans2_valence = ans2["valence"]
-    print(f"本次推理从{low_desire}中选取了{high_desire}作为欲望")
+    logger.debug(f"信念选择 select: 本次推理从{low_desire}中选取了{high_desire}作为欲望")
     res_religion = Religion(desire_name=high_desire, valence=ans2_valence)
 
     return res_religion
@@ -88,11 +76,12 @@ if __name__ == "__main__":
 你的输出仅包含最终的字典。29个初级欲望列表如下:"""
 
         start = time.time()
-        answer: Religion = ReligionPipeline(
-            user="user", question=question, prompt=prompt
-        )
+        answer: Religion = ReligionPipeline(question=question, prompt=prompt)
         end = time.time()
-        print(answer)
-        print(map_religion_feeling(answer))
+        logger.info(f"最终选择的信念 religion: {answer}")
+        logger.debug(f"信念对应感受 feeling: {map_religion_feeling(answer)}")
 
-        print("time", end - start)
+        logger.debug(f"消耗的时间 cost_time: {end - start}")
+
+        logger.info("本轮分析结束 [ROUND_END]")
+        logger.info("-----------------------")
