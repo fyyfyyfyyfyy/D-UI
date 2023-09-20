@@ -17,7 +17,7 @@ def get_logger(filename,
 
     log_file = os.path.join(log_directory, f"{filename}.log")
 
-    file_handler = logging.FileHandler(log_file)
+    file_handler = logging.FileHandler(log_file, encoding='utf-8')
     file_handler.setLevel(file_level)
 
     console_handler = colorlog.StreamHandler()
