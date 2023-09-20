@@ -95,7 +95,7 @@ def _get_desire_item_placeholder_by_name(name: str) -> DesireItem:
     return DesireItem("UNDEFINED", f"未知欲望【{name}】", "XX", 5)
 
 
-DESIRE_PROPERTY: DesireItem = _data_to_desire_tree(load_data("desire"))
+DESIRE_ROOT_PROPERTY: DesireItem = _data_to_desire_tree(load_data("desire"))
 
 DESIRE_ID_TO_NAME: dict[str, str] = load_data("desire_name")
 
@@ -104,7 +104,7 @@ class Desire:
     DESIRE_COUNT = 29
 
     def __init__(self) -> None:
-        self.root = copy.deepcopy(DESIRE_PROPERTY)
+        self.root = copy.deepcopy(DESIRE_ROOT_PROPERTY)
         self._node_layers: list[dict[str, DesireItem]] = []
         self._build_node_layers()
         self._all_nodes: set[DesireItem] = set()
@@ -208,3 +208,5 @@ class Desire:
 'love', 'family affection',
 'friendship', 'psychosexual desire', 'physiological sexual desire'
 """
+
+DESIRE_PROPERTY: Desire = Desire()
