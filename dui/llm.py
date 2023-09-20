@@ -119,6 +119,7 @@ def fake_LLM_completion() -> str:
 def GPT_completion(
     question,
     history: list[HistoryItem] = [],
+    chat_history: list[dict] = [],
     user="user",
     model="gpt-3.5-turbo",
     system_prompt=SYSTEM_PROMPT,
@@ -127,9 +128,12 @@ def GPT_completion(
 
     messages = [
         {"role": "system", "content": system_prompt},
-        {"role": user, "content": question},
+        {"role": user, "content": question}
     ]
 
+    if (len(chat_history) != 0):
+        chat_history.append({"role": user, "content": question})
+        messages = chat_history[:]
     # logger.info(messages)
     completion = openai.ChatCompletion.create(
         model=model, messages=messages  # gpt-3.5-turbo, gpt-4 ...
@@ -140,6 +144,7 @@ def GPT_completion(
 def LLM_inference(
     question,
     history: list[HistoryItem] = [],
+    chat_history: list[dict] = [],
     user="user",
     model="gpt-3.5-turbo",
     system_prompt=SYSTEM_PROMPT,
@@ -148,6 +153,7 @@ def LLM_inference(
         return GPT_completion(
             question=question,
             history=history,
+            chat_history=chat_history,
             user=user,
             model=model,
             system_prompt=system_prompt,
