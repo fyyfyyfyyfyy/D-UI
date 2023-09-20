@@ -20,3 +20,16 @@ pre-commit install
 ```bash
 python main.py
 ```
+
+4. Unittests
+
+```bash
+# install unittest dependencies
+python -m pip install pytest pytest-cov
+
+# test all test_cases
+python -m pytest tests/
+
+# test specified test_case
+python -m tests/test_decimalList.py
+```

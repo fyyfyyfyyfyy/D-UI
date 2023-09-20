@@ -1,9 +1,9 @@
-name: python unittest
+name: pytest
 
 on:
   pull_request:
   push:
-    branches: [main]
+    branches: ["main"]
 
 jobs:
   build:
@@ -24,4 +24,5 @@ jobs:
         pip install -r requirements.txt
     - name: Test with unittest
       run: |
-        python tests -v
+        python -m pip install pytest pytest-cov
+        python -m pytest tests/ --junitxml=junit/test-results.xml --cov=dui --cov-report=xml --cov-report=html
