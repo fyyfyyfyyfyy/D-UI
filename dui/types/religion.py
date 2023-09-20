@@ -33,6 +33,7 @@ class Religion:
 
         assert desire_item is not None, "desire_item is None"
 
+        self._desire_item = desire_item
         self._desire_id = desire_item.id
         self._desire_name = desire_item.name
 

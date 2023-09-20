@@ -1,9 +1,9 @@
 import json
 import time
-from decimal import Decimal
 
 from dui.llm import ChatMessageItem, LLM_inference
-from dui.types import Desire, Religion
+from dui.types import Religion
+from dui.types.desire import DESIRE_PROPERTY
 from dui.types.religion_feeling import map_religion_feeling
 from dui.utils.data import load_data
 from dui.utils.log import get_logger
@@ -28,68 +28,68 @@ QUESTION_TEMPLATE = """
 """
 
 
-def ReligionPipeline(user_input) -> Religion:
-    logger.debug(f"用户输入问题 input: {user_input}")
-
-    desire = Desire()
-    desire._id2nodes["DN"]._value = Decimal(300)
-    desire_list = []
-    for des in eval(desire.__repr__()):
-        desire_list.append(des)
-
-    question = QUESTION_TEMPLATE.format(user_input, desire_list)
-
-    chat_history: list[ChatMessageItem] = []
-    ans1 = LLM_inference(
+def extract_religion(
+    user_input: str, optional_desires: list[str], chat_history: list[ChatMessageItem]
+) -> Religion:
+    question = QUESTION_TEMPLATE.format(user_input, optional_desires)
+    logger.debug(f"欲望备选：{optional_desires}")
+    answer = LLM_inference(
         question=question, system_prompt=SYSTEM_PROMPT, chat_history=chat_history
     )
-    logger.debug(f"GPT推理 answer [1st]: {ans1}")
+    try:
+        religion_data = json.loads(answer)
 
-    ans1 = json.loads(ans1)
-    low_desire = ans1["desire"]
-    valence = ans1["valence"]
-    religion = Religion(desire_name=low_desire, valence=valence)
-    root = religion._root_id
+        desire_name = religion_data["desire"]
+        valence = religion_data["valence"]
 
-    high_desire_list = []
-    for l2 in DESIRE_DICT[{"DN": 0, "DS": 1, "DD": 2}.get(root, None)]["items"]:
-        for l3 in l2["items"]:
-            if l3["name"] == low_desire:
-                high_desire_list.append(l3["name"])
-                for l4 in l3["items"]:
-                    high_desire_list.append(l4["name"])
-                    for l5 in l4["items"]:
-                        high_desire_list.append(l5["name"])
+        religion = Religion(desire_name=desire_name, valence=valence)
+        logger.debug(f'信念选择：本次推理选择 "{ religion }" 作为信念')
 
-    logger.debug(f"备选欲望列表: {high_desire_list}")
-    question_2 = QUESTION_TEMPLATE.format(user_input, str(high_desire_list))
-
-    ans2 = LLM_inference(
-        question=question_2, chat_history=chat_history, system_prompt=SYSTEM_PROMPT
-    )
-    logger.debug(f"GPT推理 answer [2nd]: {ans2}")
-
-    ans2 = json.loads(ans2)
-    high_desire = ans2["desire"]
-    ans2_valence = ans2["valence"]
-
-    logger.debug(f"信念选择 select: 本次推理从{low_desire}中选取了{high_desire}作为欲望")
-    res_religion = Religion(desire_name=high_desire, valence=ans2_valence)
-
-    return res_religion
+    except json.decoder.JSONDecodeError as e:
+        logger.warn("Failed to decode LLM inference answer")
+        logger.warn(f"{e.msg}")
+        religion = Religion(desire_name=answer)
+    except Exception as e:
+        logger.fatal("Unexpected Exception !!!")
+        logger.fatal(f"{e}")
+        religion = Religion(desire_name=answer)
+    finally:
+        return religion
 
 
 if __name__ == "__main__":
     while True:
-        question = input("请输入事件：(输入quit结束运行~)\n")
-        if question == "quit":
+        user_input = input("请输入事件：(输入quit结束运行~)\n")
+        if user_input == "quit":
             break
 
         start = time.time()
-        answer: Religion = ReligionPipeline(user_input=question)
+
+        chat_history: list[ChatMessageItem] = []
+
+        logger.debug(f"用户输入问题 input: {user_input}")
+
+        desire = DESIRE_PROPERTY
+        desire_list = []
+        for i in range(1, 30):
+            item_name = desire._id2nodes[f"D{i}"].name
+            desire_list.append(item_name)
+
+        religion1 = extract_religion(user_input, desire_list, chat_history)
+
+        high_desire_list = []
+
+        high_desire_list.append(religion1._desire_item.name)
+        for l4 in religion1._desire_item.items:
+            high_desire_list.append(l4.name)
+            for l5 in l4.items:
+                high_desire_list.append(l5.name)
+
+        religion2 = extract_religion(user_input, high_desire_list, chat_history)
+
         end = time.time()
-        logger.info(f"最终选择的信念 religion: {answer}")
-        logger.debug(f"信念对应感受 feeling: {map_religion_feeling(answer)}")
+        logger.info(f"最终选择的信念 religion: {religion2}")
+        logger.debug(f"信念对应感受 feeling: {map_religion_feeling(religion2)}")
 
         logger.debug(f"消耗的时间 cost_time: {end - start}")
 
