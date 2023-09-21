@@ -1,9 +1,13 @@
 from decimal import Decimal
+from typing import Tuple
 
 from dui.types.decimalList import DecimalList
 
-EMOTION_NAMES_CN = ["开心", "难过", "讨厌", "惊讶", "生气"]
+EMOTION_NAMES_CN = ["开心", "难受", "讨厌", "惊讶", "生气"]
 EMOTION_NAMES = ["happy", "sad", "hate", "amazed", "angry"]
+
+EMOTION_NAME_DEFAULT_CN = "平静"
+EMOTION_NAME_DEFAULT = "calm"
 
 
 class EmotionBase(DecimalList):
@@ -89,3 +93,18 @@ class Feeling(EmotionBase):
 
     def __repr__(self):
         return super().__repr__()
+
+    def get_max_feeling_item(self,
+                             threshold: Decimal | int = Decimal(0)
+                             ) -> Tuple[str, Decimal]:
+        max_value: Decimal = Decimal(0)
+        max_name = EMOTION_NAME_DEFAULT
+        for e_n in EMOTION_NAMES:
+            e_v = self.get_feeling_value(e_n)
+            if e_v >= threshold and e_v > max_value:
+                max_value = e_v
+                max_name = e_n
+        return (max_name, max_value)
+
+    def get_max_feeling_item_name(self, threshold: Decimal | int = Decimal(0)) -> str:
+        return self.get_max_feeling_item(threshold)[0]

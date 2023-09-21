@@ -1,10 +1,16 @@
 import json
 import time
+from typing import TypedDict
 
+from device.asr import get_asr_response
+from device.eilik import EilikCom
 from dui.llm import ChatMessageItem, LLM_inference
 from dui.types import Religion
+from dui.types import emotion as name_lib
 from dui.types.desire import DESIRE_PROPERTY, DesireItem
+from dui.types.emotion import Feeling
 from dui.types.religion_feeling import map_religion_feeling
+from dui.utils.data import load_data
 from dui.utils.log import get_logger
 
 logger = get_logger("desc2feeling", console_level="DEBUG")
@@ -32,7 +38,10 @@ def extract_religion(
     question = QUESTION_TEMPLATE.format(user_input, optional_desires)
     logger.debug(f"欲望备选：{optional_desires}")
     answer = LLM_inference(
-        question=question, system_prompt=SYSTEM_PROMPT, chat_history=chat_history
+        question=question,
+        system_prompt=SYSTEM_PROMPT,
+        chat_history=chat_history,
+        model="gpt-4"
     )
     try:
         religion_data = json.loads(answer)
@@ -55,13 +64,69 @@ def extract_religion(
         return religion
 
 
+def console_input() -> str:
+    user_input = input("请输入事件：(输入quit结束运行~)\n")
+    if user_input == 'quit':
+        exit(0)
+    return user_input
+
+
+class FEELING2ACTION_DATA_ITEM(TypedDict):
+    feeling: str
+    range_start: int
+    range_end: int
+    desc: str
+    action_id: int
+
+
+FEELING2ACTION_DATA: list[FEELING2ACTION_DATA_ITEM] = load_data("feeling2action")
+
+
+ALL_EMOTION_NAMES = name_lib.EMOTION_NAMES + [name_lib.EMOTION_NAME_DEFAULT]
+ALL_EMOTION_NAMES_CN = name_lib.EMOTION_NAMES_CN + [name_lib.EMOTION_NAME_DEFAULT_CN]
+
+translate_emotion_name: dict[str, str] = dict(zip(ALL_EMOTION_NAMES_CN,
+                                                  ALL_EMOTION_NAMES))
+
+mapping_feeling_action: dict[str, list[FEELING2ACTION_DATA_ITEM]] = dict([
+    (feeling_name,
+     [item for item in FEELING2ACTION_DATA if
+      translate_emotion_name[item['feeling']] == feeling_name]
+     ) for feeling_name in ALL_EMOTION_NAMES
+])
+
+
+def feeling2eilik_action(feeling: Feeling) -> int:
+    feeling_item = feeling.get_max_feeling_item(50)
+    name, value = feeling_item
+
+    optional_list = mapping_feeling_action[name]
+
+    for i in optional_list:
+        if i['range_start'] <= value < i['range_end']:
+            return i['action_id']
+
+    logger.warn('reach end of feeling2eilik_action')
+    return mapping_feeling_action['calm'][0]["action_id"]
+
+
 if __name__ == "__main__":
     desire = DESIRE_PROPERTY
 
+    opened = EilikCom.open(port='com3')
+    if not opened:
+        print('Failed to connect Eilik.')
+        exit(-1)
+
     while True:
-        user_input = input("请输入事件：(输入quit结束运行~)\n")
-        if user_input == "quit":
-            break
+        # user_input = console_input()
+        status = EilikCom.read_status()
+        if status["head"] is True:
+            logger.debug('ready to listen')
+            user_input = get_asr_response()
+        else:
+            time.sleep(.05)
+            continue
 
         start = time.time()
 
@@ -84,9 +149,13 @@ if __name__ == "__main__":
 
         end = time.time()
 
-        logger.info(f"最终选择的信念 religion: {religion_2}")
-        logger.debug(f"信念对应感受 feeling: {map_religion_feeling(religion_2)}")
+        feeling = map_religion_feeling(religion_2)
 
+        action_id = feeling2eilik_action(feeling)
+        EilikCom.execute_action(action_id)
+
+        logger.info(f"最终选择的信念 religion: {religion_2}")
+        logger.debug(f"信念对应感受 feeling: {feeling}")
         logger.debug(f"消耗的时间 cost_time: {end - start}")
 
         logger.info("本轮分析结束 [ROUND_END]")

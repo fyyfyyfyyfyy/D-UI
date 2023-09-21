@@ -164,3 +164,6 @@ junit/
 
 #vscode
 .vscode/
+
+# asr models
+ncnn/
