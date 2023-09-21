@@ -12,9 +12,10 @@ logger = get_logger("desc2feeling", console_level="DEBUG")
 SYSTEM_PROMPT = """
 你扮演一个担任自然语言表达动机提取工作AI程序。\
 我将输入一句自然语言与欲望列表，你从我提供的欲望列表中，选择与该自然语言表达动机最匹配的一项欲望。\
+同时，你需要判断表达者在说这句自然语言时的情绪状态是积极还是消极。\
 你第一反应的欲望很可能不是最匹配的，因此你需要一步步思考。\
-我希望您只在一个唯一的代码块内回复 json，而不是其他任何内容。\
-不要写解释，除非我指示您这样做，否则不要自行追加新的输入。
+我希望你只在一个唯一的代码块内回复 json，而不是其他任何内容。\
+不要写解释，除非我指示你这样做，否则不要自行追加新的输入。
 输入格式分为两行，第一行是自然语言的句子，第二行是欲望列表。
 输出格式为 json 格式的字典，含有的键为 `desire`（欲望名称，来自输入列表）和 `valence` （极性，true 积极 false 消极）
 """
@@ -68,14 +69,14 @@ if __name__ == "__main__":
 
         logger.debug(f"用户输入问题 input: {user_input}")
 
-        desire_list_1 = [desire.get(f"D{i}") for i in range(1, 30)]
+        desire_list_1 = [si for i in range(1, 30) for si in desire.get(f"D{i}").items]
         desire_name_list_1 = [item.name for item in desire_list_1]
 
         religion_1 = extract_religion(user_input, desire_name_list_1, chat_history)
         desire_1 = religion_1.desire
 
         desire_list_2: list[DesireItem] = desire_1.fetch_subtree(
-            depth=2, including_self=True
+            depth=1, including_self=True
         )
         desire_name_list_2 = [item.name for item in desire_list_2]
 
