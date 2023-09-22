@@ -7,7 +7,7 @@ from device.eilik import EilikCom
 from dui.llm import ChatMessageItem, LLM_inference
 from dui.types import Religion
 from dui.types import emotion as name_lib
-from dui.types.desire import DESIRE_PROPERTY, DesireItem
+from dui.types.desire import DESIRE_PROPERTY
 from dui.types.emotion import Feeling
 from dui.types.religion_feeling import map_religion_feeling
 from dui.utils.data import load_data
@@ -123,13 +123,14 @@ if __name__ == "__main__":
         status = EilikCom.read_status()
         if status["head"] is True:
             logger.debug('ready to listen')
+            EilikCom.execute_action(3039018111)
             user_input = get_asr_response()
         else:
             time.sleep(.05)
             continue
 
         start = time.time()
-
+        EilikCom.execute_action(3039018113)
         chat_history: list[ChatMessageItem] = []
 
         logger.debug(f"用户输入问题 input: {user_input}")
@@ -138,24 +139,24 @@ if __name__ == "__main__":
         desire_name_list_1 = [item.name for item in desire_list_1]
 
         religion_1 = extract_religion(user_input, desire_name_list_1, chat_history)
-        desire_1 = religion_1.desire
+        # desire_1 = religion_1.desire
 
-        desire_list_2: list[DesireItem] = desire_1.fetch_subtree(
-            depth=1, including_self=True
-        )
-        desire_name_list_2 = [item.name for item in desire_list_2]
+        # desire_list_2: list[DesireItem] = desire_1.fetch_subtree(
+        #     depth=1, including_self=True
+        # )
+        # desire_name_list_2 = [item.name for item in desire_list_2]
 
-        religion_2 = extract_religion(user_input, desire_name_list_2, chat_history)
+        # religion_2 = extract_religion(user_input, desire_name_list_2, chat_history)
 
         end = time.time()
 
-        feeling = map_religion_feeling(religion_2)
-
+        feeling = map_religion_feeling(religion_1)
         action_id = feeling2eilik_action(feeling)
         EilikCom.execute_action(action_id)
 
-        logger.info(f"最终选择的信念 religion: {religion_2}")
+        logger.info(f"最终选择的信念 religion: {religion_1}")
         logger.debug(f"信念对应感受 feeling: {feeling}")
+        logger.info(f"action: {action_id}")
         logger.debug(f"消耗的时间 cost_time: {end - start}")
 
         logger.info("本轮分析结束 [ROUND_END]")
