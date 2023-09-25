@@ -1,9 +1,22 @@
 import datetime
+import platform
 import struct
 import time
 from typing import TypedDict
 
 import serial  # type: ignore
+
+
+def get_default_serial_name() -> str:
+    system = platform.system()
+
+    if system == "Windows":
+        return "com3"
+    elif system == "Darwin":
+        return "/dev/tty.usbmodem101"
+    else:
+        raise ValueError('not prepare for other os system.')
+        return "com3"
 
 
 class EilikMachine:

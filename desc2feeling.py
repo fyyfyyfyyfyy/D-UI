@@ -4,7 +4,7 @@ import typing
 from typing import Tuple, TypedDict
 
 from device.asr import get_asr_response
-from device.eilik import EilikCom
+from device.eilik import EilikCom, get_default_serial_name
 from dui.llm import ChatMessageItem, LLM_inference
 from dui.types import Religion
 from dui.types import emotion as name_lib
@@ -142,9 +142,9 @@ def feeling2eilik_action(feeling: Feeling) -> int:
 if __name__ == "__main__":
     desire = DESIRE_PROPERTY
     # EilikPortName = "com3"
-    EilikPortName = "/dev/tty.usbmodem101"
+    eilik_serial_name = get_default_serial_name()
 
-    opened = EilikCom.open(port=EilikPortName)
+    opened = EilikCom.open(port=eilik_serial_name)
     if not opened:
         print("Failed to connect Eilik.")
         exit(-1)
