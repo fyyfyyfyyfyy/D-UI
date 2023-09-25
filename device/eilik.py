@@ -10,11 +10,11 @@ import serial.tools.list_ports as list_ports  # type: ignore
 
 def get_port_lists() -> list[str]:
     plist: list = list_ports.comports()
-    return [p.name for p in plist]
+    return [p.device for p in plist]
 
 
 def filter_port_darwin(plist: list[str]) -> list[str]:
-    bt_keyword = 'Bluetooth-Imcoming-Port'
+    bt_keyword = 'Bluetooth-Incoming-Port'
     wlan_keyword = 'wlan'
 
     p1 = lambda s: bt_keyword not in s
