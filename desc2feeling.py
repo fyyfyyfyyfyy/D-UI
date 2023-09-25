@@ -1,13 +1,14 @@
 import json
 import time
-from typing import TypedDict
+import typing
+from typing import Tuple, TypedDict
 
 from device.asr import get_asr_response
 from device.eilik import EilikCom
 from dui.llm import ChatMessageItem, LLM_inference
 from dui.types import Religion
 from dui.types import emotion as name_lib
-from dui.types.desire import DESIRE_PROPERTY
+from dui.types.desire import DESIRE_PROPERTY, DesireItem
 from dui.types.emotion import Feeling
 from dui.types.religion_feeling import map_religion_feeling
 from dui.utils.data import load_data
@@ -33,7 +34,9 @@ QUESTION_TEMPLATE = """
 
 
 def extract_religion(
-    user_input: str, optional_desires: list[str], chat_history: list[ChatMessageItem]
+    user_input: str,
+    optional_desires: list[typing.Any],
+    chat_history: list[ChatMessageItem],
 ) -> Religion:
     question = QUESTION_TEMPLATE.format(user_input, optional_desires)
     logger.debug(f"欲望备选：{optional_desires}")
@@ -41,7 +44,7 @@ def extract_religion(
         question=question,
         system_prompt=SYSTEM_PROMPT,
         chat_history=chat_history,
-        model="gpt-4"
+        model="gpt-4",
     )
     try:
         religion_data = json.loads(answer)
@@ -66,7 +69,7 @@ def extract_religion(
 
 def console_input() -> str:
     user_input = input("请输入事件：(输入quit结束运行~)\n")
-    if user_input == 'quit':
+    if user_input == "quit":
         exit(0)
     return user_input
 
@@ -85,48 +88,65 @@ FEELING2ACTION_DATA: list[FEELING2ACTION_DATA_ITEM] = load_data("feeling2action"
 ALL_EMOTION_NAMES = name_lib.EMOTION_NAMES + [name_lib.EMOTION_NAME_DEFAULT]
 ALL_EMOTION_NAMES_CN = name_lib.EMOTION_NAMES_CN + [name_lib.EMOTION_NAME_DEFAULT_CN]
 
-translate_emotion_name: dict[str, str] = dict(zip(ALL_EMOTION_NAMES_CN,
-                                                  ALL_EMOTION_NAMES))
+translate_emotion_name: dict[str, str] = dict(
+    zip(ALL_EMOTION_NAMES_CN, ALL_EMOTION_NAMES)
+)
 
-mapping_feeling_action: dict[str, list[FEELING2ACTION_DATA_ITEM]] = dict([
-    (feeling_name,
-     [item for item in FEELING2ACTION_DATA if
-      translate_emotion_name[item['feeling']] == feeling_name]
-     ) for feeling_name in ALL_EMOTION_NAMES
-])
+mapping_feeling_action: dict[str, list[FEELING2ACTION_DATA_ITEM]] = dict(
+    [
+        (
+            feeling_name,
+            [
+                item
+                for item in FEELING2ACTION_DATA
+                if translate_emotion_name[item["feeling"]] == feeling_name
+            ],
+        )
+        for feeling_name in ALL_EMOTION_NAMES
+    ]
+)
 
 
-def feeling2eilik_action(feeling: Feeling) -> int:
+def map_religion2action(religion: Religion) -> FEELING2ACTION_DATA_ITEM:
+    feeling = map_religion_feeling(religion)
+    return map_feeling2action(feeling)
+
+
+def map_feeling2action(feeling: Feeling) -> FEELING2ACTION_DATA_ITEM:
     feeling_item = feeling.get_max_feeling_item(50)
     name, value = feeling_item
 
     optional_list = mapping_feeling_action[name]
 
     for i in optional_list:
-        if i['range_start'] <= value < i['range_end']:
-            return i['action_id']
+        if i["range_start"] <= value < i["range_end"]:
+            return i
 
-    logger.warn('reach end of feeling2eilik_action')
-    return mapping_feeling_action['calm'][0]["action_id"]
+    logger.warn("reach end of feeling2eilik_action")
+    return mapping_feeling_action["calm"][0]
+
+
+def feeling2eilik_action(feeling: Feeling) -> int:
+    return map_feeling2action(feeling)["action_id"]
 
 
 if __name__ == "__main__":
     desire = DESIRE_PROPERTY
 
-    opened = EilikCom.open(port='com3')
+    opened = EilikCom.open(port="com3")
     if not opened:
-        print('Failed to connect Eilik.')
+        print("Failed to connect Eilik.")
         exit(-1)
 
     while True:
         # user_input = console_input()
         status = EilikCom.read_status()
         if status["head"] is True:
-            logger.debug('ready to listen')
+            logger.debug("ready to listen")
             EilikCom.execute_action(3039018111)
             user_input = get_asr_response()
         else:
-            time.sleep(.05)
+            time.sleep(0.05)
             continue
 
         start = time.time()
@@ -136,7 +156,24 @@ if __name__ == "__main__":
         logger.debug(f"用户输入问题 input: {user_input}")
 
         desire_list_1 = [si for i in range(1, 30) for si in desire.get(f"D{i}").items]
-        desire_name_list_1 = [item.name for item in desire_list_1]
+        religions_list_1: list[Tuple[DesireItem, Religion, Religion]] = [
+            (
+                i,
+                Religion(desire_item=i, valence=True),
+                Religion(desire_item=i, valence=False),
+            )
+            for i in desire_list_1
+        ]
+        feelings_list_1: list[
+            Tuple[DesireItem, FEELING2ACTION_DATA_ITEM, FEELING2ACTION_DATA_ITEM]
+        ] = [
+            (i, map_religion2action(p), map_religion2action(n))
+            for (i, p, n) in religions_list_1
+        ]
+
+        desire_name_list_1 = [
+            (i.name, p["desc"], n["desc"]) for (i, p, n) in feelings_list_1
+        ]
 
         religion_1 = extract_religion(user_input, desire_name_list_1, chat_history)
         # desire_1 = religion_1.desire
