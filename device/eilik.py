@@ -5,18 +5,40 @@ import time
 from typing import TypedDict
 
 import serial  # type: ignore
+import serial.tools.list_ports as list_ports  # type: ignore
+
+
+def get_port_lists() -> list[str]:
+    plist: list = list_ports.comports()
+    return [p.name for p in plist]
+
+
+def filter_port_darwin(plist: list[str]) -> list[str]:
+    bt_keyword = 'Bluetooth-Imcoming-Port'
+    wlan_keyword = 'wlan'
+
+    p1 = lambda s: bt_keyword not in s
+    p2 = lambda s: wlan_keyword not in s
+
+    return [p for p in plist if p1(p) and p2(p)]
 
 
 def get_default_serial_name() -> str:
     system = platform.system()
+    ports = get_port_lists()
 
-    if system == "Windows":
-        return "com3"
-    elif system == "Darwin":
-        return "/dev/tty.usbmodem101"
-    else:
-        raise ValueError('not prepare for other os system.')
-        return "com3"
+    try:
+        if system == "Windows":
+            return ports[0]
+        elif system == "Darwin":
+            valid_ports = filter_port_darwin(ports)
+            return valid_ports[0]
+        else:
+            return ports[0]
+    except Exception as e:
+        print(e)
+        print(f'No valid port found on system [{system}].')
+        exit(-1)
 
 
 class EilikMachine:
