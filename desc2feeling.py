@@ -141,8 +141,10 @@ def feeling2eilik_action(feeling: Feeling) -> int:
 
 if __name__ == "__main__":
     desire = DESIRE_PROPERTY
+    # EilikPortName = "com3"
+    EilikPortName = "/dev/tty.usbmodem101"
 
-    opened = EilikCom.open(port="com3")
+    opened = EilikCom.open(port=EilikPortName)
     if not opened:
         print("Failed to connect Eilik.")
         exit(-1)
