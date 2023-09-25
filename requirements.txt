@@ -3,3 +3,10 @@ pyyaml
 openai
 colorlog
 openpyxl
+
+# asr
+sherpa_ncnn
+sounddevice
+
+# Eilik
+pyserial
