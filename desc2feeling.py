@@ -46,7 +46,7 @@ def extract_religion(
     user_input: str,
     optional_desires: list[typing.Any],
     chat_history: list[ChatMessageItem],
-) -> Religion:
+) -> typing.Tuple[Religion, str]:
     question = QUESTION_TEMPLATE.format(user_input, optional_desires)
     logger.debug(f"欲望备选：{optional_desires}")
     answer = LLM_inference(
@@ -55,25 +55,41 @@ def extract_religion(
         chat_history=chat_history,
         model="gpt-4",
     )
+    religion_data = {}
     try:
         religion_data = json.loads(answer)
+        # 错误验证
+        required_keys = ['desire', 'valence', 'reply']
+        missing_keys = [key for key in required_keys if key not in religion_data]
+        if missing_keys:
+            raise KeyError(f"{missing_keys} not found in religion_data")
 
         desire_name = religion_data["desire"]
         valence = religion_data["valence"]
+        reply = religion_data["reply"]
 
         religion = Religion(desire_name=desire_name, valence=valence)
         logger.debug(f'信念选择：本次推理选择 "{ religion }" 作为信念')
 
+    except KeyError as e:
+        reply = None
+        logger.error(f"Invalid religion_data: {e}")
+        religion = Religion(desire_name=answer)
     except json.decoder.JSONDecodeError as e:
+        reply = None
         logger.warn("Failed to decode LLM inference answer")
         logger.warn(f"{e.msg}")
         religion = Religion(desire_name=answer)
     except Exception as e:
+        reply = None
         logger.fatal("Unexpected Exception !!!")
         logger.fatal(f"{e}")
         religion = Religion(desire_name=answer)
     finally:
-        return religion
+        if reply is None or religion._desire_id == 'UNDEFINED':
+            reply = "解析结果为空"
+
+        return (religion, reply)
 
 
 def console_input() -> str:
@@ -186,7 +202,11 @@ if __name__ == "__main__":
             (i.name, p["desc"], n["desc"]) for (i, p, n) in feelings_list_1
         ]
 
-        religion_1 = extract_religion(user_input, desire_name_list_1, chat_history)
+        religion_1, religion_reply = extract_religion(
+            user_input,
+            desire_name_list_1,
+            chat_history
+        )
         # desire_1 = religion_1.desire
 
         # desire_list_2: list[DesireItem] = desire_1.fetch_subtree(
@@ -204,6 +224,7 @@ if __name__ == "__main__":
 
         logger.info(f"最终选择的信念 religion: {religion_1}")
         logger.debug(f"信念对应感受 feeling: {feeling}")
+        logger.info(f"Eilik的回复是: {religion_reply}")
         logger.info(f"action: {action_id}")
         logger.debug(f"消耗的时间 cost_time: {end - start}")
 
