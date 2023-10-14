@@ -21,5 +21,5 @@ def load_data(key: str) -> typing.Any:
 
 def save_config(key: str, data: typing.Any):
     filepath = key2filepath(key)
-    with open(filepath, "w") as f:
-        yaml.dump(data, f)
+    with open(filepath, "w", encoding='utf-8') as f:
+        yaml.dump(data, f, allow_unicode=True)

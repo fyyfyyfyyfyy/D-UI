@@ -53,6 +53,7 @@ def GPT_completion(
             logger.warn('role "system" should not be used twice or more.')
 
     messages.append(_get_message_item(question))
+    logger.debug(f"question对应的信息: {messages[-1]}")
     chat_history.append(messages[-1])
 
     logger.debug('----------- Start GPT Completion -----------')
